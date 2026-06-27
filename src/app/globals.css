@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-bg text-ink-muted antialiased;
+  font-feature-settings: "ss01", "cv01";
+}
+
+::selection {
+  background: rgba(33, 192, 99, 0.3);
+  color: #ffffff;
+}
+
+/* Thin, on-brand scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0f17;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a3a52;
+}
+
+@layer components {
+  .container-px {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+  }
+
+  .heading {
+    @apply font-display font-bold tracking-tight text-ink;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-line bg-bg-soft px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-ink-muted;
+  }
+
+  .card {
+    @apply rounded-2xl border border-line bg-bg-card/60 p-6 transition-colors duration-300 hover:border-green/40;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+  }
+  .btn-primary {
+    @apply btn bg-green text-bg shadow-[0_0_0_0_rgba(33,192,99,0.5)] hover:bg-green-deep hover:shadow-[0_8px_30px_-6px_rgba(33,192,99,0.6)];
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-transparent text-ink hover:border-green/50 hover:bg-bg-soft;
+  }
+
+  .link-muted {
+    @apply text-ink-muted transition-colors hover:text-ink;
+  }
+}
