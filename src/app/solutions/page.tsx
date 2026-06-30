@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
+import { SpotlightCard } from "@/components/SpotlightCard";
 import { CTA } from "@/components/CTA";
 import { products } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Solutions — Compliance Products",
+  title: "Platform — Compliance, Productised",
   description:
-    "ZTPL's compliance products, led by Zoffec Aegis — India's most complete SEBI CSCRF platform. Software built by practitioners, for regulated entities and MSSPs.",
+    "ZTPL's GRC platform, led by Zoffec Aegis — a multi-tenant platform for SEBI CSCRF. Built by practitioners for Regulated Entities and the MSSPs that serve them.",
 };
 
 export default function SolutionsPage() {
@@ -16,17 +17,20 @@ export default function SolutionsPage() {
       <section className="relative overflow-hidden border-b border-line">
         <div className="pointer-events-none absolute inset-0 bg-green-glow" aria-hidden />
         <div className="container-px relative py-20 sm:py-28">
-          <div className="max-w-3xl">
-            <span className="eyebrow">Solutions</span>
-            <h1 className="heading mt-5 text-4xl sm:text-5xl">
-              Compliance, productised
-            </h1>
-            <p className="mt-5 text-xl text-ink-muted">
-              We don&apos;t just advise — we build. Our products turn dense
-              regulatory frameworks into software your team can actually run.
-              Aegis leads the lineup, with more on the roadmap.
-            </p>
-          </div>
+          <Reveal>
+            <div className="max-w-3xl">
+              <span className="eyebrow">Platform</span>
+              <h1 className="heading mt-5 text-4xl sm:text-5xl lg:text-6xl">
+                Compliance, <span className="text-gradient">productised</span>
+              </h1>
+              <p className="mt-5 text-xl leading-relaxed text-ink-muted">
+                We don&apos;t just advise — we build. Our platform turns dense
+                regulatory frameworks into software your team can actually run,
+                across every entity you manage. Aegis leads the lineup, with more
+                on the roadmap.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -35,17 +39,17 @@ export default function SolutionsPage() {
           <div className="grid gap-6 md:grid-cols-2">
             {products.map((p, i) => (
               <Reveal key={p.slug} delay={i * 0.08}>
-                <div className="card flex h-full flex-col">
+                <SpotlightCard className="flex h-full flex-col">
                   <div className="flex items-center justify-between">
                     <h2 className="heading text-2xl">{p.name}</h2>
-                    <span className="rounded-full border border-green/40 bg-green/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-green">
-                      Live
-                    </span>
+                    <span className="pill-live">Live</span>
                   </div>
                   <p className="mt-1 text-sm font-medium text-yellow">
                     {p.tagline}
                   </p>
-                  <p className="mt-4 flex-1 text-sm text-ink-muted">{p.short}</p>
+                  <p className="mt-4 flex-1 text-sm leading-relaxed text-ink-muted">
+                    {p.short}
+                  </p>
                   <div className="mt-6 flex flex-wrap gap-3">
                     <Link href={`/solutions/${p.slug}`} className="btn-primary">
                       Explore {p.name.split(" ").pop()}
@@ -61,7 +65,7 @@ export default function SolutionsPage() {
                       </a>
                     )}
                   </div>
-                </div>
+                </SpotlightCard>
               </Reveal>
             ))}
 
@@ -74,7 +78,7 @@ export default function SolutionsPage() {
                 <h2 className="heading mt-3 text-2xl text-ink-muted">
                   More compliance products
                 </h2>
-                <p className="mt-4 text-sm text-ink-faint">
+                <p className="mt-4 text-sm leading-relaxed text-ink-faint">
                   We&apos;re extending the platform to new frameworks and
                   workflows. Want to influence what we build next?
                 </p>

@@ -2,9 +2,11 @@
  * Single source of truth for company facts, navigation, and content data.
  * Confirmed decisions:
  *  - Legal name: Zoffec Technologies Private Limited
- *  - Brand: Variant A (yellow + green), dark UI
+ *  - Brand: yellow + green on deep charcoal (extracted from the logo)
  *  - Contact: support@zt-pl.com
- *  - Products are data-driven (see `products`) so the site scales beyond Aegis.
+ *  - Zoffec Aegis is positioned as a PLATFORM (multi-tenant GRC) — not a
+ *    one-off solution. Built for Regulated Entities (REs) and the MSSPs /
+ *    GRC consultancies that serve them.
  */
 
 export const site = {
@@ -12,7 +14,7 @@ export const site = {
   legalName: "Zoffec Technologies Private Limited",
   tagline: "Compliance Simplified.",
   description:
-    "ZTPL builds compliance technology — including Zoffec Aegis, India's most complete SEBI CSCRF platform — and delivers the GRC advisory that gets regulated entities audit-ready.",
+    "ZTPL builds Zoffec Aegis — a multi-tenant GRC platform for SEBI CSCRF — and delivers the practitioner-led advisory that gets Regulated Entities and MSSPs audit-ready.",
   url: "https://www.zt-pl.com",
   email: "support@zt-pl.com",
   phone: "+91 00000 00000", // placeholder — replace before launch
@@ -24,14 +26,14 @@ export const site = {
 } as const;
 
 export const nav = [
-  { label: "Solutions", href: "/solutions" },
+  { label: "Platform", href: "/solutions/aegis" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
 /* -------------------------------------------------------------------------- */
-/*  PRODUCTS — add a new object here and a full product page is generated.     */
+/*  PLATFORM / PRODUCTS — add an object here and a full page is generated.     */
 /* -------------------------------------------------------------------------- */
 
 export type Product = {
@@ -53,35 +55,35 @@ export const products: Product[] = [
   {
     slug: "aegis",
     name: "Zoffec Aegis",
-    tagline: "SEBI CSCRF Compliance Platform",
+    tagline: "The GRC Platform for SEBI CSCRF",
     status: "live",
     externalUrl: "https://zoffecgrc.vercel.app/",
     short:
-      "India's most complete SEBI CSCRF platform — a multi-client GRC workspace for assessments, evidence, third-party risk, and audit-ready reporting.",
+      "A multi-tenant GRC platform purpose-built for SEBI CSCRF — one workspace where Regulated Entities and MSSPs run assessments, hold evidence, manage third-party risk, and ship audit-ready reports.",
     description:
-      "India's most complete SEBI CSCRF compliance platform. A multi-client GRC workspace for assessments, evidence, third-party risk, and audit-ready reporting — deployed on our cloud or your own server.",
+      "Zoffec Aegis is a multi-tenant GRC platform engineered around the SEBI Cyber Security & Cyber Resilience Framework. Regulated Entities run their entire compliance program in one place; MSSPs and GRC consultancies run dozens of clients side by side — assessments, evidence, third-party risk, and Annexure-K-ready reporting. Deploy on our hardened cloud or inside your own environment.",
     problems: [
       {
-        title: "Spreadsheets don't survive an audit",
-        body: "Evidence scattered across drives and inboxes turns every CSCRF submission into a fire drill — and leaves gaps a regulator will find.",
+        title: "Point tools don't scale to a framework",
+        body: "CSCRF spans governance, controls, evidence, vendors, and reporting. A spreadsheet or a generic checklist covers a slice — and leaves gaps a regulator will find. A platform covers the whole lifecycle in one model.",
       },
       {
-        title: "CSCRF is broad and unforgiving",
-        body: "From governance to Annexure-K controls, the framework spans your whole estate. Tracking it manually doesn't scale past one entity.",
+        title: "One RE is hard; many is impossible by hand",
+        body: "MSSPs and consultancies juggle dozens of Regulated Entities in parallel. Without true multi-tenancy you get cross-contamination, rework, and a broken audit trail.",
       },
       {
-        title: "Consultants juggle many clients",
-        body: "MSSPs and GRC firms need to run dozens of REs in parallel without cross-contamination, rework, or losing the audit trail.",
+        title: "Audit prep becomes a fire drill",
+        body: "When evidence lives across drives and inboxes, every submission is a scramble. A platform keeps every artefact mapped to a control, versioned, and submission-ready year round.",
       },
     ],
     modules: [
       {
         title: "SEBI-Native Assessment",
-        body: "Run assessments against a pre-loaded CSCRF control library with scoring, ownership, and live readiness per client.",
+        body: "Run assessments against a pre-loaded CSCRF control library with scoring, ownership, and live readiness — per entity, per client.",
       },
       {
         title: "AI-Powered GRC Assistant",
-        body: "Get drafting help, control guidance, and gap explanations from an assistant that understands the framework.",
+        body: "Drafting help, control guidance, and gap explanations from an assistant that actually understands the framework.",
       },
       {
         title: "Evidence Vault",
@@ -93,7 +95,7 @@ export const products: Product[] = [
       },
       {
         title: "Asset & CIA Inventory",
-        body: "Maintain a living asset register with confidentiality, integrity, and availability ratings mapped to controls.",
+        body: "A living asset register with confidentiality, integrity, and availability ratings mapped to controls.",
       },
       {
         title: "Access Control & Review",
@@ -101,7 +103,7 @@ export const products: Product[] = [
       },
       {
         title: "Immutable Audit Trail",
-        body: "Every action is captured in a tamper-evident log (HMAC-SHA256 sessions) — defensible evidence by design.",
+        body: "Every action captured in a tamper-evident log (HMAC-SHA256 sessions) — defensible evidence by design.",
       },
       {
         title: "Audit-Ready Reporting",
@@ -115,7 +117,7 @@ export const products: Product[] = [
         points: [
           "Fastest time-to-value",
           "Managed updates & backups",
-          "Elastic scale",
+          "Elastic multi-tenant scale",
         ],
       },
       {
@@ -131,7 +133,7 @@ export const products: Product[] = [
     plans: [
       { name: "Solo", blurb: "For an individual practitioner managing a single entity.", highlight: false },
       { name: "Starter", blurb: "For small teams beginning their CSCRF journey.", highlight: false },
-      { name: "Professional", blurb: "For consulting firms managing multiple clients.", highlight: true },
+      { name: "Professional", blurb: "For MSSPs & consultancies running multiple clients.", highlight: true },
       { name: "Enterprise", blurb: "For MIIs and large REs with complex estates.", highlight: false },
       { name: "Custom", blurb: "On-prem deployment and bespoke requirements.", highlight: false },
     ],
@@ -141,6 +143,28 @@ export const products: Product[] = [
 export function getProduct(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);
 }
+
+/* -------------------------------------------------------------------------- */
+/*  PLATFORM CAPABILITIES — high-level pillars for the home/platform pages.    */
+/* -------------------------------------------------------------------------- */
+
+export const platformPillars = [
+  {
+    tag: "Multi-tenant",
+    title: "Built for many entities at once",
+    body: "True tenant isolation lets an MSSP run dozens of Regulated Entities side by side — and lets a single RE manage every business unit — with no cross-contamination.",
+  },
+  {
+    tag: "SEBI-native",
+    title: "The framework is the foundation",
+    body: "CSCRF controls, Annexure-K mapping, and RE categorisation are baked into the data model — not bolted on as templates.",
+  },
+  {
+    tag: "Audit-ready",
+    title: "Evidence to submission, in one trail",
+    body: "Every control links to versioned evidence and a tamper-evident log, so a submission-ready report is always one click away.",
+  },
+];
 
 /* -------------------------------------------------------------------------- */
 /*  SERVICES                                                                   */
@@ -221,5 +245,6 @@ export const audience = [
   "Depository Participants",
   "Registered Investment Advisers",
   "Market Infrastructure Institutions",
+  "Clearing Corporations",
   "MSSPs & GRC Consultancies",
 ] as const;

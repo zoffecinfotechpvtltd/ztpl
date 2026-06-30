@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Section, SectionHeading } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
+import { SpotlightCard } from "@/components/SpotlightCard";
+import { ReadinessPanel } from "@/components/ReadinessPanel";
 import { CTA } from "@/components/CTA";
 import { products, getProduct } from "@/lib/site";
 
@@ -36,14 +38,20 @@ export default function ProductPage({
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-line">
         <div className="pointer-events-none absolute inset-0 bg-green-glow" aria-hidden />
-        <div className="container-px relative py-20 sm:py-28">
+        <div className="container-px relative py-16 sm:py-24">
           <div className="grid items-center gap-12 lg:grid-cols-2">
-            <div>
-              <span className="eyebrow">{product.tagline}</span>
-              <h1 className="heading mt-5 text-4xl sm:text-5xl">
+            <Reveal direction="right">
+              <span className="pill-live">
+                <span className="h-1.5 w-1.5 rounded-full bg-green animate-pulse-glow" />
+                Live platform
+              </span>
+              <h1 className="heading mt-5 text-4xl sm:text-5xl lg:text-6xl">
                 {product.name}
               </h1>
-              <p className="mt-5 text-xl text-ink-muted">
+              <p className="mt-3 text-base font-medium text-yellow">
+                {product.tagline}
+              </p>
+              <p className="mt-5 text-lg leading-relaxed text-ink-muted">
                 {product.description}
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -61,54 +69,19 @@ export default function ProductPage({
                   Book a Demo
                 </Link>
               </div>
-            </div>
+            </Reveal>
 
-            {/* Illustrative product UI — swap for a real screenshot when ready */}
-            <div className="relative">
-              <div className="pointer-events-none absolute -inset-4 bg-green-glow" aria-hidden />
-              <div className="relative rounded-2xl border border-line bg-bg p-4 shadow-2xl">
-                <div className="flex items-center gap-1.5 pb-3">
-                  <span className="h-3 w-3 rounded-full bg-alert/70" />
-                  <span className="h-3 w-3 rounded-full bg-yellow/70" />
-                  <span className="h-3 w-3 rounded-full bg-green/70" />
-                  <span className="ml-3 text-xs text-ink-faint">
-                    {product.externalUrl?.replace(/^https?:\/\//, "") ??
-                      "app.zt-pl.com"}
-                  </span>
-                </div>
-                <div className="space-y-3 rounded-lg bg-bg-card p-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-semibold text-ink">
-                      CSCRF Readiness
-                    </span>
-                    <span className="text-sm font-bold text-green">82%</span>
-                  </div>
-                  <div className="h-2 w-full rounded-full bg-line">
-                    <div className="h-2 w-[82%] rounded-full bg-gradient-to-r from-green to-yellow" />
-                  </div>
-                  <div className="grid grid-cols-3 gap-2 pt-1">
-                    {[
-                      ["Controls", "146"],
-                      ["Evidence", "312"],
-                      ["Open gaps", "27"],
-                    ].map(([k, v]) => (
-                      <div
-                        key={k}
-                        className="rounded-md border border-line bg-bg p-3"
-                      >
-                        <div className="text-lg font-bold text-ink">{v}</div>
-                        <div className="text-[10px] uppercase tracking-wide text-ink-faint">
-                          {k}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <p className="pt-3 text-center text-[10px] text-ink-faint">
-                  Illustrative UI — replace with a real product screenshot.
-                </p>
+            <Reveal direction="left" delay={0.1}>
+              <div className="relative">
+                <div className="pointer-events-none absolute -inset-6 bg-green-glow" aria-hidden />
+                <ReadinessPanel
+                  url={
+                    product.externalUrl?.replace(/^https?:\/\//, "") ??
+                    "app.zt-pl.com"
+                  }
+                />
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -118,40 +91,47 @@ export default function ProductPage({
         <SectionHeading
           eyebrow="The problem"
           title="The framework breaks the tools you're using"
-          intro="If your compliance program lives in spreadsheets and shared drives, you're carrying risk you can't see — and work you can't repeat."
+          intro="If your compliance program lives in spreadsheets and shared drives, you're carrying risk you can't see — and work you can't repeat across entities."
         />
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {product.problems.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
-              <div className="card h-full">
-                <h3 className="heading text-lg text-ink">{p.title}</h3>
-                <p className="mt-3 text-sm text-ink-muted">{p.body}</p>
-              </div>
+              <SpotlightCard className="h-full">
+                <span className="font-display text-2xl font-bold text-line">
+                  0{i + 1}
+                </span>
+                <h3 className="heading mt-3 text-lg text-ink">{p.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+                  {p.body}
+                </p>
+              </SpotlightCard>
             </Reveal>
           ))}
         </div>
       </Section>
 
       {/* Modules */}
-      <section className="border-y border-line bg-bg-soft py-20 sm:py-28">
+      <section className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28">
         <div className="container-px">
           <Reveal>
             <SectionHeading
-              eyebrow="Modules"
+              eyebrow="Platform modules"
               title="Everything the framework asks of you — in one workspace"
-              intro="Tightly-integrated modules take you from gap assessment to a submission-ready audit pack."
+              intro="Tightly-integrated modules take you from gap assessment to a submission-ready audit pack, for every entity you manage."
             />
           </Reveal>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {product.modules.map((m, i) => (
               <Reveal key={m.title} delay={(i % 4) * 0.06}>
-                <div className="card h-full">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-green/30 bg-green/10 text-green">
-                    ▣
+                <SpotlightCard className="h-full">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-green/30 bg-green/10 font-display text-sm font-bold text-green">
+                    {String(i + 1).padStart(2, "0")}
                   </div>
                   <h3 className="heading mt-4 text-base">{m.title}</h3>
-                  <p className="mt-2 text-sm text-ink-muted">{m.body}</p>
-                </div>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                    {m.body}
+                  </p>
+                </SpotlightCard>
               </Reveal>
             ))}
           </div>
@@ -168,9 +148,11 @@ export default function ProductPage({
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           {product.deployment.map((d, i) => (
             <Reveal key={d.name} delay={i * 0.08}>
-              <div className="card h-full">
+              <SpotlightCard className="h-full">
                 <h3 className="heading text-xl">{d.name}</h3>
-                <p className="mt-3 text-sm text-ink-muted">{d.body}</p>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+                  {d.body}
+                </p>
                 <ul className="mt-5 space-y-2">
                   {d.points.map((pt) => (
                     <li
@@ -182,27 +164,27 @@ export default function ProductPage({
                     </li>
                   ))}
                 </ul>
-              </div>
+              </SpotlightCard>
             </Reveal>
           ))}
         </div>
       </Section>
 
       {/* Plans */}
-      <section id="plans" className="border-y border-line bg-bg-soft py-20 sm:py-28">
+      <section id="plans" className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28">
         <div className="container-px">
           <Reveal>
             <SectionHeading
               eyebrow="Plans"
               title="Scales with your practice"
-              intro="Talk to us for pricing tailored to your entity count and deployment."
+              intro="From a solo practitioner to an MSSP running dozens of clients. Talk to us for pricing tailored to your entity count and deployment."
             />
           </Reveal>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
             {product.plans.map((plan, i) => (
               <Reveal key={plan.name} delay={i * 0.05}>
                 <div
-                  className={`card h-full ${
+                  className={`card card-hover h-full ${
                     plan.highlight
                       ? "border-green/60 bg-bg-card ring-1 ring-green/30"
                       : ""

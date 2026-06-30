@@ -19,8 +19,12 @@ export function SectionHeading({
       }
     >
       {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-      <h2 className="heading mt-4 text-3xl sm:text-4xl">{title}</h2>
-      {intro && <p className="mt-4 text-lg text-ink-muted">{intro}</p>}
+      <h2 className="heading mt-5 text-3xl sm:text-4xl lg:text-[2.75rem] lg:leading-[1.08]">
+        {title}
+      </h2>
+      {intro && (
+        <p className="mt-5 text-lg leading-relaxed text-ink-muted">{intro}</p>
+      )}
     </div>
   );
 }

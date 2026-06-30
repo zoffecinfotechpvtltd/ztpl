@@ -1,22 +1,29 @@
+/* Primary typeface — Pliant (per brief). Must precede @tailwind rules. */
+@import url("https://fonts.googleapis.com/css2?family=Pliant:ital,wght@0,100..900;1,100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   color-scheme: dark;
+  --marquee-duration: 42s;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   @apply bg-bg text-ink-muted antialiased;
+  font-family: "Pliant", var(--font-pliant-fallback), system-ui, sans-serif;
   font-feature-settings: "ss01", "cv01";
+  overflow-x: hidden;
 }
 
 ::selection {
-  background: rgba(33, 192, 99, 0.3);
+  background: rgba(33, 192, 99, 0.32);
   color: #ffffff;
 }
 
@@ -25,14 +32,24 @@ body {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b0f17;
+  background: #070809;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #1c2430;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a3a52;
+  background: #2a3647;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    text-wrap: balance;
+  }
 }
 
 @layer components {
@@ -41,28 +58,98 @@ body {
   }
 
   .heading {
-    @apply font-display font-bold tracking-tight text-ink;
+    @apply font-display font-semibold tracking-tight text-ink;
+  }
+
+  /* Gradient brand text — green→yellow lockup from the logo */
+  .text-gradient {
+    @apply bg-brand-gradient bg-clip-text text-transparent;
+    background-size: 200% auto;
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 rounded-full border border-line bg-bg-soft px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-ink-muted;
+    @apply inline-flex items-center gap-2 rounded-full border border-line bg-bg-soft/80 px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-ink-muted backdrop-blur;
   }
 
+  /* Base card */
   .card {
-    @apply rounded-2xl border border-line bg-bg-card/60 p-6 transition-colors duration-300 hover:border-green/40;
+    @apply relative rounded-2xl border border-line bg-bg-card/60 p-6 transition-all duration-500 ease-smooth;
+  }
+  .card-hover {
+    @apply hover:-translate-y-1 hover:border-green/40 hover:bg-bg-card hover:shadow-[0_24px_60px_-24px_rgba(33,192,99,0.35)];
   }
 
+  /* Gradient hairline border wrapper */
+  .border-grad {
+    @apply relative rounded-2xl p-px;
+    background: linear-gradient(
+      130deg,
+      rgba(255, 214, 10, 0.5),
+      rgba(33, 192, 99, 0.35) 45%,
+      rgba(28, 36, 48, 0.6) 75%
+    );
+  }
+
+  /* Buttons */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
   }
   .btn-primary {
-    @apply btn bg-green text-bg shadow-[0_0_0_0_rgba(33,192,99,0.5)] hover:bg-green-deep hover:shadow-[0_8px_30px_-6px_rgba(33,192,99,0.6)];
+    @apply btn bg-brand-gradient text-bg shadow-[0_8px_30px_-10px_rgba(33,192,99,0.6)] hover:shadow-[0_14px_44px_-10px_rgba(52,215,123,0.7)] hover:brightness-105;
+    background-size: 180% auto;
+  }
+  .btn-primary:hover {
+    background-position: right center;
   }
   .btn-ghost {
-    @apply btn border border-line bg-transparent text-ink hover:border-green/50 hover:bg-bg-soft;
+    @apply btn border border-line bg-bg-soft/40 text-ink backdrop-blur hover:border-green/50 hover:bg-bg-soft;
   }
 
   .link-muted {
     @apply text-ink-muted transition-colors hover:text-ink;
+  }
+
+  /* Pill / chip */
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-bg-soft/60 px-3 py-1 text-xs font-medium text-ink-muted;
+  }
+
+  /* Soft tinted status pill (live) */
+  .pill-live {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-green/40 bg-green/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-green;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  /* fade overlay for marquees */
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }

@@ -3,11 +3,11 @@ import { Reveal } from "./Reveal";
 
 export function CTA({
   title = "Ready for audit-ready compliance?",
-  body = "Book a walkthrough of Zoffec Aegis, or talk to our GRC team about your SEBI CSCRF obligations. We'll meet you where you are.",
+  body = "Book a walkthrough of the Zoffec Aegis platform, or talk to our GRC team about your SEBI CSCRF obligations. We'll meet you where you are.",
   primaryLabel = "Book a Demo",
   primaryHref = "/contact",
-  secondaryLabel = "Explore Aegis",
-  secondaryHref = "/solutions",
+  secondaryLabel = "Explore the Platform",
+  secondaryHref = "/solutions/aegis",
 }: {
   title?: string;
   body?: string;
@@ -20,27 +20,33 @@ export function CTA({
     <section className="py-20 sm:py-28">
       <div className="container-px">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl border border-line bg-bg-card px-6 py-14 text-center sm:px-12">
-            <div
-              className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-green-glow"
-              aria-hidden
-            />
-            <div className="relative">
-              <h2 className="heading mx-auto max-w-2xl text-3xl sm:text-4xl">
-                {title}
-              </h2>
-              <p className="mx-auto mt-4 max-w-xl text-lg text-ink-muted">
-                {body}
-              </p>
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Link href={primaryHref} className="btn-primary">
-                  {primaryLabel}
-                </Link>
-                {secondaryLabel && (
-                  <Link href={secondaryHref} className="btn-ghost">
-                    {secondaryLabel} →
+          <div className="border-grad overflow-hidden shadow-[0_40px_120px_-50px_rgba(33,192,99,0.5)]">
+            <div className="relative overflow-hidden rounded-[15px] bg-bg-card px-6 py-16 text-center sm:px-12">
+              <div
+                className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-green-glow"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute -bottom-10 left-1/2 h-40 w-40 -translate-x-1/2 rounded-full bg-yellow/10 blur-3xl"
+                aria-hidden
+              />
+              <div className="relative">
+                <h2 className="heading mx-auto max-w-2xl text-3xl sm:text-4xl lg:text-[2.75rem] lg:leading-[1.08]">
+                  {title}
+                </h2>
+                <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-ink-muted">
+                  {body}
+                </p>
+                <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  <Link href={primaryHref} className="btn-primary">
+                    {primaryLabel}
                   </Link>
-                )}
+                  {secondaryLabel && (
+                    <Link href={secondaryHref} className="btn-ghost">
+                      {secondaryLabel} →
+                    </Link>
+                  )}
+                </div>
               </div>
             </div>
           </div>

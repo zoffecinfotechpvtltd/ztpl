@@ -6,22 +6,24 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line bg-bg-soft">
-      <div className="container-px py-14">
-        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
+    <footer className="relative border-t border-line bg-bg-soft/60">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand-gradient opacity-50" />
+      <div className="container-px py-16">
+        <div className="grid gap-12 md:grid-cols-[1.6fr_1fr_1fr]">
           <div>
             <Logo />
-            <p className="mt-5 max-w-xs text-sm text-ink-muted">
-              {site.legalName}. We build compliance technology and deliver the
-              GRC advisory that gets SEBI-regulated entities audit-ready.
+            <p className="mt-6 max-w-xs text-sm leading-relaxed text-ink-muted">
+              {site.legalName}. We build the GRC platform — Zoffec Aegis — and
+              deliver the advisory that gets SEBI-regulated entities and MSSPs
+              audit-ready.
             </p>
           </div>
 
           <div>
-            <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-faint">
-              Site
+            <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-faint">
+              Explore
             </h2>
-            <ul className="mt-4 space-y-3 text-sm">
+            <ul className="mt-5 space-y-3 text-sm">
               <li>
                 <Link href="/" className="link-muted">
                   Home
@@ -38,10 +40,10 @@ export function Footer() {
           </div>
 
           <div>
-            <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-faint">
+            <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-faint">
               Contact
             </h2>
-            <ul className="mt-4 space-y-3 text-sm">
+            <ul className="mt-5 space-y-3 text-sm">
               <li>
                 <a href={`mailto:${site.email}`} className="link-muted">
                   {site.email}
@@ -71,7 +73,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-line pt-6 text-xs text-ink-faint sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-line pt-6 text-xs text-ink-faint sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {site.legalName}. All rights reserved.
           </p>

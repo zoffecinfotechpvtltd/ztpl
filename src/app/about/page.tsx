@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
+import { SpotlightCard } from "@/components/SpotlightCard";
 import { CTA } from "@/components/CTA";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "ZTPL — Zoffec Technologies Private Limited — builds compliance technology and delivers GRC advisory for India's SEBI-regulated businesses.",
+    "ZTPL — Zoffec Technologies Private Limited — builds the Zoffec Aegis GRC platform and delivers GRC advisory for India's SEBI-regulated businesses and MSSPs.",
 };
 
 const values = [
@@ -17,7 +18,7 @@ const values = [
   },
   {
     title: "Build, then advise",
-    body: "We earn trust by shipping. Aegis is proof our guidance is grounded in how compliance actually operates.",
+    body: "We earn trust by shipping. The Aegis platform is proof our guidance is grounded in how compliance actually operates.",
   },
   {
     title: "Outcomes, not hours",
@@ -38,18 +39,21 @@ export default function AboutPage() {
           aria-hidden
         />
         <div className="container-px relative py-20 sm:py-28">
-          <div className="max-w-3xl">
-            <span className="eyebrow">About</span>
-            <h1 className="heading mt-5 text-4xl sm:text-5xl">
-              We make compliance buildable
-            </h1>
-            <p className="mt-5 text-xl text-ink-muted">
-              {site.legalName} ({site.name}) is a cybersecurity and RegTech
-              company focused on one thing: making SEBI CSCRF compliance
-              achievable, repeatable, and audit-ready for India&apos;s regulated
-              businesses.
-            </p>
-          </div>
+          <Reveal>
+            <div className="max-w-3xl">
+              <span className="eyebrow">About</span>
+              <h1 className="heading mt-5 text-4xl sm:text-5xl lg:text-6xl">
+                We make compliance{" "}
+                <span className="text-gradient">buildable</span>
+              </h1>
+              <p className="mt-5 text-xl leading-relaxed text-ink-muted">
+                {site.legalName} ({site.name}) is a cybersecurity and RegTech
+                company focused on one thing: making SEBI CSCRF compliance
+                achievable, repeatable, and audit-ready for India&apos;s
+                regulated businesses and the MSSPs that serve them.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -57,7 +61,7 @@ export default function AboutPage() {
         <div className="grid gap-12 lg:grid-cols-2">
           <Reveal>
             <SectionHeading eyebrow="Our story" title="Why we exist" />
-            <div className="mt-5 space-y-4 text-ink-muted">
+            <div className="mt-6 space-y-4 leading-relaxed text-ink-muted">
               <p>
                 The SEBI Cyber Security and Cyber Resilience Framework raised the
                 bar for regulated entities — and exposed how unprepared most
@@ -66,20 +70,21 @@ export default function AboutPage() {
                 report and no system to run it.
               </p>
               <p>
-                We built ZTPL to close that gap from both directions: a product,
-                Zoffec Aegis, that operationalises CSCRF end-to-end, and an
-                advisory practice that implements it shoulder-to-shoulder with
-                your team. Software where it scales, people where it counts.
+                We built ZTPL to close that gap from both directions: a platform,
+                Zoffec Aegis, that operationalises CSCRF end-to-end for many
+                entities at once, and an advisory practice that implements it
+                shoulder-to-shoulder with your team. Software where it scales,
+                people where it counts.
               </p>
             </div>
           </Reveal>
 
           <Reveal delay={0.1}>
             <SectionHeading eyebrow="Mission" title="What we're here to do" />
-            <div className="mt-5 space-y-4 text-ink-muted">
+            <div className="mt-6 space-y-4 leading-relaxed text-ink-muted">
               <p>
                 To be the most trusted compliance partner for SEBI-regulated
-                entities and the MSSPs that serve them — by shipping technology
+                entities and the MSSPs that serve them — by shipping a platform
                 that makes the framework workable and advisory that makes it
                 stick.
               </p>
@@ -93,7 +98,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <section className="border-y border-line bg-bg-soft py-20 sm:py-28">
+      <section className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28">
         <div className="container-px">
           <Reveal>
             <SectionHeading
@@ -105,10 +110,12 @@ export default function AboutPage() {
           <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-2">
             {values.map((v, i) => (
               <Reveal key={v.title} delay={(i % 2) * 0.08}>
-                <div className="card h-full">
+                <SpotlightCard className="h-full">
                   <h3 className="heading text-lg">{v.title}</h3>
-                  <p className="mt-3 text-sm text-ink-muted">{v.body}</p>
-                </div>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+                    {v.body}
+                  </p>
+                </SpotlightCard>
               </Reveal>
             ))}
           </div>

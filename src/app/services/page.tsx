@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Section, SectionHeading } from "@/components/Section";
+import { Section } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
+import { SpotlightCard } from "@/components/SpotlightCard";
 import { CTA } from "@/components/CTA";
 import { services } from "@/lib/site";
 
@@ -20,17 +21,20 @@ export default function ServicesPage() {
           aria-hidden
         />
         <div className="container-px relative py-20 sm:py-28">
-          <div className="max-w-3xl">
-            <span className="eyebrow">Services</span>
-            <h1 className="heading mt-5 text-4xl sm:text-5xl">
-              Practitioner-led GRC &amp; cybersecurity
-            </h1>
-            <p className="mt-5 text-xl text-ink-muted">
-              When you need more than software, our team delivers the advisory
-              and assurance that gets SEBI-regulated entities — and the MSSPs
-              who serve them — to audit-ready and beyond.
-            </p>
-          </div>
+          <Reveal>
+            <div className="max-w-3xl">
+              <span className="eyebrow">Services</span>
+              <h1 className="heading mt-5 text-4xl sm:text-5xl lg:text-6xl">
+                Practitioner-led{" "}
+                <span className="text-gradient">GRC &amp; cybersecurity</span>
+              </h1>
+              <p className="mt-5 text-xl leading-relaxed text-ink-muted">
+                When you need more than software, our team delivers the advisory
+                and assurance that gets SEBI-regulated entities — and the MSSPs
+                who serve them — to audit-ready and beyond.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -38,9 +42,11 @@ export default function ServicesPage() {
         <div className="grid gap-6 md:grid-cols-2">
           {services.map((s, i) => (
             <Reveal key={s.slug} delay={(i % 2) * 0.08}>
-              <div className="card flex h-full flex-col">
+              <SpotlightCard className="flex h-full flex-col">
                 <h2 className="heading text-xl">{s.title}</h2>
-                <p className="mt-3 text-sm text-ink-muted">{s.short}</p>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+                  {s.short}
+                </p>
                 <ul className="mt-5 space-y-2">
                   {s.points.map((pt) => (
                     <li
@@ -60,7 +66,7 @@ export default function ServicesPage() {
                     Talk to us about {s.title} →
                   </Link>
                 </div>
-              </div>
+              </SpotlightCard>
             </Reveal>
           ))}
         </div>

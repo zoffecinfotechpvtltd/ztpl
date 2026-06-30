@@ -17,8 +17,8 @@ export default function NotFound() {
           <Link href="/" className="btn-primary">
             Back to Home
           </Link>
-          <Link href="/solutions" className="btn-ghost">
-            Explore Aegis →
+          <Link href="/solutions/aegis" className="btn-ghost">
+            Explore the Platform →
           </Link>
         </div>
       </div>

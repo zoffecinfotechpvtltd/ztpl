@@ -2,82 +2,76 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { Marquee } from "@/components/Marquee";
+import { ReadinessPanel } from "@/components/ReadinessPanel";
 import { audience } from "@/lib/site";
 
-const trust = ["SEBI CSCRF", "Annexure-K", "RE-ready", "MSSP multi-client"];
+const trust = ["SEBI CSCRF", "Annexure-K", "Multi-tenant", "MSSP-ready"];
 
 export function Hero() {
   const reduce = useReducedMotion();
 
   const container = {
     hidden: {},
-    show: {
-      transition: { staggerChildren: 0.08, delayChildren: 0.05 },
-    },
+    show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
   };
   const item = {
-    hidden: reduce ? {} : { opacity: 0, y: 16 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+    hidden: reduce ? {} : { opacity: 0, y: 18 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
   };
 
   return (
     <section className="relative overflow-hidden">
-      {/* glow + grid backdrop */}
       <div
         className="pointer-events-none absolute inset-0 bg-green-glow"
         aria-hidden
       />
-      <div
-        className="pointer-events-none absolute inset-0 bg-grid-faint bg-[size:48px_48px] [mask-image:radial-gradient(70%_60%_at_50%_0%,black,transparent)]"
-        aria-hidden
-      />
 
-      <div className="container-px relative pb-20 pt-20 sm:pb-28 sm:pt-28">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="mx-auto max-w-3xl text-center"
-        >
+      <div className="container-px relative grid items-center gap-14 pb-16 pt-14 sm:pt-20 lg:grid-cols-[1.1fr_0.9fr] lg:pb-24">
+        {/* Left — copy */}
+        <motion.div variants={container} initial="hidden" animate="show">
           <motion.span variants={item} className="eyebrow">
             <span className="h-1.5 w-1.5 rounded-full bg-green animate-pulse-glow" />
-            India&apos;s SEBI CSCRF compliance platform
+            The GRC platform for SEBI CSCRF
           </motion.span>
 
           <motion.h1
             variants={item}
-            className="heading mt-6 text-4xl leading-[1.05] sm:text-6xl"
+            className="heading mt-6 text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-[4.1rem]"
           >
-            Compliance{" "}
-            <span className="bg-gradient-to-r from-green to-yellow bg-clip-text text-transparent">
+            Compliance,
+            <br />
+            <span className="text-gradient animate-gradient-pan">
               Simplified.
             </span>
           </motion.h1>
 
           <motion.p
             variants={item}
-            className="mx-auto mt-6 max-w-xl text-lg text-ink-muted"
+            className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted"
           >
-            SEBI CSCRF, handled — the platform and the advisory in one. ZTPL
-            builds Zoffec Aegis and stands beside your team from gap assessment
-            to audit-ready submission.
+            ZTPL builds <span className="font-medium text-ink">Zoffec Aegis</span>{" "}
+            — a multi-tenant GRC platform purpose-built for SEBI CSCRF — and
+            stands beside your team from gap assessment to audit-ready
+            submission. One platform for Regulated Entities and the MSSPs that
+            serve them.
           </motion.p>
 
           <motion.div
             variants={item}
-            className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
+            className="mt-9 flex flex-col gap-3 sm:flex-row"
           >
             <Link href="/contact" className="btn-primary">
               Book a Demo
             </Link>
             <Link href="/solutions/aegis" className="btn-ghost">
-              Explore Aegis →
+              Explore the Platform →
             </Link>
           </motion.div>
 
           <motion.ul
             variants={item}
-            className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs font-medium uppercase tracking-[0.14em] text-ink-faint"
+            className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-xs font-medium uppercase tracking-[0.14em] text-ink-faint"
           >
             {trust.map((t) => (
               <li key={t} className="flex items-center gap-2">
@@ -88,17 +82,38 @@ export function Hero() {
           </motion.ul>
         </motion.div>
 
-        {/* audience marquee-ish strip */}
-        <div className="mt-16 border-t border-line pt-8">
-          <p className="text-center text-xs uppercase tracking-[0.2em] text-ink-faint">
-            Built for SEBI-regulated entities & the firms that serve them
-          </p>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-ink-muted">
-            {audience.map((a) => (
-              <span key={a}>{a}</span>
-            ))}
-          </div>
-        </div>
+        {/* Right — live readiness panel */}
+        <motion.div
+          initial={reduce ? false : { opacity: 0, scale: 0.95, y: 24 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          className="relative"
+        >
+          <div
+            className="pointer-events-none absolute -inset-6 bg-green-glow"
+            aria-hidden
+          />
+          <ReadinessPanel />
+        </motion.div>
+      </div>
+
+      {/* audience marquee */}
+      <div className="relative border-y border-line bg-bg-soft/40 py-6">
+        <p className="container-px mb-4 text-center text-[11px] uppercase tracking-[0.22em] text-ink-faint">
+          Built for SEBI-regulated entities &amp; the firms that serve them
+        </p>
+        <Marquee
+          duration={38}
+          items={audience.map((a) => (
+            <span
+              key={a}
+              className="mx-2 inline-flex items-center gap-2 text-sm text-ink-muted"
+            >
+              <span className="h-1 w-1 rounded-full bg-green/60" />
+              {a}
+            </span>
+          ))}
+        />
       </div>
     </section>
   );

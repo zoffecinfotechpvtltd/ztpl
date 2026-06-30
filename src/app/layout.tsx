@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Aurora } from "@/components/Aurora";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { site } from "@/lib/site";
 
-const inter = Inter({
+/**
+ * Pliant (loaded via @import in globals.css) is the primary typeface.
+ * Manrope is loaded through next/font purely as a self-hosted fallback so
+ * there is never a flash of an ugly system serif while Pliant streams in.
+ */
+const fallback = Manrope({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-pliant-fallback",
   display: "swap",
 });
 
@@ -28,13 +29,15 @@ export const metadata: Metadata = {
     "SEBI CSCRF",
     "GRC platform",
     "RegTech",
-    "compliance software India",
+    "compliance platform India",
     "Annexure-K",
     "VAPT",
     "vCISO",
     "third-party risk",
     "cyber resilience",
     "Zoffec Aegis",
+    "MSSP GRC platform",
+    "regulated entities compliance",
   ],
   authors: [{ name: site.legalName }],
   openGraph: {
@@ -44,7 +47,9 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
-    images: [{ url: "/logo.jpeg", width: 1242, height: 1242, alt: "ZTPL — Compliance Simplified" }],
+    images: [
+      { url: "/logo.jpeg", width: 1242, height: 1242, alt: "ZTPL — Compliance Simplified" },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -52,10 +57,7 @@ export const metadata: Metadata = {
     description: site.description,
     images: ["/logo.jpeg"],
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -81,12 +83,14 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className="min-h-screen bg-bg">
+    <html lang="en" className={fallback.variable}>
+      <body className="relative min-h-screen bg-bg">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
+        <Aurora />
+        <ScrollProgress />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-green focus:px-4 focus:py-2 focus:text-bg"
@@ -94,7 +98,9 @@ export default function RootLayout({
           Skip to content
         </a>
         <Header />
-        <main id="main">{children}</main>
+        <main id="main" className="relative">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
