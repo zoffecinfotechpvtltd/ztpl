@@ -65,8 +65,8 @@ export function Hero() {
             <Link href="/contact" className="btn-primary">
               Book a Demo
             </Link>
-            <Link href="/solutions/aegis" className="btn-ghost">
-              Explore the Platform →
+            <Link href="/solutions" className="btn-ghost">
+              Explore Our Platforms →
             </Link>
           </motion.div>
 

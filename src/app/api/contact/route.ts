@@ -34,7 +34,6 @@ export async function POST(request: Request) {
   //   const resend = new Resend(process.env.RESEND_API_KEY);
   //   await resend.emails.send({ from: ..., to: site.email, subject: ..., text: ... });
   // Until RESEND_API_KEY is set, submissions are only logged server-side.
-  // eslint-disable-next-line no-console
   console.log("[contact] submission:", {
     name,
     company,

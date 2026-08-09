@@ -3,11 +3,11 @@ import { Reveal } from "./Reveal";
 
 export function CTA({
   title = "Ready for audit-ready compliance?",
-  body = "Book a walkthrough of the Zoffec Aegis platform, or talk to our GRC team about your SEBI CSCRF obligations. We'll meet you where you are.",
+  body = "Book a walkthrough of what we build, or talk to our GRC team about your SEBI CSCRF obligations. We'll meet you where you are.",
   primaryLabel = "Book a Demo",
   primaryHref = "/contact",
-  secondaryLabel = "Explore the Platform",
-  secondaryHref = "/solutions/aegis",
+  secondaryLabel = "Explore Our Platforms",
+  secondaryHref = "/solutions",
 }: {
   title?: string;
   body?: string;

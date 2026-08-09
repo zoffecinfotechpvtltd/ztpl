@@ -30,7 +30,7 @@ export const site = {
 
 export const nav = [
   { label: "About", href: "/about" },
-  { label: "Platform", href: "/solutions/aegis" },
+  { label: "Platform", href: "/solutions" },
   { label: "Services", href: "/services" },
   { label: "Trust", href: "/trust" },
   { label: "Contact", href: "/contact" },

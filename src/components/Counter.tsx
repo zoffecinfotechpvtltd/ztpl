@@ -30,21 +30,18 @@ export function Counter({
   const [display, setDisplay] = useState("0");
 
   useEffect(() => {
-    if (inView) mv.set(value);
-  }, [inView, value, mv]);
+    if (inView && !reduce) mv.set(value);
+  }, [inView, value, mv, reduce]);
 
   useEffect(() => {
-    if (reduce) {
-      setDisplay(value.toFixed(decimals));
-      return;
-    }
+    if (reduce) return;
     return spring.on("change", (v) => setDisplay(v.toFixed(decimals)));
-  }, [spring, decimals, reduce, value]);
+  }, [spring, decimals, reduce]);
 
   return (
     <span ref={ref} className={className}>
       {prefix}
-      {display}
+      {reduce ? value.toFixed(decimals) : display}
       {suffix}
     </span>
   );
