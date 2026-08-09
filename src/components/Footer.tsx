@@ -15,7 +15,7 @@ export function Footer() {
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-ink-muted">
               A cybersecurity and RegTech company for India&apos;s regulated
               businesses. We build the platforms — Zoffec Aegis, Argus,
-              Wardloom — and deliver the advisory that gets you there.
+              ExploitSense — and deliver the advisory that gets you there.
             </p>
           </div>
 

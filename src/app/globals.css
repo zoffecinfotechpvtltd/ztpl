@@ -1,6 +1,3 @@
-/* Primary typeface — Pliant (per brief). Must precede @tailwind rules. */
-@import url("https://fonts.googleapis.com/css2?family=Pliant:ital,wght@0,100..900;1,100..900&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,14 +13,13 @@ html {
 }
 
 body {
-  @apply bg-bg text-ink-muted antialiased;
-  font-family: "Pliant", var(--font-pliant-fallback), system-ui, sans-serif;
+  @apply bg-bg text-ink-muted antialiased font-sans;
   font-feature-settings: "ss01", "cv01";
   overflow-x: hidden;
 }
 
 ::selection {
-  background: rgba(33, 192, 99, 0.32);
+  background: rgba(0, 210, 106, 0.32);
   color: #ffffff;
 }
 
@@ -32,14 +28,14 @@ body {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #070809;
+  background: #0b0d11;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1c2430;
+  background: #2a2f37;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a3647;
+  background: #3a404a;
 }
 
 @layer base {
@@ -68,34 +64,34 @@ body {
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 rounded-full border border-line bg-bg-soft/80 px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-ink-muted backdrop-blur;
+    @apply inline-flex items-center gap-2 rounded-md border border-line bg-bg-soft/80 px-3.5 py-1.5 text-[11px] font-mono font-medium uppercase tracking-[0.14em] text-ink-muted backdrop-blur;
   }
 
   /* Base card */
   .card {
-    @apply relative rounded-2xl border border-line bg-bg-card/60 p-6 transition-all duration-500 ease-smooth;
+    @apply relative rounded-xl border border-line bg-bg-card/60 p-6 transition-all duration-500 ease-smooth;
   }
   .card-hover {
-    @apply hover:-translate-y-1 hover:border-green/40 hover:bg-bg-card hover:shadow-[0_24px_60px_-24px_rgba(33,192,99,0.35)];
+    @apply hover:-translate-y-1 hover:border-green/40 hover:bg-bg-card hover:shadow-[0_24px_60px_-24px_rgba(0,210,106,0.35)];
   }
 
   /* Gradient hairline border wrapper */
   .border-grad {
-    @apply relative rounded-2xl p-px;
+    @apply relative rounded-xl p-px;
     background: linear-gradient(
       130deg,
-      rgba(255, 214, 10, 0.5),
-      rgba(33, 192, 99, 0.35) 45%,
-      rgba(28, 36, 48, 0.6) 75%
+      rgba(255, 193, 7, 0.5),
+      rgba(0, 210, 106, 0.35) 45%,
+      rgba(42, 47, 55, 0.6) 75%
     );
   }
 
   /* Buttons */
   .btn {
-    @apply relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+    @apply relative inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300 ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
   }
   .btn-primary {
-    @apply btn bg-brand-gradient text-bg shadow-[0_8px_30px_-10px_rgba(33,192,99,0.6)] hover:shadow-[0_14px_44px_-10px_rgba(52,215,123,0.7)] hover:brightness-105;
+    @apply btn bg-brand-gradient text-bg shadow-[0_8px_30px_-10px_rgba(0,210,106,0.6)] hover:shadow-[0_14px_44px_-10px_rgba(61,219,138,0.7)] hover:brightness-105;
     background-size: 180% auto;
   }
   .btn-primary:hover {
@@ -109,14 +105,14 @@ body {
     @apply text-ink-muted transition-colors hover:text-ink;
   }
 
-  /* Pill / chip */
+  /* Tag / chip — mono, tag-like rather than pill-shaped */
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-bg-soft/60 px-3 py-1 text-xs font-medium text-ink-muted;
+    @apply inline-flex items-center gap-1.5 rounded-md border border-line bg-bg-soft/60 px-3 py-1 font-mono text-xs font-medium text-ink-muted;
   }
 
-  /* Soft tinted status pill (live) */
+  /* Soft tinted status tag (live) */
   .pill-live {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-green/40 bg-green/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-green;
+    @apply inline-flex items-center gap-1.5 rounded-md border border-green/40 bg-green/10 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-green;
   }
 }
 

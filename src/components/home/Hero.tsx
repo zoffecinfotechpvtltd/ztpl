@@ -1,27 +1,54 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { Marquee } from "@/components/Marquee";
 import { CompanyPanel } from "@/components/CompanyPanel";
 import { audience } from "@/lib/site";
+import { ensureGsap, gsapMatchMedia } from "@/lib/gsap";
 
 const trust = ["Practitioner-led", "SEBI CSCRF", "Platform-backed", "MSSP-ready"];
 
 export function Hero() {
-  const reduce = useReducedMotion();
+  const rootRef = useRef<HTMLElement>(null);
 
-  const container = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
-  };
-  const item = {
-    hidden: reduce ? {} : { opacity: 0, y: 18 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-  };
+  useEffect(() => {
+    if (!rootRef.current) return;
+    const gsap = ensureGsap();
+    const ctx = gsap.context(() => {
+      const beats = gsap.utils.toArray<HTMLElement>("[data-hero-beat]");
+      const panel =
+        rootRef.current?.querySelector<HTMLElement>("[data-hero-panel]") ??
+        null;
+      const targets = panel ? [...beats, panel] : beats;
+
+      gsapMatchMedia(({ full }) => {
+        if (!full) {
+          gsap.set(targets, { opacity: 1, y: 0, scale: 1 });
+          return;
+        }
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        tl.from(beats, {
+          opacity: 0,
+          y: 18,
+          duration: 0.6,
+          stagger: 0.09,
+        }).from(
+          panel,
+          { opacity: 0, y: 24, scale: 0.95, duration: 0.8 },
+          "-=0.55"
+        );
+        return () => {
+          tl.kill();
+        };
+      });
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section className="relative overflow-hidden">
+    <section ref={rootRef} className="relative overflow-hidden">
       <div
         className="pointer-events-none absolute inset-0 bg-green-glow"
         aria-hidden
@@ -29,14 +56,14 @@ export function Hero() {
 
       <div className="container-px relative grid items-center gap-14 pb-16 pt-14 sm:pt-20 lg:grid-cols-[1.1fr_0.9fr] lg:pb-24">
         {/* Left — copy */}
-        <motion.div variants={container} initial="hidden" animate="show">
-          <motion.span variants={item} className="eyebrow">
+        <div>
+          <span data-hero-beat className="eyebrow">
             <span className="h-1.5 w-1.5 rounded-full bg-green animate-pulse-glow" />
             Cybersecurity &amp; GRC for regulated India
-          </motion.span>
+          </span>
 
-          <motion.h1
-            variants={item}
+          <h1
+            data-hero-beat
             className="heading mt-6 text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-[4.1rem]"
           >
             Compliance,
@@ -44,10 +71,10 @@ export function Hero() {
             <span className="text-gradient animate-gradient-pan">
               Simplified.
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={item}
+          <p
+            data-hero-beat
             className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted"
           >
             <span className="font-medium text-ink">ZTPL</span> is a
@@ -56,23 +83,20 @@ export function Hero() {
             <span className="font-medium text-ink">Zoffec Aegis</span> — the
             compliance platform we built to run it — so your team gets both
             the guidance and the system to execute it.
-          </motion.p>
+          </p>
 
-          <motion.div
-            variants={item}
-            className="mt-9 flex flex-col gap-3 sm:flex-row"
-          >
+          <div data-hero-beat className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link href="/contact" className="btn-primary">
               Book a Demo
             </Link>
             <Link href="/solutions" className="btn-ghost">
               Explore Our Platforms →
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.ul
-            variants={item}
-            className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-xs font-medium uppercase tracking-[0.14em] text-ink-faint"
+          <ul
+            data-hero-beat
+            className="mt-10 flex flex-wrap gap-x-6 gap-y-3 font-mono text-xs font-medium uppercase tracking-[0.1em] text-ink-faint"
           >
             {trust.map((t) => (
               <li key={t} className="flex items-center gap-2">
@@ -80,27 +104,22 @@ export function Hero() {
                 {t}
               </li>
             ))}
-          </motion.ul>
-        </motion.div>
+          </ul>
+        </div>
 
         {/* Right — company identity panel */}
-        <motion.div
-          initial={reduce ? false : { opacity: 0, scale: 0.95, y: 24 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          className="relative"
-        >
+        <div data-hero-panel className="relative">
           <div
             className="pointer-events-none absolute -inset-6 bg-green-glow"
             aria-hidden
           />
           <CompanyPanel />
-        </motion.div>
+        </div>
       </div>
 
       {/* audience marquee */}
       <div className="relative border-y border-line bg-bg-soft/40 py-6">
-        <p className="container-px mb-4 text-center text-[11px] uppercase tracking-[0.22em] text-ink-faint">
+        <p className="container-px mb-4 text-center font-mono text-[11px] uppercase tracking-[0.18em] text-ink-faint">
           Built for SEBI-regulated entities &amp; the firms that serve them
         </p>
         <Marquee

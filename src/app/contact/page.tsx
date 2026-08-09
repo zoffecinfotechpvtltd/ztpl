@@ -24,7 +24,7 @@ export default function ContactPage() {
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-ink-muted">
               Talk to our team about ZTPL, book a demo of Zoffec Aegis, or ask
-              about Argus and Wardloom. Tell us what you need — we meet you
+              about Argus and ExploitSense. Tell us what you need — we meet you
               there.
             </p>
 

@@ -18,7 +18,7 @@ const approach = [
   {
     tag: "Build",
     title: "We ship real software",
-    body: "Zoffec Aegis, Argus, and Wardloom are working platforms — not slide decks. They run assessments, watch infrastructure, and surface exposure for real, every day.",
+    body: "Zoffec Aegis, Argus, and ExploitSense are working platforms — not slide decks. They run assessments, watch infrastructure, and surface exposure for real, every day.",
   },
   {
     tag: "Advise",
@@ -45,7 +45,7 @@ export default function HomePage() {
       <Hero />
 
       {/* WHO WE ARE */}
-      <Section>
+      <Section id="who-we-are" railLabel="Who we are">
         <div className="grid gap-12 lg:grid-cols-2">
           <Reveal>
             <SectionHeading
@@ -70,7 +70,11 @@ export default function HomePage() {
       </Section>
 
       {/* WHAT WE BUILD — product portfolio */}
-      <section className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28">
+      <section
+        id="what-we-build"
+        data-rail-label="What we build"
+        className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28"
+      >
         <div className="container-px">
           <Reveal>
             <SectionHeading
@@ -114,7 +118,7 @@ export default function HomePage() {
       </section>
 
       {/* WHY A PLATFORM */}
-      <Section>
+      <Section id="engineering" railLabel="Engineering">
         <SectionHeading
           eyebrow="How we engineer"
           title="A framework this broad needs a platform — not a checklist"
@@ -136,7 +140,11 @@ export default function HomePage() {
       </Section>
 
       {/* APPROACH */}
-      <section className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28">
+      <section
+        id="approach"
+        data-rail-label="Approach"
+        className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28"
+      >
         <div className="container-px">
           <Reveal>
             <SectionHeading
@@ -164,7 +172,7 @@ export default function HomePage() {
       </section>
 
       {/* SERVICES OVERVIEW */}
-      <Section>
+      <Section id="services" railLabel="Services">
         <SectionHeading
           eyebrow="Services"
           title="Advisory that closes the gap to compliant"
@@ -190,7 +198,11 @@ export default function HomePage() {
       </Section>
 
       {/* TRUST & SECURITY TEASER */}
-      <section className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28">
+      <section
+        id="trust"
+        data-rail-label="Trust"
+        className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28"
+      >
         <div className="container-px">
           <Reveal>
             <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_1fr]">
@@ -233,7 +245,7 @@ export default function HomePage() {
       </section>
 
       {/* WHY ZTPL — PROOF */}
-      <Section>
+      <Section id="proof" railLabel="Proof">
         <SectionHeading
           eyebrow="Why ZTPL"
           title="We build, not just advise"
@@ -243,7 +255,7 @@ export default function HomePage() {
           {proof.map((p, i) => (
             <Reveal key={p.label} delay={i * 0.06}>
               <SpotlightCard className="h-full">
-                <div className="font-display text-4xl font-bold text-gradient">
+                <div className="font-mono text-4xl font-bold tabular-nums text-gradient">
                   <Counter value={p.value} suffix={p.suffix} />
                 </div>
                 <div className="mt-3 text-sm text-ink-muted">{p.label}</div>

@@ -33,13 +33,20 @@ export function Section({
   children,
   className = "",
   id,
+  railLabel,
 }: {
   children: ReactNode;
   className?: string;
   id?: string;
+  /** Label shown in the LedgerRail (src/components/LedgerRail.tsx) for this section. */
+  railLabel?: string;
 }) {
   return (
-    <section id={id} className={`py-20 sm:py-28 ${className}`}>
+    <section
+      id={id}
+      data-rail-label={railLabel}
+      className={`py-20 sm:py-28 ${className}`}
+    >
       <div className="container-px">
         <Reveal>{children}</Reveal>
       </div>

@@ -20,7 +20,7 @@ export function SpotlightCard({
   const mx = useMotionValue(-200);
   const my = useMotionValue(-200);
 
-  const background = useMotionTemplate`radial-gradient(280px circle at ${mx}px ${my}px, rgba(33,192,99,0.12), transparent 70%)`;
+  const background = useMotionTemplate`radial-gradient(280px circle at ${mx}px ${my}px, rgba(0,210,106,0.12), transparent 70%)`;
 
   function onMove(e: React.MouseEvent) {
     const rect = ref.current?.getBoundingClientRect();

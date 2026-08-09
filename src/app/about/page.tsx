@@ -10,7 +10,7 @@ import { site, milestones, certifications } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "ZTPL — Zoffec Technologies Private Limited — is a cybersecurity and RegTech company building Zoffec Aegis, Argus, and Wardloom, and delivering GRC advisory for India's SEBI-regulated businesses and MSSPs.",
+    "ZTPL — Zoffec Technologies Private Limited — is a cybersecurity and RegTech company building Zoffec Aegis, Argus, and ExploitSense, and delivering GRC advisory for India's SEBI-regulated businesses and MSSPs.",
   alternates: { canonical: "/about" },
 };
 
@@ -21,7 +21,7 @@ const values = [
   },
   {
     title: "Build, then advise",
-    body: "We earn trust by shipping. Every platform we run — Aegis, Argus, Wardloom — is proof our guidance is grounded in how the work actually operates.",
+    body: "We earn trust by shipping. Every platform we run — Aegis, Argus, ExploitSense — is proof our guidance is grounded in how the work actually operates.",
   },
   {
     title: "Outcomes, not hours",
@@ -60,7 +60,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Section>
+      <Section id="story" railLabel="Our story">
         <div className="grid gap-12 lg:grid-cols-2">
           <Reveal>
             <SectionHeading eyebrow="Our story" title="Why we exist" />
@@ -101,14 +101,18 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section className="border-t border-line">
+      <Section id="timeline" railLabel="Timeline" className="border-t border-line">
         <SectionHeading eyebrow="Timeline" title="How we got here" />
         <div className="mt-10 max-w-xl">
           <Timeline items={milestones} />
         </div>
       </Section>
 
-      <section className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28">
+      <section
+        id="values"
+        data-rail-label="Values"
+        className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28"
+      >
         <div className="container-px">
           <Reveal>
             <SectionHeading
@@ -132,9 +136,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Section>
-        <div className="mx-auto max-w-3xl rounded-2xl border border-line bg-bg-card/60 p-8 text-center">
-          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-faint">
+      <Section id="trust-strip" railLabel="Trust">
+        <div className="mx-auto max-w-3xl rounded-xl border border-line bg-bg-card/60 p-8 text-center">
+          <span className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-ink-faint">
             Registered &amp; recognised
           </span>
           <p className="mt-3 text-sm text-ink-muted">{site.legalName}</p>

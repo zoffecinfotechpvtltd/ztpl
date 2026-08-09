@@ -1,20 +1,37 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import localFont from "next/font/local";
+import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Aurora } from "@/components/Aurora";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { LedgerRail } from "@/components/LedgerRail";
+import { Preloader } from "@/components/Preloader";
 import { site } from "@/lib/site";
 
 /**
- * Pliant (loaded via @import in globals.css) is the primary typeface.
- * Manrope is loaded through next/font purely as a self-hosted fallback so
- * there is never a flash of an ugly system serif while Pliant streams in.
+ * Satoshi — the brand's actual typeface, per the official brand board: one
+ * family across headline/subhead/body/label, self-hosted (files in
+ * src/fonts/satoshi, sourced from Fontshare) rather than a display/body
+ * pairing, matching the real spec exactly.
  */
-const fallback = Manrope({
+const display = localFont({
+  src: [
+    { path: "../fonts/satoshi/Satoshi-300.woff2", weight: "300", style: "normal" },
+    { path: "../fonts/satoshi/Satoshi-400.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/satoshi/Satoshi-500.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/satoshi/Satoshi-700.woff2", weight: "700", style: "normal" },
+    { path: "../fonts/satoshi/Satoshi-900.woff2", weight: "900", style: "normal" },
+  ],
+  variable: "--font-display",
+  display: "swap",
+});
+/** IBM Plex Mono — a restrained utility accent for data-like content (control IDs, timestamps, the ledger rail), not the brand's primary voice. */
+const mono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-pliant-fallback",
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -40,7 +57,7 @@ export const metadata: Metadata = {
     "cyber resilience",
     "Zoffec Aegis",
     "Argus",
-    "Wardloom",
+    "ExploitSense",
     "MSSP GRC platform",
     "regulated entities compliance",
   ],
@@ -92,23 +109,22 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={fallback.variable}>
-      <head>
-        {/* Pliant loads from Google Fonts via @import in globals.css — preconnect
-            shaves the DNS+TLS roundtrip off that render-blocking request. */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
+    <html
+      lang="en"
+      className={`${display.variable} ${mono.variable}`}
+    >
       <body className="relative min-h-screen bg-bg">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
+        <Preloader />
         <Aurora />
         <ScrollProgress />
+        <LedgerRail />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-green focus:px-4 focus:py-2 focus:text-bg"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[110] focus:rounded-lg focus:bg-green focus:px-4 focus:py-2 focus:text-bg"
         >
           Skip to content
         </a>

@@ -38,7 +38,7 @@ export default function TrustPage() {
         </div>
       </section>
 
-      <Section>
+      <Section id="principles" railLabel="Principles">
         <SectionHeading
           eyebrow="Principles"
           title="What's baseline, not premium"
@@ -59,7 +59,11 @@ export default function TrustPage() {
       </Section>
 
       {aegis?.deployment && (
-        <section className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28">
+        <section
+          id="deployment"
+          data-rail-label="Deployment"
+          className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28"
+        >
           <div className="container-px">
             <Reveal>
               <SectionHeading
@@ -95,12 +99,12 @@ export default function TrustPage() {
         </section>
       )}
 
-      <Section>
+      <Section id="certifications" railLabel="Certifications">
         <SectionHeading
           eyebrow="Certifications & registration"
           title="Compliance, on the record"
         />
-        <div className="mt-10 rounded-2xl border border-line bg-bg-card/60 p-8">
+        <div className="mt-10 rounded-xl border border-line bg-bg-card/60 p-8">
           <div className="flex flex-col gap-1 text-sm text-ink-muted">
             <span>{site.legalName}</span>
             <span>CIN: {site.cin}</span>

@@ -5,6 +5,8 @@ const routes = [
   "/about",
   "/solutions",
   "/solutions/aegis",
+  "/solutions/argus",
+  "/solutions/exploitsense",
   "/services",
   "/trust",
   "/contact",
@@ -20,6 +22,12 @@ function trackConsoleErrors(page: Page) {
   page.on("pageerror", (err) => errors.push(err.message));
   return errors;
 }
+
+// Skip the one-time entrance preloader for all tests in this file — it's a
+// decorative animation, not something the functional smoke suite should wait through.
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => sessionStorage.setItem("ztpl-preloaded", "1"));
+});
 
 for (const route of routes) {
   test(`${route || "/"} loads with no console errors`, async ({ page }) => {

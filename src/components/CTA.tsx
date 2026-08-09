@@ -20,7 +20,7 @@ export function CTA({
     <section className="py-20 sm:py-28">
       <div className="container-px">
         <Reveal>
-          <div className="border-grad overflow-hidden shadow-[0_40px_120px_-50px_rgba(33,192,99,0.5)]">
+          <div className="border-grad overflow-hidden shadow-[0_40px_120px_-50px_rgba(0,210,106,0.5)]">
             <div className="relative overflow-hidden rounded-[15px] bg-bg-card px-6 py-16 text-center sm:px-12">
               <div
                 className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-green-glow"

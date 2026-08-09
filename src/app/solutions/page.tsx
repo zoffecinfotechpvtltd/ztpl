@@ -8,7 +8,7 @@ import { products } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Platform — Compliance, Productised",
   description:
-    "ZTPL's product portfolio: Zoffec Aegis for SEBI CSCRF, Argus for network monitoring, and Wardloom for continuous threat exposure management.",
+    "ZTPL's product portfolio: Zoffec Aegis for SEBI CSCRF, Argus for network monitoring, and ExploitSense for continuous threat exposure management.",
   alternates: { canonical: "/solutions" },
 };
 
@@ -27,8 +27,7 @@ export default function SolutionsPage() {
               <p className="mt-5 text-xl leading-relaxed text-ink-muted">
                 We don&apos;t just advise — we build. Zoffec Aegis leads the
                 lineup for SEBI CSCRF; Argus watches your infrastructure;
-                Wardloom, our continuous threat exposure platform, is in
-                active development.
+                ExploitSense keeps your attack surface honest.
               </p>
             </div>
           </Reveal>
@@ -80,7 +79,7 @@ export default function SolutionsPage() {
             {/* Roadmap placeholder — beyond the three named platforms above */}
             <Reveal delay={products.length * 0.08}>
               <div className="card flex h-full flex-col items-start justify-center border-dashed">
-                <span className="rounded-full border border-line px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-ink-faint">
+                <span className="rounded-md border border-line px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-ink-faint">
                   On the roadmap
                 </span>
                 <h2 className="heading mt-3 text-2xl text-ink-muted">

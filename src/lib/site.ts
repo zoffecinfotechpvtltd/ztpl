@@ -165,19 +165,20 @@ export const products: Product[] = [
     ],
   },
   {
-    slug: "wardloom",
-    name: "Wardloom",
-    tagline: "Continuous Threat Exposure Management — in development.",
-    status: "in-development",
+    slug: "exploitsense",
+    name: "ExploitSense",
+    tagline: "Continuous Threat Exposure Management.",
+    status: "live",
     category: "Continuous Threat Exposure Management (CTEM)",
+    externalUrl: "https://exploitsense.ztplsolutions.com",
     short:
-      "ZTPL's upcoming CTEM platform — continuous discovery, validation, and prioritisation of exposure across your attack surface. Currently in active development.",
+      "ZTPL's CTEM platform — continuous discovery, validation, and prioritisation of exposure across your attack surface.",
     description:
-      "Wardloom is ZTPL's Continuous Threat Exposure Management platform, currently in development. [Add scope, planned modules, and target release once finalised.]",
+      "ExploitSense is ZTPL's Continuous Threat Exposure Management platform — continuous discovery, validation, and prioritisation of exposure across your attack surface. [Full module and feature breakdown to be added here as the product page expands.]",
     modules: [
       {
-        title: "[Add planned capability]",
-        body: "[e.g. attack-surface discovery, exposure validation, prioritisation — replace once scoped.]",
+        title: "[Add real ExploitSense capability]",
+        body: "[e.g. attack-surface discovery, exposure validation, prioritisation — replace with confirmed feature detail.]",
       },
     ],
   },

@@ -8,47 +8,60 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Palette extracted from /public/logo.jpeg — golden yellow + vivid
-        // green on a deep charcoal-black. Dark, trust-led, premium.
+        // Official ZTPL brand palette (brand board v1.0) — Amber + Emerald on
+        // a graphite neutral ramp. Surfaces map directly to the brand's own
+        // Ink/Slate/Steel/Stone scale; muted/faint text tones are ours,
+        // chosen off that same blue-gray hue but contrast-checked against
+        // the actual backgrounds (~8:1 / ~5.5:1) since the board doesn't
+        // specify a body-text gray.
         bg: {
-          DEFAULT: "#070809",
-          soft: "#0C0F14",
-          card: "#11151C",
-          elevated: "#161B24",
+          DEFAULT: "#0B0D11", // Ink
+          soft: "#12161C", // Slate
+          card: "#1A1F26", // Steel
+          elevated: "#2A2F37", // Stone
         },
         green: {
-          DEFAULT: "#21C063",
-          deep: "#15A04E",
-          soft: "#34D77B",
+          DEFAULT: "#00D26A", // Emerald
+          deep: "#00A651", // Emerald Flow end
+          soft: "#3DDB8A",
         },
         yellow: {
-          DEFAULT: "#FFD60A",
-          deep: "#F5B70A",
-          soft: "#FFE45C",
+          DEFAULT: "#FFC107", // Amber
+          deep: "#FF8A00", // Tangerine / Amber Flow end
+          soft: "#FFD54F",
         },
         alert: "#E5484D",
         ink: {
-          DEFAULT: "#F8FAFC",
+          DEFAULT: "#FFFFFF",
           muted: "#9BA7B8",
-          // #5E6B7D measured at 3.4–3.7:1 on bg/bg-card — fails WCAG AA (4.5:1)
-          // for small text. Lightened while keeping the slate-blue hue.
           faint: "#7C8AA0",
         },
-        line: "#1C2430",
+        line: "#2A2F37", // Stone
+        // Secondary accents from the brand board — sparing use only
+        // (status/data semantics), never the primary brand voice.
+        accent: {
+          blue: "#2684FF",
+          cyan: "#00BFFF",
+          violet: "#7C4DFF",
+          magenta: "#FF4DA6",
+        },
       },
       fontFamily: {
-        // Primary typeface from the brief: Pliant (Google Fonts), with a
-        // graceful fallback chain via next/font + system UI.
-        sans: ["Pliant", "var(--font-pliant-fallback)", "system-ui", "sans-serif"],
-        display: ["Pliant", "var(--font-pliant-fallback)", "system-ui", "sans-serif"],
+        // Satoshi — the brand's real typeface — carries both display and
+        // body roles (per the official brand board), self-hosted via
+        // next/font/local. IBM Plex Mono is a small utility accent for
+        // data-like content only (ledger rail, labels).
+        sans: ["var(--font-display)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       backgroundImage: {
         "brand-gradient":
-          "linear-gradient(110deg, #FFD60A 0%, #34D77B 55%, #21C063 100%)",
+          "linear-gradient(110deg, #FFC107 0%, #3DDB8A 55%, #00D26A 100%)",
         "green-glow":
-          "radial-gradient(60% 60% at 50% 0%, rgba(33,192,99,0.20) 0%, rgba(33,192,99,0) 70%)",
+          "radial-gradient(60% 60% at 50% 0%, rgba(0,210,106,0.20) 0%, rgba(0,210,106,0) 70%)",
         "yellow-glow":
-          "radial-gradient(50% 50% at 50% 0%, rgba(255,214,10,0.16) 0%, rgba(255,214,10,0) 70%)",
+          "radial-gradient(50% 50% at 50% 0%, rgba(255,193,7,0.16) 0%, rgba(255,193,7,0) 70%)",
         "grid-faint":
           "linear-gradient(to right, rgba(28,36,48,0.45) 1px, transparent 1px), linear-gradient(to bottom, rgba(28,36,48,0.45) 1px, transparent 1px)",
         "dot-faint":
