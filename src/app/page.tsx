@@ -5,15 +5,20 @@ import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { Counter } from "@/components/Counter";
 import { CTA } from "@/components/CTA";
-import { services, products, platformPillars } from "@/lib/site";
-
-const aegis = products[0];
+import {
+  services,
+  products,
+  platformPillars,
+  trustPoints,
+  certifications,
+  site,
+} from "@/lib/site";
 
 const approach = [
   {
     tag: "Build",
-    title: "We ship a real platform",
-    body: "Zoffec Aegis is a working, multi-tenant GRC platform — not a slide deck. It runs assessments, holds evidence, and produces audit-ready reports for every entity you manage.",
+    title: "We ship real software",
+    body: "Zoffec Aegis, Argus, and Wardloom are working platforms — not slide decks. They run assessments, watch infrastructure, and surface exposure for real, every day.",
   },
   {
     tag: "Advise",
@@ -28,10 +33,10 @@ const approach = [
 ];
 
 const proof = [
-  { value: 8, suffix: "", label: "Integrated modules in one platform" },
-  { value: 100, suffix: "%", label: "Annexure-K-aligned reporting" },
+  { value: products.length, suffix: "", label: "Products engineered in-house" },
+  { value: services.length, suffix: "", label: "Advisory services, end to end" },
   { value: 2, suffix: "", label: "Deployment modes — cloud & on-prem" },
-  { value: 24, suffix: "/7", label: "Tamper-evident audit trail" },
+  { value: 100, suffix: "%", label: "Annexure-K-aligned reporting" },
 ];
 
 export default function HomePage() {
@@ -39,10 +44,79 @@ export default function HomePage() {
     <>
       <Hero />
 
-      {/* THE PLATFORM, IN ONE LINE */}
+      {/* WHO WE ARE */}
+      <Section>
+        <div className="grid gap-12 lg:grid-cols-2">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Who we are"
+              title="A cybersecurity & RegTech company, not a single product"
+              intro={`${site.legalName} builds security and compliance software for India's regulated businesses, and stands beside them as an advisory partner. The software is proof of the advice — not the whole company.`}
+            />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="grid gap-4 sm:grid-cols-1">
+              {trustPoints.map((t) => (
+                <SpotlightCard key={t.title}>
+                  <h3 className="heading text-base">{t.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                    {t.body}
+                  </p>
+                </SpotlightCard>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* WHAT WE BUILD — product portfolio */}
+      <section className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28">
+        <div className="container-px">
+          <Reveal>
+            <SectionHeading
+              eyebrow="What we build"
+              title="Three platforms, one operating model"
+              intro="We build the software our advisory practice wishes existed — then run our clients on it."
+            />
+          </Reveal>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {products.map((p, i) => (
+              <Reveal key={p.slug} delay={i * 0.08}>
+                <SpotlightCard className="flex h-full flex-col">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="chip">{p.category}</span>
+                    <span
+                      className={
+                        p.status === "live" ? "pill-live" : "chip text-yellow"
+                      }
+                    >
+                      {p.status === "live" ? "Live" : "In development"}
+                    </span>
+                  </div>
+                  <h3 className="heading mt-4 text-xl">{p.name}</h3>
+                  <p className="mt-1 text-sm font-medium text-yellow">
+                    {p.tagline}
+                  </p>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-muted">
+                    {p.short}
+                  </p>
+                  <Link
+                    href={`/solutions/${p.slug}`}
+                    className="mt-5 inline-block text-sm font-semibold text-green"
+                  >
+                    Learn more →
+                  </Link>
+                </SpotlightCard>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WHY A PLATFORM */}
       <Section>
         <SectionHeading
-          eyebrow="Why a platform"
+          eyebrow="How we engineer"
           title="A framework this broad needs a platform — not a checklist"
           intro="SEBI CSCRF touches governance, controls, evidence, vendors, and reporting. Zoffec Aegis models all of it in one place, so nothing falls through the cracks."
         />
@@ -61,133 +135,100 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* FEATURED PLATFORM — AEGIS */}
+      {/* APPROACH */}
       <section className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28">
         <div className="container-px">
           <Reveal>
-            <div className="grid items-center gap-12 lg:grid-cols-2">
-              <div>
-                <span className="eyebrow">The Platform</span>
-                <h2 className="heading mt-5 text-3xl sm:text-4xl">
-                  Zoffec Aegis
-                </h2>
-                <p className="mt-2 text-sm font-medium text-yellow">
-                  {aegis.tagline}
-                </p>
-                <p className="mt-5 text-lg leading-relaxed text-ink-muted">
-                  One multi-tenant GRC workspace for assessments, evidence,
-                  third-party risk, and audit-ready reporting. A single
-                  Regulated Entity runs its whole program here; an MSSP runs
-                  dozens of clients side by side. Deploy on our cloud or your own
-                  server.
-                </p>
-                <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                  {aegis.modules.slice(0, 6).map((m) => (
-                    <li
-                      key={m.title}
-                      className="flex items-start gap-2 text-sm text-ink-muted"
-                    >
-                      <span className="mt-0.5 text-green">▸</span>
-                      <span className="font-medium text-ink">{m.title}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Link href="/solutions/aegis" className="btn-primary">
-                    Explore the Platform
-                  </Link>
-                  <a
-                    href={aegis.externalUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-ghost"
-                  >
-                    Launch Aegis →
-                  </a>
-                </div>
-              </div>
-
-              <Reveal direction="left" delay={0.1}>
-                <div className="relative">
-                  <div
-                    className="pointer-events-none absolute -inset-6 bg-green-glow"
-                    aria-hidden
-                  />
-                  <div className="relative grid gap-4">
-                    {aegis.modules.slice(0, 4).map((m, i) => (
-                      <SpotlightCard key={m.title} className="!p-5">
-                        <div className="flex items-start gap-4">
-                          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-green/30 bg-green/10 font-display font-bold text-green">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <div>
-                            <h3 className="heading text-base">{m.title}</h3>
-                            <p className="mt-1 text-sm text-ink-muted">
-                              {m.body}
-                            </p>
-                          </div>
-                        </div>
-                      </SpotlightCard>
-                    ))}
-                  </div>
-                </div>
-              </Reveal>
-            </div>
+            <SectionHeading
+              eyebrow="How we work"
+              title="Build, advise, assure — the whole compliance lifecycle"
+              intro="Most vendors sell you software or sell you hours. ZTPL does both — and makes them work together."
+            />
           </Reveal>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {approach.map((p, i) => (
+              <Reveal key={p.tag} delay={i * 0.08}>
+                <SpotlightCard className="h-full">
+                  <span className="text-sm font-semibold uppercase tracking-[0.18em] text-green">
+                    {p.tag}
+                  </span>
+                  <h3 className="heading mt-3 text-xl">{p.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+                    {p.body}
+                  </p>
+                </SpotlightCard>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* APPROACH */}
+      {/* SERVICES OVERVIEW */}
       <Section>
         <SectionHeading
-          eyebrow="How we work"
-          title="Build, advise, assure — the whole compliance lifecycle"
-          intro="Most vendors sell you software or sell you hours. ZTPL does both — and makes them work together."
+          eyebrow="Services"
+          title="Advisory that closes the gap to compliant"
+          intro="When you need hands and heads, not just a tool — our practitioners deliver."
         />
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {approach.map((p, i) => (
-            <Reveal key={p.tag} delay={i * 0.08}>
-              <SpotlightCard className="h-full">
-                <span className="text-sm font-semibold uppercase tracking-[0.18em] text-green">
-                  {p.tag}
-                </span>
-                <h3 className="heading mt-3 text-xl">{p.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                  {p.body}
-                </p>
-              </SpotlightCard>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((s, i) => (
+            <Reveal key={s.slug} delay={(i % 3) * 0.06}>
+              <Link href="/services" className="block h-full">
+                <SpotlightCard className="h-full">
+                  <h3 className="heading text-lg">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                    {s.short}
+                  </p>
+                  <span className="mt-4 inline-block text-sm font-semibold text-green">
+                    Learn more →
+                  </span>
+                </SpotlightCard>
+              </Link>
             </Reveal>
           ))}
         </div>
       </Section>
 
-      {/* SERVICES OVERVIEW */}
+      {/* TRUST & SECURITY TEASER */}
       <section className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28">
         <div className="container-px">
           <Reveal>
-            <SectionHeading
-              eyebrow="Services"
-              title="Advisory that closes the gap to compliant"
-              intro="When you need hands and heads, not just a tool — our practitioners deliver."
-            />
-          </Reveal>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s, i) => (
-              <Reveal key={s.slug} delay={(i % 3) * 0.06}>
-                <Link href="/services" className="block h-full">
-                  <SpotlightCard className="h-full">
-                    <h3 className="heading text-lg">{s.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                      {s.short}
-                    </p>
-                    <span className="mt-4 inline-block text-sm font-semibold text-green">
-                      Learn more →
-                    </span>
-                  </SpotlightCard>
+            <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_1fr]">
+              <div>
+                <span className="eyebrow">Trust &amp; security</span>
+                <h2 className="heading mt-5 text-3xl sm:text-4xl">
+                  How we handle your compliance posture
+                </h2>
+                <p className="mt-4 max-w-xl text-base leading-relaxed text-ink-muted">
+                  Data residency, tamper-evident logging, and least-privilege
+                  access aren&apos;t premium add-ons here — they&apos;re the
+                  baseline our own platforms are built on.
+                </p>
+                <Link
+                  href="/trust"
+                  className="mt-6 inline-block text-sm font-semibold text-green"
+                >
+                  See our full trust &amp; security posture →
                 </Link>
-              </Reveal>
-            ))}
-          </div>
+              </div>
+              <div className="rounded-2xl border border-line bg-bg-card/60 p-6">
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-faint">
+                  Certifications &amp; frameworks
+                </span>
+                <div className="mt-4">
+                  {/* PLACEHOLDER — see src/lib/site.ts `certifications` */}
+                  <ul className="flex flex-wrap gap-3">
+                    {certifications.map((c) => (
+                      <li key={c.name} className="chip">
+                        <span className="h-1.5 w-1.5 rounded-full bg-green" />
+                        {c.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -196,7 +237,7 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="Why ZTPL"
           title="We build, not just advise"
-          intro="Anyone can hand you a checklist. We engineered the platform that runs it — which means our advice is grounded in how compliance actually gets done."
+          intro="Anyone can hand you a checklist. We engineer the platforms that run it — which means our advice is grounded in how compliance actually gets done."
         />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {proof.map((p, i) => (

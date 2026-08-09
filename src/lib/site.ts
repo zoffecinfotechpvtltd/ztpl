@@ -14,11 +14,14 @@ export const site = {
   legalName: "Zoffec Technologies Private Limited",
   tagline: "Compliance Simplified.",
   description:
-    "ZTPL builds Zoffec Aegis — a multi-tenant GRC platform for SEBI CSCRF — and delivers the practitioner-led advisory that gets Regulated Entities and MSSPs audit-ready.",
+    "ZTPL is a cybersecurity and RegTech company for India's SEBI-regulated businesses — practitioner-led GRC advisory, backed by Zoffec Aegis, the compliance platform we built to run it.",
   url: "https://www.zt-pl.com",
   email: "support@zt-pl.com",
   phone: "+91 00000 00000", // placeholder — replace before launch
   location: "Mumbai, India",
+  // PLACEHOLDER — replace with real values from incorporation docs before launch.
+  cin: "[Add CIN — see incorporation documents]",
+  founded: "[Add founding year]",
   socials: {
     linkedin: "https://www.linkedin.com/company/ztpl",
     x: "https://x.com/ztpl",
@@ -26,9 +29,10 @@ export const site = {
 } as const;
 
 export const nav = [
+  { label: "About", href: "/about" },
   { label: "Platform", href: "/solutions/aegis" },
   { label: "Services", href: "/services" },
-  { label: "About", href: "/about" },
+  { label: "Trust", href: "/trust" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -40,15 +44,18 @@ export type Product = {
   slug: string;
   name: string;
   tagline: string;
-  status: "live" | "coming-soon";
+  status: "live" | "in-development";
+  /** One-line category shown as a chip — e.g. "Network Monitoring (NMS)". */
+  category: string;
   /** External app/marketing URL, if the product lives elsewhere. */
   externalUrl?: string;
   short: string;
   description: string;
-  problems: { title: string; body: string }[];
-  modules: { title: string; body: string }[];
-  deployment: { name: string; body: string; points: string[] }[];
-  plans: { name: string; blurb: string; highlight: boolean }[];
+  /** Deep-dive sections — omitted entirely (not rendered) for products that don't have this content yet. */
+  problems?: { title: string; body: string }[];
+  modules?: { title: string; body: string }[];
+  deployment?: { name: string; body: string; points: string[] }[];
+  plans?: { name: string; blurb: string; highlight: boolean }[];
 };
 
 export const products: Product[] = [
@@ -57,7 +64,8 @@ export const products: Product[] = [
     name: "Zoffec Aegis",
     tagline: "The GRC Platform for SEBI CSCRF",
     status: "live",
-    externalUrl: "https://zoffecgrc.vercel.app/",
+    category: "SEBI CSCRF Compliance Platform",
+    externalUrl: "https://aegis.ztplsolutions.com",
     short:
       "A multi-tenant GRC platform purpose-built for SEBI CSCRF — one workspace where Regulated Entities and MSSPs run assessments, hold evidence, manage third-party risk, and ship audit-ready reports.",
     description:
@@ -136,6 +144,41 @@ export const products: Product[] = [
       { name: "Professional", blurb: "For MSSPs & consultancies running multiple clients.", highlight: true },
       { name: "Enterprise", blurb: "For MIIs and large REs with complex estates.", highlight: false },
       { name: "Custom", blurb: "On-prem deployment and bespoke requirements.", highlight: false },
+    ],
+  },
+  {
+    slug: "argus",
+    name: "Argus",
+    tagline: "Network monitoring that never blinks.",
+    status: "live",
+    category: "Network Monitoring (NMS)",
+    externalUrl: "https://argus.ztplsolutions.com",
+    short:
+      "ZTPL's network monitoring system — built for continuous, always-on visibility into infrastructure health, so anomalies surface before they become incidents.",
+    description:
+      "Argus is ZTPL's network monitoring platform, engineered for continuous visibility across infrastructure. [Full module and feature breakdown to be added here as the product page expands.]",
+    modules: [
+      {
+        title: "[Add real Argus capability]",
+        body: "[e.g. uptime/latency monitoring, alerting, dashboards — replace with confirmed feature detail.]",
+      },
+    ],
+  },
+  {
+    slug: "wardloom",
+    name: "Wardloom",
+    tagline: "Continuous Threat Exposure Management — in development.",
+    status: "in-development",
+    category: "Continuous Threat Exposure Management (CTEM)",
+    short:
+      "ZTPL's upcoming CTEM platform — continuous discovery, validation, and prioritisation of exposure across your attack surface. Currently in active development.",
+    description:
+      "Wardloom is ZTPL's Continuous Threat Exposure Management platform, currently in development. [Add scope, planned modules, and target release once finalised.]",
+    modules: [
+      {
+        title: "[Add planned capability]",
+        body: "[e.g. attack-surface discovery, exposure validation, prioritisation — replace once scoped.]",
+      },
     ],
   },
 ];
@@ -247,4 +290,53 @@ export const audience = [
   "Market Infrastructure Institutions",
   "Clearing Corporations",
   "MSSPs & GRC Consultancies",
+] as const;
+
+/* -------------------------------------------------------------------------- */
+/*  COMPANY — milestones, certifications.                                     */
+/*  PLACEHOLDER DATA: entries below are structurally final but factually      */
+/*  empty. Replace bracketed fields with real facts before launch — do not    */
+/*  ship invented dates or certifications.                                    */
+/* -------------------------------------------------------------------------- */
+
+export type Milestone = {
+  year: string;
+  label: string;
+};
+
+export const milestones: Milestone[] = [
+  { year: "[Year]", label: "ZTPL founded" },
+  { year: "[Year]", label: "Zoffec Aegis development begins" },
+  { year: "[Year]", label: "Zoffec Aegis reaches general availability" },
+  { year: "[Year]", label: "[Next milestone]" },
+];
+
+export type Certification = {
+  name: string;
+  body?: string;
+};
+
+export const certifications: Certification[] = [
+  { name: "[Certification — e.g. ISO/IEC 27001]", body: "[Issuing body, if applicable]" },
+  { name: "[Certification]", body: "[Issuing body, if applicable]" },
+];
+
+/**
+ * Trust statements grounded in things already true of the architecture
+ * (see products[0].deployment and products[0].modules) — reworded as
+ * company capability, not invented.
+ */
+export const trustPoints = [
+  {
+    title: "Your data, your residency",
+    body: "Deploy on our managed cloud or entirely inside your own environment — full data residency and control when policy or regulation demands it.",
+  },
+  {
+    title: "Tamper-evident by design",
+    body: "Every action across the platform is captured in an immutable, HMAC-SHA256-secured audit trail — defensible evidence, not an afterthought.",
+  },
+  {
+    title: "Least privilege, enforced",
+    body: "Access control and periodic review are built into the platform's data model, not bolted on as a policy document nobody checks.",
+  },
 ] as const;

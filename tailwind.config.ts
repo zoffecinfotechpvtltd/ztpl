@@ -30,7 +30,9 @@ const config: Config = {
         ink: {
           DEFAULT: "#F8FAFC",
           muted: "#9BA7B8",
-          faint: "#5E6B7D",
+          // #5E6B7D measured at 3.4–3.7:1 on bg/bg-card — fails WCAG AA (4.5:1)
+          // for small text. Lightened while keeping the slate-blue hue.
+          faint: "#7C8AA0",
         },
         line: "#1C2430",
       },

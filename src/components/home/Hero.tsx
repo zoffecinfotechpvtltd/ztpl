@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { Marquee } from "@/components/Marquee";
-import { ReadinessPanel } from "@/components/ReadinessPanel";
+import { CompanyPanel } from "@/components/CompanyPanel";
 import { audience } from "@/lib/site";
 
-const trust = ["SEBI CSCRF", "Annexure-K", "Multi-tenant", "MSSP-ready"];
+const trust = ["Practitioner-led", "SEBI CSCRF", "Platform-backed", "MSSP-ready"];
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -32,7 +32,7 @@ export function Hero() {
         <motion.div variants={container} initial="hidden" animate="show">
           <motion.span variants={item} className="eyebrow">
             <span className="h-1.5 w-1.5 rounded-full bg-green animate-pulse-glow" />
-            The GRC platform for SEBI CSCRF
+            Cybersecurity &amp; GRC for regulated India
           </motion.span>
 
           <motion.h1
@@ -50,11 +50,12 @@ export function Hero() {
             variants={item}
             className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted"
           >
-            ZTPL builds <span className="font-medium text-ink">Zoffec Aegis</span>{" "}
-            — a multi-tenant GRC platform purpose-built for SEBI CSCRF — and
-            stands beside your team from gap assessment to audit-ready
-            submission. One platform for Regulated Entities and the MSSPs that
-            serve them.
+            <span className="font-medium text-ink">ZTPL</span> is a
+            cybersecurity and RegTech company for India&apos;s SEBI-regulated
+            businesses. We pair practitioner-led GRC advisory with{" "}
+            <span className="font-medium text-ink">Zoffec Aegis</span> — the
+            compliance platform we built to run it — so your team gets both
+            the guidance and the system to execute it.
           </motion.p>
 
           <motion.div
@@ -82,7 +83,7 @@ export function Hero() {
           </motion.ul>
         </motion.div>
 
-        {/* Right — live readiness panel */}
+        {/* Right — company identity panel */}
         <motion.div
           initial={reduce ? false : { opacity: 0, scale: 0.95, y: 24 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -93,7 +94,7 @@ export function Hero() {
             className="pointer-events-none absolute -inset-6 bg-green-glow"
             aria-hidden
           />
-          <ReadinessPanel />
+          <CompanyPanel />
         </motion.div>
       </div>
 

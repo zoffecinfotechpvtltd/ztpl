@@ -20,6 +20,7 @@ export function Logo({ className = "" }: { className?: string }) {
         width={1700}
         height={944}
         priority
+        sizes="96px"
         className="h-10 w-auto transition-transform duration-500 ease-smooth group-hover:scale-[1.03] sm:h-11"
       />
     </Link>
@@ -34,6 +35,7 @@ export function LogoSquare({ className = "h-40 w-40" }: { className?: string }) 
       alt="ZTPL"
       width={1242}
       height={1242}
+      sizes="200px"
       className={`rounded-3xl ${className}`}
     />
   );

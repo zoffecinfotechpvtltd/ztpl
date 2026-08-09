@@ -25,17 +25,22 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description: site.description,
+  alternates: { canonical: "/" },
   keywords: [
     "SEBI CSCRF",
     "GRC platform",
     "RegTech",
     "compliance platform India",
+    "network monitoring",
+    "continuous threat exposure management",
     "Annexure-K",
     "VAPT",
     "vCISO",
     "third-party risk",
     "cyber resilience",
     "Zoffec Aegis",
+    "Argus",
+    "Wardloom",
     "MSSP GRC platform",
     "regulated entities compliance",
   ],
@@ -72,6 +77,10 @@ export default function RootLayout({
     alternateName: site.name,
     url: site.url,
     email: site.email,
+    // PLACEHOLDER — foundingDate/taxID resolve automatically once the
+    // bracketed values in site.ts are replaced with real facts.
+    foundingDate: site.founded,
+    taxID: site.cin,
     description: site.description,
     logo: `${site.url}/logo.jpeg`,
     address: {
@@ -84,6 +93,12 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={fallback.variable}>
+      <head>
+        {/* Pliant loads from Google Fonts via @import in globals.css — preconnect
+            shaves the DNS+TLS roundtrip off that render-blocking request. */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body className="relative min-h-screen bg-bg">
         <script
           type="application/ld+json"

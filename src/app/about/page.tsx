@@ -1,14 +1,17 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
+import { Timeline } from "@/components/Timeline";
 import { CTA } from "@/components/CTA";
-import { site } from "@/lib/site";
+import { site, milestones, certifications } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "ZTPL — Zoffec Technologies Private Limited — builds the Zoffec Aegis GRC platform and delivers GRC advisory for India's SEBI-regulated businesses and MSSPs.",
+    "ZTPL — Zoffec Technologies Private Limited — is a cybersecurity and RegTech company building Zoffec Aegis, Argus, and Wardloom, and delivering GRC advisory for India's SEBI-regulated businesses and MSSPs.",
+  alternates: { canonical: "/about" },
 };
 
 const values = [
@@ -18,7 +21,7 @@ const values = [
   },
   {
     title: "Build, then advise",
-    body: "We earn trust by shipping. The Aegis platform is proof our guidance is grounded in how compliance actually operates.",
+    body: "We earn trust by shipping. Every platform we run — Aegis, Argus, Wardloom — is proof our guidance is grounded in how the work actually operates.",
   },
   {
     title: "Outcomes, not hours",
@@ -70,11 +73,11 @@ export default function AboutPage() {
                 report and no system to run it.
               </p>
               <p>
-                We built ZTPL to close that gap from both directions: a platform,
-                Zoffec Aegis, that operationalises CSCRF end-to-end for many
-                entities at once, and an advisory practice that implements it
-                shoulder-to-shoulder with your team. Software where it scales,
-                people where it counts.
+                We built ZTPL to close that gap from both directions: platforms
+                — starting with Zoffec Aegis, which operationalises CSCRF
+                end-to-end for many entities at once — and an advisory practice
+                that implements it shoulder-to-shoulder with your team.
+                Software where it scales, people where it counts.
               </p>
             </div>
           </Reveal>
@@ -95,6 +98,13 @@ export default function AboutPage() {
               </p>
             </div>
           </Reveal>
+        </div>
+      </Section>
+
+      <Section className="border-t border-line">
+        <SectionHeading eyebrow="Timeline" title="How we got here" />
+        <div className="mt-10 max-w-xl">
+          <Timeline items={milestones} />
         </div>
       </Section>
 
@@ -119,14 +129,32 @@ export default function AboutPage() {
               </Reveal>
             ))}
           </div>
-          <Reveal>
-            <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-ink-faint">
-              Founders &amp; team — bios and photos to be added. Drop your team
-              content here.
-            </p>
-          </Reveal>
         </div>
       </section>
+
+      <Section>
+        <div className="mx-auto max-w-3xl rounded-2xl border border-line bg-bg-card/60 p-8 text-center">
+          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-faint">
+            Registered &amp; recognised
+          </span>
+          <p className="mt-3 text-sm text-ink-muted">{site.legalName}</p>
+          <p className="mt-1 text-sm text-ink-muted">CIN: {site.cin}</p>
+          <ul className="mt-5 flex flex-wrap justify-center gap-3">
+            {certifications.map((c) => (
+              <li key={c.name} className="chip">
+                <span className="h-1.5 w-1.5 rounded-full bg-green" />
+                {c.name}
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="/trust"
+            className="mt-6 inline-block text-sm font-semibold text-green"
+          >
+            Read our full trust &amp; security posture →
+          </Link>
+        </div>
+      </Section>
 
       <CTA />
     </>

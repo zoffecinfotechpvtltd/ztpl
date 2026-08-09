@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Services — SEBI CSCRF Advisory, GRC, VAPT, vCISO",
   description:
     "ZTPL's GRC and cybersecurity services for SEBI-regulated entities: SEBI CSCRF advisory, GRC consulting, VAPT, vCISO, third-party risk (TPRA), and audit support.",
+  alternates: { canonical: "/services" },
 };
 
 export default function ServicesPage() {
@@ -29,9 +30,11 @@ export default function ServicesPage() {
                 <span className="text-gradient">GRC &amp; cybersecurity</span>
               </h1>
               <p className="mt-5 text-xl leading-relaxed text-ink-muted">
-                When you need more than software, our team delivers the advisory
-                and assurance that gets SEBI-regulated entities — and the MSSPs
-                who serve them — to audit-ready and beyond.
+                ZTPL&apos;s advisory bench sits alongside the platforms we
+                build — when you need more than software, our practitioners
+                deliver the advisory and assurance that gets SEBI-regulated
+                entities, and the MSSPs who serve them, to audit-ready and
+                beyond.
               </p>
             </div>
           </Reveal>

@@ -8,7 +8,8 @@ import { products } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Platform — Compliance, Productised",
   description:
-    "ZTPL's GRC platform, led by Zoffec Aegis — a multi-tenant platform for SEBI CSCRF. Built by practitioners for Regulated Entities and the MSSPs that serve them.",
+    "ZTPL's product portfolio: Zoffec Aegis for SEBI CSCRF, Argus for network monitoring, and Wardloom for continuous threat exposure management.",
+  alternates: { canonical: "/solutions" },
 };
 
 export default function SolutionsPage() {
@@ -24,10 +25,10 @@ export default function SolutionsPage() {
                 Compliance, <span className="text-gradient">productised</span>
               </h1>
               <p className="mt-5 text-xl leading-relaxed text-ink-muted">
-                We don&apos;t just advise — we build. Our platform turns dense
-                regulatory frameworks into software your team can actually run,
-                across every entity you manage. Aegis leads the lineup, with more
-                on the roadmap.
+                We don&apos;t just advise — we build. Zoffec Aegis leads the
+                lineup for SEBI CSCRF; Argus watches your infrastructure;
+                Wardloom, our continuous threat exposure platform, is in
+                active development.
               </p>
             </div>
           </Reveal>
@@ -36,14 +37,21 @@ export default function SolutionsPage() {
 
       <section className="py-20 sm:py-28">
         <div className="container-px">
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {products.map((p, i) => (
               <Reveal key={p.slug} delay={i * 0.08}>
                 <SpotlightCard className="flex h-full flex-col">
-                  <div className="flex items-center justify-between">
-                    <h2 className="heading text-2xl">{p.name}</h2>
-                    <span className="pill-live">Live</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="chip">{p.category}</span>
+                    <span
+                      className={
+                        p.status === "live" ? "pill-live" : "chip text-yellow"
+                      }
+                    >
+                      {p.status === "live" ? "Live" : "In development"}
+                    </span>
                   </div>
+                  <h2 className="heading mt-4 text-2xl">{p.name}</h2>
                   <p className="mt-1 text-sm font-medium text-yellow">
                     {p.tagline}
                   </p>
@@ -69,7 +77,7 @@ export default function SolutionsPage() {
               </Reveal>
             ))}
 
-            {/* Roadmap placeholder — communicates the multi-product vision */}
+            {/* Roadmap placeholder — beyond the three named platforms above */}
             <Reveal delay={products.length * 0.08}>
               <div className="card flex h-full flex-col items-start justify-center border-dashed">
                 <span className="rounded-full border border-line px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-ink-faint">

@@ -16,11 +16,12 @@ export function ContactForm() {
     const data = Object.fromEntries(new FormData(form).entries());
 
     try {
-      // No backend wired yet. Swap this for your API route / form provider
-      // (e.g. /api/contact, Formspree, Resend). For now we simulate success.
-      await new Promise((r) => setTimeout(r, 600));
-      // eslint-disable-next-line no-console
-      console.log("Contact submission:", data);
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("Request failed");
       setStatus("success");
       form.reset();
     } catch {
@@ -87,7 +88,7 @@ export function ContactForm() {
       </div>
 
       {status === "error" && (
-        <p className="text-sm text-alert">
+        <p id="form-error" role="alert" className="text-sm text-alert">
           Something went wrong. Please email {site.email} directly.
         </p>
       )}
@@ -95,9 +96,10 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
+        aria-describedby={status === "error" ? "form-error" : undefined}
         className="btn-primary w-full disabled:opacity-60"
       >
-        {status === "submitting" ? "Sending…" : "Book a Demo"}
+        {status === "submitting" ? "Sending…" : "Send Message"}
       </button>
       <p className="text-center text-xs text-ink-faint">
         By submitting, you agree to be contacted about your enquiry. We don&apos;t

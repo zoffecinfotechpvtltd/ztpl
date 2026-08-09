@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Contact — Book a Demo",
   description:
     "Talk to ZTPL about SEBI CSCRF compliance, the Zoffec Aegis platform, or GRC advisory. Book a demo or reach our team at support@zt-pl.com.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {
@@ -22,9 +23,9 @@ export default function ContactPage() {
               <span className="text-gradient">audit-ready</span>
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-ink-muted">
-              Book a demo of the Zoffec Aegis platform or talk to our GRC team
-              about your SEBI CSCRF obligations. Tell us your entity type and
-              where you are — we meet you there.
+              Talk to our team about ZTPL, book a demo of Zoffec Aegis, or ask
+              about Argus and Wardloom. Tell us what you need — we meet you
+              there.
             </p>
 
             <dl className="mt-10 space-y-6">
