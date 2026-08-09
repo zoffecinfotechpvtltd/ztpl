@@ -81,7 +81,7 @@ export default async function ProductPage({
                   <ReadinessPanel
                     url={
                       product.externalUrl?.replace(/^https?:\/\//, "") ??
-                      "app.zt-pl.com"
+                      "ztplsolutions.com"
                     }
                   />
                 ) : (

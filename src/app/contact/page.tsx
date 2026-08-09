@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact — Book a Demo",
   description:
-    "Talk to ZTPL about SEBI CSCRF compliance, the Zoffec Aegis platform, or GRC advisory. Book a demo or reach our team at support@zt-pl.com.",
+    "Talk to ZTPL about SEBI CSCRF compliance, the Zoffec Aegis platform, or GRC advisory. Book a demo or reach our team at support@ztplsolutions.com.",
   alternates: { canonical: "/contact" },
 };
 

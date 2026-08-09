@@ -7,7 +7,7 @@ import { Counter } from "./Counter";
  * Illustrative Aegis "CSCRF Readiness" panel — an animated, branded product
  * preview. Replace with a real product screenshot when available.
  */
-export function ReadinessPanel({ url = "aegis.zt-pl.com / dashboard" }: { url?: string }) {
+export function ReadinessPanel({ url = "aegis.ztplsolutions.com / dashboard" }: { url?: string }) {
   const reduce = useReducedMotion();
   const stats = [
     { k: "Controls", v: 146 },

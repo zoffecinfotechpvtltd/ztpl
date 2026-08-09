@@ -3,7 +3,7 @@
  * Confirmed decisions:
  *  - Legal name: Zoffec Technologies Private Limited
  *  - Brand: yellow + green on deep charcoal (extracted from the logo)
- *  - Contact: support@zt-pl.com
+ *  - Contact: support@ztplsolutions.com
  *  - Zoffec Aegis is positioned as a PLATFORM (multi-tenant GRC) — not a
  *    one-off solution. Built for Regulated Entities (REs) and the MSSPs /
  *    GRC consultancies that serve them.
@@ -15,8 +15,8 @@ export const site = {
   tagline: "Compliance Simplified.",
   description:
     "ZTPL is a cybersecurity and RegTech company for India's SEBI-regulated businesses — practitioner-led GRC advisory, backed by Zoffec Aegis, the compliance platform we built to run it.",
-  url: "https://www.zt-pl.com",
-  email: "support@zt-pl.com",
+  url: "https://ztplsolutions.com",
+  email: "support@ztplsolutions.com",
   phone: "+91 00000 00000", // placeholder — replace before launch
   location: "Mumbai, India",
   // PLACEHOLDER — replace with real values from incorporation docs before launch.

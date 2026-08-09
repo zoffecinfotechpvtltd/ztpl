@@ -21,8 +21,8 @@ Built with **Next.js (App Router) + TypeScript + Tailwind CSS + Framer Motion**.
 | Sitemap | Home · Solutions (hub) · Solutions/[product] · Services · About · Contact · Privacy · Terms |
 | Services | SEBI CSCRF Advisory · GRC Consulting · VAPT · vCISO · TPRA · Audit Support |
 | Products | Data-driven via `products[]` in `src/lib/site.ts` — add an object, get a full page |
-| Aegis app | https://zoffecgrc.vercel.app/ (external "Launch Platform") |
-| Contact | support@zt-pl.com · Mumbai, India (phone/socials are placeholders) |
+| Aegis app | https://aegis.ztplsolutions.com (external "Launch Platform") |
+| Contact | support@ztplsolutions.com · Mumbai, India (phone is a placeholder) |
 
 ---
 

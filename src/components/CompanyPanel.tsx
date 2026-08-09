@@ -27,7 +27,7 @@ export function CompanyPanel() {
             <span className="h-3 w-3 rounded-full bg-yellow/70" />
             <span className="h-3 w-3 rounded-full bg-green/70" />
             <span className="ml-3 truncate text-xs text-ink-faint">
-              zt-pl.com / about
+              ztplsolutions.com / about
             </span>
           </div>
 
