@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact — Book a Demo",
   description:
-    "Talk to ZTPL about SEBI CSCRF compliance, the Zoffec Aegis platform, or GRC advisory. Book a demo or reach our team at support@ztplsolutions.com.",
+    "Talk to ZTPL about Zoffec Aegis, Argus, or ExploitSense. Book a demo or reach our team at support@ztplsolutions.com.",
   alternates: { canonical: "/contact" },
 };
 
@@ -19,13 +19,12 @@ export default function ContactPage() {
           <Reveal direction="right">
             <span className="eyebrow">Contact</span>
             <h1 className="heading mt-5 text-4xl sm:text-5xl lg:text-6xl">
-              Let&apos;s get you{" "}
-              <span className="text-gradient">audit-ready</span>
+              Let&apos;s talk{" "}
+              <span className="text-gradient">platforms</span>
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-ink-muted">
-              Talk to our team about ZTPL, book a demo of Zoffec Aegis, or ask
-              about Argus and ExploitSense. Tell us what you need — we meet you
-              there.
+              Book a demo of Zoffec Aegis, Argus, or ExploitSense, or ask us
+              anything about ZTPL. Tell us what you need — we meet you there.
             </p>
 
             <dl className="mt-10 space-y-6">
@@ -46,7 +45,14 @@ export default function ContactPage() {
                 <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-faint">
                   Phone
                 </dt>
-                <dd className="mt-1 text-lg text-ink-muted">{site.phone}</dd>
+                <dd className="mt-1 space-y-1 text-lg text-ink-muted">
+                  <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="block transition-colors hover:text-green">
+                    {site.phone}
+                  </a>
+                  <a href={`tel:${site.phoneAlt.replace(/\s/g, "")}`} className="block transition-colors hover:text-green">
+                    {site.phoneAlt}
+                  </a>
+                </dd>
               </div>
               <div>
                 <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-faint">

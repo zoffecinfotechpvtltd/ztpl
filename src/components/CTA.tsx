@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Reveal } from "./Reveal";
 
 export function CTA({
-  title = "Ready for audit-ready compliance?",
-  body = "Book a walkthrough of what we build, or talk to our GRC team about your SEBI CSCRF obligations. We'll meet you where you are.",
+  title = "See what we build",
+  body = "Book a walkthrough of Aegis, Argus, or ExploitSense — we'll show you the platform, not a slide deck.",
   primaryLabel = "Book a Demo",
   primaryHref = "/contact",
   secondaryLabel = "Explore Our Platforms",

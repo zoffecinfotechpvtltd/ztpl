@@ -9,7 +9,6 @@ const routes = [
   "/solutions/argus",
   "/solutions/exploitsense",
   "/services",
-  "/trust",
   "/contact",
 ];
 

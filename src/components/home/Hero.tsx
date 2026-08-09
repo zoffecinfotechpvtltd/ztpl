@@ -7,7 +7,7 @@ import { CompanyPanel } from "@/components/CompanyPanel";
 import { audience } from "@/lib/site";
 import { ensureGsap, gsapMatchMedia } from "@/lib/gsap";
 
-const trust = ["Practitioner-led", "SEBI CSCRF", "Platform-backed", "MSSP-ready"];
+const trust = ["3 platforms shipped", "SEBI CSCRF", "Multi-tenant", "MSSP-ready"];
 
 export function Hero() {
   const rootRef = useRef<HTMLElement>(null);
@@ -59,7 +59,7 @@ export function Hero() {
         <div>
           <span data-hero-beat className="eyebrow">
             <span className="h-1.5 w-1.5 rounded-full bg-green animate-pulse-glow" />
-            Cybersecurity &amp; GRC for regulated India
+            Security &amp; compliance technology, built in India
           </span>
 
           <h1
@@ -77,12 +77,16 @@ export function Hero() {
             data-hero-beat
             className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted"
           >
-            <span className="font-medium text-ink">ZTPL</span> is a
-            cybersecurity and RegTech company for India&apos;s SEBI-regulated
-            businesses. We pair practitioner-led GRC advisory with{" "}
-            <span className="font-medium text-ink">Zoffec Aegis</span> — the
-            compliance platform we built to run it — so your team gets both
-            the guidance and the system to execute it.
+            <span className="font-medium text-ink">
+              Zoffec Technologies Private Limited
+            </span>{" "}
+            builds security and compliance platforms for India&apos;s
+            regulated businesses:{" "}
+            <span className="font-medium text-ink">Zoffec Aegis</span> for
+            SEBI CSCRF, <span className="font-medium text-ink">Argus</span>{" "}
+            for infrastructure monitoring, and{" "}
+            <span className="font-medium text-ink">ExploitSense</span> for
+            threat exposure. Real software, not a slide deck.
           </p>
 
           <div data-hero-beat className="mt-9 flex flex-col gap-3 sm:flex-row">

@@ -34,7 +34,7 @@ export function ContactForm() {
       <div className="card border-green/50">
         <h3 className="heading text-xl text-ink">Thanks — we&apos;ll be in touch.</h3>
         <p className="mt-3 text-sm text-ink-muted">
-          Your message is on its way to our GRC team. We typically respond
+          Your message is on its way to our team. We typically respond
           within one business day. For anything urgent, email{" "}
           <a href={`mailto:${site.email}`} className="text-green">
             {site.email}

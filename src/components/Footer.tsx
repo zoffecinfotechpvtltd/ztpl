@@ -13,9 +13,8 @@ export function Footer() {
           <div>
             <Logo />
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-ink-muted">
-              A cybersecurity and RegTech company for India&apos;s regulated
-              businesses. We build the platforms — Zoffec Aegis, Argus,
-              ExploitSense — and deliver the advisory that gets you there.
+              A technology company for India&apos;s regulated businesses. We
+              build Zoffec Aegis, Argus, and ExploitSense.
             </p>
           </div>
 
@@ -49,7 +48,16 @@ export function Footer() {
                   {site.email}
                 </a>
               </li>
-              <li className="text-ink-muted">{site.phone}</li>
+              <li>
+                <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="link-muted">
+                  {site.phone}
+                </a>
+              </li>
+              <li>
+                <a href={`tel:${site.phoneAlt.replace(/\s/g, "")}`} className="link-muted">
+                  {site.phoneAlt}
+                </a>
+              </li>
               <li className="text-ink-muted">{site.location}</li>
               <li className="flex gap-4 pt-1">
                 <a

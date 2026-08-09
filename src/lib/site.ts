@@ -14,10 +14,11 @@ export const site = {
   legalName: "Zoffec Technologies Private Limited",
   tagline: "Compliance Simplified.",
   description:
-    "ZTPL is a cybersecurity and RegTech company for India's SEBI-regulated businesses — practitioner-led GRC advisory, backed by Zoffec Aegis, the compliance platform we built to run it.",
+    "ZTPL — Zoffec Technologies Private Limited — is a technology company for India's regulated businesses. We build Zoffec Aegis, Argus, and ExploitSense: real platforms for compliance, infrastructure monitoring, and threat exposure.",
   url: "https://ztplsolutions.com",
   email: "support@ztplsolutions.com",
-  phone: "+91 00000 00000", // placeholder — replace before launch
+  phone: "+91 87790 21628",
+  phoneAlt: "+91 98194 78648",
   location: "Mumbai, India",
   // PLACEHOLDER — replace with real values from incorporation docs before launch.
   cin: "[Add CIN — see incorporation documents]",
@@ -32,7 +33,6 @@ export const nav = [
   { label: "About", href: "/about" },
   { label: "Platform", href: "/solutions" },
   { label: "Services", href: "/services" },
-  { label: "Trust", href: "/trust" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -47,6 +47,8 @@ export type Product = {
   status: "live" | "in-development";
   /** One-line category shown as a chip — e.g. "Network Monitoring (NMS)". */
   category: string;
+  /** Real product icon, sourced from the product's own site — see /public/products. */
+  icon?: string;
   /** External app/marketing URL, if the product lives elsewhere. */
   externalUrl?: string;
   short: string;
@@ -65,6 +67,7 @@ export const products: Product[] = [
     tagline: "The GRC Platform for SEBI CSCRF",
     status: "live",
     category: "SEBI CSCRF Compliance Platform",
+    icon: "/products/aegis-icon.png",
     externalUrl: "https://aegis.ztplsolutions.com",
     short:
       "A multi-tenant GRC platform purpose-built for SEBI CSCRF — one workspace where Regulated Entities and MSSPs run assessments, hold evidence, manage third-party risk, and ship audit-ready reports.",
@@ -152,6 +155,7 @@ export const products: Product[] = [
     tagline: "Network monitoring that never blinks.",
     status: "live",
     category: "Network Monitoring (NMS)",
+    icon: "/products/argus-icon.png",
     externalUrl: "https://argus.ztplsolutions.com",
     short:
       "ZTPL's network monitoring system — built for continuous, always-on visibility into infrastructure health, so anomalies surface before they become incidents.",

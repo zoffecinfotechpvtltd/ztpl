@@ -2,18 +2,18 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Counter } from "./Counter";
-import { services, audience, trustPoints } from "@/lib/site";
+import { products, audience, trustPoints } from "@/lib/site";
 
 /**
  * Company-identity hero panel — the first thing a visitor sees. Deliberately
- * not a product screenshot: it's ZTPL's own facts (services, sectors served,
- * how we work), mirroring the window-chrome card style used for the Aegis
- * product preview elsewhere so the two read as one visual system.
+ * not a single product screenshot: it's ZTPL's own facts (platforms built,
+ * sectors served, how we work), mirroring the window-chrome card style used
+ * for product previews elsewhere so the two read as one visual system.
  */
 export function CompanyPanel() {
   const reduce = useReducedMotion();
   const stats = [
-    { k: "Services", v: services.length },
+    { k: "Platforms", v: products.length },
     { k: "Sectors served", v: audience.length },
     { k: "Deployment modes", v: 2 },
   ];
@@ -79,7 +79,7 @@ export function CompanyPanel() {
         transition={{ delay: 1, duration: 0.6 }}
         className="absolute -right-3 -top-3 hidden rounded-full border border-green/40 bg-bg px-3 py-1.5 text-[11px] font-semibold text-green shadow-lg sm:block animate-float"
       >
-        Practitioner-built
+        Built in-house
       </motion.div>
     </div>
   );

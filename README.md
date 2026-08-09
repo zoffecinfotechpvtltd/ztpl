@@ -1,11 +1,12 @@
 # ZTPL Website — Zoffec Technologies Private Limited
 
 The official company website for **ZTPL** — _Compliance Simplified._
-A dark, premium, enterprise-trustworthy marketing site that leads with the
-flagship product **Zoffec Aegis** (India's SEBI CSCRF compliance platform) and
-ZTPL's GRC advisory services.
+A dark, premium, enterprise-trustworthy marketing site for the technology
+company behind three platforms: **Zoffec Aegis** (SEBI CSCRF), **Argus**
+(network monitoring), and **ExploitSense** (continuous threat exposure
+management).
 
-Built with **Next.js (App Router) + TypeScript + Tailwind CSS + Framer Motion**.
+Built with **Next.js (App Router) + TypeScript + Tailwind CSS + Framer Motion + GSAP**.
 
 ---
 

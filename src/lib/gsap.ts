@@ -2,13 +2,14 @@
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TextPlugin } from "gsap/TextPlugin";
 
 let registered = false;
 
-/** Registers ScrollTrigger once, client-side only. Safe to call from every component that needs it. */
+/** Registers ScrollTrigger + TextPlugin once, client-side only. Safe to call from every component that needs it. */
 export function ensureGsap() {
   if (!registered && typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, TextPlugin);
     registered = true;
   }
   return gsap;

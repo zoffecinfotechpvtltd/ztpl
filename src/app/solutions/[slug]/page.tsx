@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Section, SectionHeading } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
@@ -44,7 +45,12 @@ export default async function ProductPage({
         <div className="container-px relative py-16 sm:py-24">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <Reveal direction="right">
-              <span className={product.status === "live" ? "pill-live" : "chip text-yellow"}>
+              {product.icon && (
+                <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl bg-white p-2">
+                  <Image src={product.icon} alt="" width={56} height={56} className="h-full w-full object-contain" />
+                </div>
+              )}
+              <span className={`${product.icon ? "mt-4" : ""} ${product.status === "live" ? "pill-live" : "chip text-yellow"} inline-flex`}>
                 <span className="h-1.5 w-1.5 rounded-full bg-green animate-pulse-glow" />
                 {product.status === "live" ? "Live platform" : "In development"}
               </span>

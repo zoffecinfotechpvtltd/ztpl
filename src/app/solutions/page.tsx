@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { CTA } from "@/components/CTA";
@@ -25,9 +26,9 @@ export default function SolutionsPage() {
                 Compliance, <span className="text-gradient">productised</span>
               </h1>
               <p className="mt-5 text-xl leading-relaxed text-ink-muted">
-                We don&apos;t just advise — we build. Zoffec Aegis leads the
-                lineup for SEBI CSCRF; Argus watches your infrastructure;
-                ExploitSense keeps your attack surface honest.
+                Zoffec Aegis leads the lineup for SEBI CSCRF; Argus watches
+                your infrastructure; ExploitSense keeps your attack surface
+                honest.
               </p>
             </div>
           </Reveal>
@@ -41,7 +42,13 @@ export default function SolutionsPage() {
               <Reveal key={p.slug} delay={i * 0.08}>
                 <SpotlightCard className="flex h-full flex-col">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="chip">{p.category}</span>
+                    {p.icon ? (
+                      <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg bg-white p-1.5">
+                        <Image src={p.icon} alt="" width={40} height={40} className="h-full w-full object-contain" />
+                      </div>
+                    ) : (
+                      <span className="chip">{p.category}</span>
+                    )}
                     <span
                       className={
                         p.status === "live" ? "pill-live" : "chip text-yellow"
@@ -50,6 +57,7 @@ export default function SolutionsPage() {
                       {p.status === "live" ? "Live" : "In development"}
                     </span>
                   </div>
+                  {p.icon && <span className="chip mt-3 self-start">{p.category}</span>}
                   <h2 className="heading mt-4 text-2xl">{p.name}</h2>
                   <p className="mt-1 text-sm font-medium text-yellow">
                     {p.tagline}

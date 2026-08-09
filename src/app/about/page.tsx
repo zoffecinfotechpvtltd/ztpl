@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
@@ -10,22 +9,22 @@ import { site, milestones, certifications } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "ZTPL — Zoffec Technologies Private Limited — is a cybersecurity and RegTech company building Zoffec Aegis, Argus, and ExploitSense, and delivering GRC advisory for India's SEBI-regulated businesses and MSSPs.",
+    "ZTPL — Zoffec Technologies Private Limited — is a technology company building Zoffec Aegis, Argus, and ExploitSense for India's regulated businesses.",
   alternates: { canonical: "/about" },
 };
 
 const values = [
   {
     title: "Regulator-credible",
-    body: "We speak the language of SEBI CSCRF, Annexure-K, and audit. No hype — just precise, defensible work.",
+    body: "We speak the language of SEBI CSCRF, Annexure-K, and audit. No hype — just precise, defensible engineering.",
   },
   {
-    title: "Build, then advise",
-    body: "We earn trust by shipping. Every platform we run — Aegis, Argus, ExploitSense — is proof our guidance is grounded in how the work actually operates.",
+    title: "Build, then ship",
+    body: "Every platform we run — Aegis, Argus, ExploitSense — is real, working software, not a slide deck or a roadmap promise.",
   },
   {
     title: "Outcomes, not hours",
-    body: "We measure ourselves by your audit outcome — controls closed, evidence ready, submission accepted.",
+    body: "We measure ourselves by whether the platform actually solves the problem — controls closed, exposure surfaced, uptime held.",
   },
   {
     title: "Security by default",
@@ -50,34 +49,33 @@ export default function AboutPage() {
                 <span className="text-gradient">buildable</span>
               </h1>
               <p className="mt-5 text-xl leading-relaxed text-ink-muted">
-                {site.legalName} ({site.name}) is a cybersecurity and RegTech
-                company focused on one thing: making SEBI CSCRF compliance
-                achievable, repeatable, and audit-ready for India&apos;s
-                regulated businesses and the MSSPs that serve them.
+                {site.legalName} ({site.name}) is a technology company. We
+                build Zoffec Aegis, Argus, and ExploitSense — real platforms
+                for compliance, infrastructure, and threat exposure, for
+                India&apos;s regulated businesses.
               </p>
             </div>
           </Reveal>
         </div>
       </section>
 
-      <Section id="story" railLabel="Our story">
+      <Section id="story">
         <div className="grid gap-12 lg:grid-cols-2">
           <Reveal>
             <SectionHeading eyebrow="Our story" title="Why we exist" />
             <div className="mt-6 space-y-4 leading-relaxed text-ink-muted">
               <p>
-                The SEBI Cyber Security and Cyber Resilience Framework raised the
-                bar for regulated entities — and exposed how unprepared most
-                compliance tooling was for it. Spreadsheets break. Generic GRC
-                suites don&apos;t speak CSCRF. Advisory alone leaves you with a
-                report and no system to run it.
+                Regulated businesses in India run on tools that weren&apos;t
+                built for the frameworks they actually answer to.
+                Spreadsheets break. Generic GRC suites don&apos;t speak
+                CSCRF. Point tools don&apos;t talk to each other.
               </p>
               <p>
-                We built ZTPL to close that gap from both directions: platforms
-                — starting with Zoffec Aegis, which operationalises CSCRF
-                end-to-end for many entities at once — and an advisory practice
-                that implements it shoulder-to-shoulder with your team.
-                Software where it scales, people where it counts.
+                We built ZTPL to close that gap with software: Zoffec Aegis
+                operationalises SEBI CSCRF end-to-end for many entities at
+                once; Argus watches infrastructure continuously; ExploitSense
+                keeps attack surface honest. One engineering team, one
+                operating standard, three problems solved properly.
               </p>
             </div>
           </Reveal>
@@ -86,22 +84,21 @@ export default function AboutPage() {
             <SectionHeading eyebrow="Mission" title="What we're here to do" />
             <div className="mt-6 space-y-4 leading-relaxed text-ink-muted">
               <p>
-                To be the most trusted compliance partner for SEBI-regulated
-                entities and the MSSPs that serve them — by shipping a platform
-                that makes the framework workable and advisory that makes it
-                stick.
+                To be the platform India&apos;s regulated businesses actually
+                run on — for compliance, for infrastructure, for exposure
+                management — built by people who ship, not just spec.
               </p>
               <p>
-                Our differentiator is simple: we don&apos;t just advise, we
-                build. That means our guidance is tested against a real platform,
-                real evidence, and real audit cycles — not theory.
+                Our differentiator is simple: we build. Every product decision
+                is tested against real deployments, real data, and real
+                operating conditions — not a slide in a pitch deck.
               </p>
             </div>
           </Reveal>
         </div>
       </Section>
 
-      <Section id="timeline" railLabel="Timeline" className="border-t border-line">
+      <Section id="timeline" className="border-t border-line">
         <SectionHeading eyebrow="Timeline" title="How we got here" />
         <div className="mt-10 max-w-xl">
           <Timeline items={milestones} />
@@ -110,7 +107,6 @@ export default function AboutPage() {
 
       <section
         id="values"
-        data-rail-label="Values"
         className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28"
       >
         <div className="container-px">
@@ -136,7 +132,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Section id="trust-strip" railLabel="Trust">
+      <Section id="trust-strip">
         <div className="mx-auto max-w-3xl rounded-xl border border-line bg-bg-card/60 p-8 text-center">
           <span className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-ink-faint">
             Registered &amp; recognised
@@ -151,12 +147,6 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
-          <Link
-            href="/trust"
-            className="mt-6 inline-block text-sm font-semibold text-green"
-          >
-            Read our full trust &amp; security posture →
-          </Link>
         </div>
       </Section>
 
