@@ -20,9 +20,10 @@ export const site = {
   phone: "+91 87790 21628",
   phoneAlt: "+91 98194 78648",
   location: "Mumbai, India",
-  // PLACEHOLDER — replace with real values from incorporation docs before launch.
-  cin: "[Add CIN — see incorporation documents]",
-  founded: "[Add founding year]",
+  // Real CIN / founding year not yet supplied — omit rather than ship a
+  // bracketed placeholder. Set these once the incorporation docs are in hand.
+  cin: undefined as string | undefined,
+  founded: undefined as string | undefined,
   socials: {
     linkedin: "https://www.linkedin.com/company/ztpl",
     x: "https://x.com/ztpl",
@@ -51,6 +52,12 @@ export type Product = {
   icon?: string;
   /** External app/marketing URL, if the product lives elsewhere. */
   externalUrl?: string;
+  /** Per-product accent — deliberate, not decorative: emerald = compliance/clear,
+   *  cyan = monitoring/signal, amber = threat/exposure. Used for badges, links,
+   *  hover borders wherever this product is referenced. */
+  accent: "green" | "cyan" | "yellow";
+  /** One-line, plain-English "what you get" hook for card/spotlight link text. */
+  linkLabel: string;
   short: string;
   description: string;
   /** Deep-dive sections — omitted entirely (not rendered) for products that don't have this content yet. */
@@ -69,6 +76,8 @@ export const products: Product[] = [
     category: "SEBI CSCRF Compliance Platform",
     icon: "/products/aegis-icon.png",
     externalUrl: "https://aegis.ztplsolutions.com",
+    accent: "green",
+    linkLabel: "See the GRC platform",
     short:
       "A multi-tenant GRC platform purpose-built for SEBI CSCRF — one workspace where Regulated Entities and MSSPs run assessments, hold evidence, manage third-party risk, and ship audit-ready reports.",
     description:
@@ -157,6 +166,8 @@ export const products: Product[] = [
     category: "Network Monitoring (NMS)",
     icon: "/products/argus-icon.png",
     externalUrl: "https://argus.ztplsolutions.com",
+    accent: "cyan",
+    linkLabel: "See the monitoring platform",
     short:
       "ZTPL's network monitoring system — built for continuous, always-on visibility into infrastructure health, so anomalies surface before they become incidents.",
     description:
@@ -175,6 +186,8 @@ export const products: Product[] = [
     status: "live",
     category: "Continuous Threat Exposure Management (CTEM)",
     externalUrl: "https://exploitsense.ztplsolutions.com",
+    accent: "yellow",
+    linkLabel: "See the exposure platform",
     short:
       "ZTPL's CTEM platform — continuous discovery, validation, and prioritisation of exposure across your attack surface.",
     description:
@@ -299,9 +312,10 @@ export const audience = [
 
 /* -------------------------------------------------------------------------- */
 /*  COMPANY — milestones, certifications.                                     */
-/*  PLACEHOLDER DATA: entries below are structurally final but factually      */
-/*  empty. Replace bracketed fields with real facts before launch — do not    */
-/*  ship invented dates or certifications.                                    */
+/*  Left empty on purpose: an absent claim is neutral, a placeholder claim    */
+/*  reads as a red flag on a compliance company's own trust section. Add      */
+/*  real entries here once dates/certifications are confirmed — the About     */
+/*  page timeline/cert panel render conditionally and pick these up as-is.    */
 /* -------------------------------------------------------------------------- */
 
 export type Milestone = {
@@ -309,22 +323,14 @@ export type Milestone = {
   label: string;
 };
 
-export const milestones: Milestone[] = [
-  { year: "[Year]", label: "ZTPL founded" },
-  { year: "[Year]", label: "Zoffec Aegis development begins" },
-  { year: "[Year]", label: "Zoffec Aegis reaches general availability" },
-  { year: "[Year]", label: "[Next milestone]" },
-];
+export const milestones: Milestone[] = [];
 
 export type Certification = {
   name: string;
   body?: string;
 };
 
-export const certifications: Certification[] = [
-  { name: "[Certification — e.g. ISO/IEC 27001]", body: "[Issuing body, if applicable]" },
-  { name: "[Certification]", body: "[Issuing body, if applicable]" },
-];
+export const certifications: Certification[] = [];
 
 /**
  * Trust statements grounded in things already true of the architecture
@@ -343,5 +349,64 @@ export const trustPoints = [
   {
     title: "Least privilege, enforced",
     body: "Access control and periodic review are built into the platform's data model, not bolted on as a policy document nobody checks.",
+  },
+] as const;
+
+/* -------------------------------------------------------------------------- */
+/*  VALUES — paired with a concrete proof point, not left as abstract slogans. */
+/* -------------------------------------------------------------------------- */
+
+export const values = [
+  {
+    title: "Regulator-credible",
+    body: "We speak the language of SEBI CSCRF, Annexure-K, and audit.",
+    proof: "Every Aegis control maps directly to a CSCRF clause — not a generic template.",
+  },
+  {
+    title: "Build, then ship",
+    body: "Every platform we run is real, working software.",
+    proof: "Aegis, Argus, and ExploitSense are live today — not a roadmap slide.",
+  },
+  {
+    title: "Outcomes, not hours",
+    body: "We measure ourselves by whether the platform solves the problem.",
+    proof: "Controls closed, exposure surfaced, uptime held — that's the scoreboard.",
+  },
+  {
+    title: "Security by default",
+    body: "Data residency, least privilege, and hardened deployment are baseline.",
+    proof: "Cloud or on-prem, the same controls apply either way — no premium tier for security.",
+  },
+] as const;
+
+/* -------------------------------------------------------------------------- */
+/*  FAQ — common due-diligence questions, reduces sales-call load.            */
+/* -------------------------------------------------------------------------- */
+
+export const faqs = [
+  {
+    question: "Which entities does SEBI CSCRF actually apply to?",
+    answer:
+      "CSCRF applies to SEBI-Regulated Entities (REs) — categorised by size and complexity into different tiers, each with its own control expectations. Zoffec Aegis maps your RE category to the right control set automatically, and our SEBI CSCRF Advisory service can help you confirm applicability first.",
+  },
+  {
+    question: "Cloud or on-premises — which deployment do we need?",
+    answer:
+      "Both are supported on the same platform. Cloud gets you running fastest with managed updates and backups; on-premises gives you full data residency inside your own environment. The choice usually comes down to policy or regulatory requirement, not platform capability — either way, you get the same controls.",
+  },
+  {
+    question: "How long does a typical CSCRF implementation take?",
+    answer:
+      "It depends on your RE category and how much groundwork is already in place. A gap assessment is the fastest way to get a real timeline — it maps what you already have against Annexure-K and gives you a prioritised, scoped path instead of a guess.",
+  },
+  {
+    question: "Can an MSSP or consultancy run multiple client entities in one account?",
+    answer:
+      "Yes — Zoffec Aegis is built multi-tenant from the ground up. Each client entity is fully isolated (no cross-contamination), while your team gets one workspace to manage assessments, evidence, and reporting across all of them.",
+  },
+  {
+    question: "Do you offer support beyond the software itself?",
+    answer:
+      "Yes. Alongside the platforms, our practitioners offer SEBI CSCRF advisory, GRC consulting, VAPT, vCISO, third-party risk assessment, and audit support — for teams that need hands and heads, not just a tool.",
   },
 ] as const;

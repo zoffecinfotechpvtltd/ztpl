@@ -83,7 +83,8 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col gap-4 border-t border-line pt-6 text-xs text-ink-faint sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {site.legalName}. All rights reserved. · CIN: {site.cin}
+            © {year} {site.legalName}. All rights reserved.
+            {site.cin ? ` · CIN: ${site.cin}` : ""}
           </p>
           <div className="flex gap-5">
             <Link href="/privacy" className="link-muted">

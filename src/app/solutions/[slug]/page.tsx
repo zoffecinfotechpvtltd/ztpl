@@ -6,7 +6,9 @@ import { Section, SectionHeading } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { ReadinessPanel } from "@/components/ReadinessPanel";
+import { ProductGlyph } from "@/components/ProductGlyph";
 import { CTA } from "@/components/CTA";
+import { accentClasses } from "@/lib/accent";
 import { products, getProduct } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -36,6 +38,7 @@ export default async function ProductPage({
   const { slug } = await params;
   const product = getProduct(slug);
   if (!product) notFound();
+  const a = accentClasses[product.accent];
 
   return (
     <>
@@ -45,13 +48,15 @@ export default async function ProductPage({
         <div className="container-px relative py-16 sm:py-24">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <Reveal direction="right">
-              {product.icon && (
+              {product.icon ? (
                 <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl bg-white p-2">
                   <Image src={product.icon} alt="" width={56} height={56} className="h-full w-full object-contain" />
                 </div>
+              ) : (
+                <ProductGlyph slug={product.slug} accent={product.accent} className="h-12 w-12" />
               )}
-              <span className={`${product.icon ? "mt-4" : ""} ${product.status === "live" ? "pill-live" : "chip text-yellow"} inline-flex`}>
-                <span className="h-1.5 w-1.5 rounded-full bg-green animate-pulse-glow" />
+              <span className={`mt-4 ${product.status === "live" ? "pill-live" : "chip text-yellow"} inline-flex`}>
+                <span className={`h-1.5 w-1.5 rounded-full ${a.dot} animate-pulse-glow`} />
                 {product.status === "live" ? "Live platform" : "In development"}
               </span>
               <h1 className="heading mt-5 text-4xl sm:text-5xl lg:text-6xl">
@@ -150,7 +155,7 @@ export default async function ProductPage({
               {product.modules.map((m, i) => (
                 <Reveal key={m.title} delay={(i % 4) * 0.06}>
                   <SpotlightCard className="h-full">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-green/30 bg-green/10 font-display text-sm font-bold text-green">
+                    <div className={`flex h-11 w-11 items-center justify-center rounded-xl border ${a.chipBorder} ${a.chipBg} font-display text-sm font-bold ${a.text}`}>
                       {String(i + 1).padStart(2, "0")}
                     </div>
                     <h3 className="heading mt-4 text-base">{m.title}</h3>

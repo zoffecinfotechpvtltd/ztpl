@@ -1,11 +1,13 @@
-import Link from "next/link";
-import Image from "next/image";
 import { Hero } from "@/components/home/Hero";
+import { ProductSpotlight } from "@/components/home/ProductSpotlight";
+import { ProcessFlow } from "@/components/home/ProcessFlow";
+import { LifecycleRail } from "@/components/home/LifecycleRail";
 import { Section, SectionHeading } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { Counter } from "@/components/Counter";
 import { CTA } from "@/components/CTA";
+import { FAQ } from "@/components/FAQ";
 import {
   products,
   platformPillars,
@@ -44,32 +46,8 @@ export default function HomePage() {
     <>
       <Hero />
 
-      {/* WHO WE ARE */}
-      <Section id="who-we-are">
-        <div className="grid gap-12 lg:grid-cols-2">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Who we are"
-              title="A technology company, not a single product"
-              intro={`${site.legalName} builds security and compliance software for India's regulated businesses — three platforms, one engineering team, one operating standard.`}
-            />
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="grid gap-4 sm:grid-cols-1">
-              {trustPoints.map((t) => (
-                <SpotlightCard key={t.title}>
-                  <h3 className="heading text-base">{t.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                    {t.body}
-                  </p>
-                </SpotlightCard>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* WHAT WE BUILD — product portfolio */}
+      {/* WHAT WE BUILD — product portfolio, moved up: it's the most concrete
+          thing ZTPL sells and shouldn't sit behind abstract framing. */}
       <section
         id="what-we-build"
         className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28"
@@ -82,70 +60,55 @@ export default function HomePage() {
               intro="Compliance, infrastructure, and threat exposure — engineered by the same team, to the same standard."
             />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {products.map((p, i) => (
-              <Reveal key={p.slug} delay={i * 0.08}>
-                <SpotlightCard className="flex h-full flex-col">
-                  <div className="flex items-center justify-between gap-2">
-                    {p.icon ? (
-                      <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg bg-white p-1.5">
-                        <Image src={p.icon} alt="" width={40} height={40} className="h-full w-full object-contain" />
-                      </div>
-                    ) : (
-                      <span className="chip">{p.category}</span>
-                    )}
-                    <span
-                      className={
-                        p.status === "live" ? "pill-live" : "chip text-yellow"
-                      }
-                    >
-                      {p.status === "live" ? "Live" : "In development"}
-                    </span>
-                  </div>
-                  {p.icon && <span className="chip mt-3 self-start">{p.category}</span>}
-                  <h3 className="heading mt-4 text-xl">{p.name}</h3>
-                  <p className="mt-1 text-sm font-medium text-yellow">
-                    {p.tagline}
-                  </p>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-muted">
-                    {p.short}
-                  </p>
-                  <Link
-                    href={`/solutions/${p.slug}`}
-                    className="mt-5 inline-block text-sm font-semibold text-green"
-                  >
-                    Learn more →
-                  </Link>
-                </SpotlightCard>
-              </Reveal>
-            ))}
+          <div className="mt-10">
+            <ProductSpotlight />
           </div>
         </div>
       </section>
 
-      {/* WHY A PLATFORM */}
+      {/* WHO WE ARE */}
+      <Section id="who-we-are">
+        <div className="grid gap-12 lg:grid-cols-2">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Who we are"
+              title="A technology company, not a single product"
+              intro={`${site.legalName} builds security and compliance software for India's regulated businesses — three platforms, one engineering team, one operating standard.`}
+            />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="relative space-y-5 border-l border-line pl-6">
+              {trustPoints.map((t) => (
+                <div key={t.title} className="relative">
+                  <span className="absolute -left-[27px] top-1.5 h-2.5 w-2.5 rounded-full bg-brand-gradient" />
+                  <h3 className="heading text-base">{t.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                    {t.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* HOW WE ENGINEER — governance → controls → reporting pipeline */}
       <Section id="engineering">
         <SectionHeading
           eyebrow="How we engineer"
           title="A framework this broad needs a platform — not a checklist"
           intro="SEBI CSCRF touches governance, controls, evidence, vendors, and reporting. Zoffec Aegis models all of it in one place, so nothing falls through the cracks."
         />
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {platformPillars.map((p, i) => (
-            <Reveal key={p.tag} delay={i * 0.08}>
-              <SpotlightCard className="h-full">
-                <span className="chip text-green">{p.tag}</span>
-                <h3 className="heading mt-4 text-xl">{p.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                  {p.body}
-                </p>
-              </SpotlightCard>
-            </Reveal>
-          ))}
-        </div>
+        <ProcessFlow
+          nodes={platformPillars.map((p) => ({
+            tag: p.tag,
+            title: p.title,
+            body: p.body,
+          }))}
+        />
       </Section>
 
-      {/* APPROACH */}
+      {/* HOW WE WORK — build/ship/support lifecycle rail */}
       <section
         id="approach"
         className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28"
@@ -158,43 +121,45 @@ export default function HomePage() {
               intro="A platform is only as good as what happens after launch. We own all three."
             />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {approach.map((p, i) => (
-              <Reveal key={p.tag} delay={i * 0.08}>
-                <SpotlightCard className="h-full">
-                  <span className="text-sm font-semibold uppercase tracking-[0.18em] text-green">
-                    {p.tag}
-                  </span>
-                  <h3 className="heading mt-3 text-xl">{p.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                    {p.body}
-                  </p>
-                </SpotlightCard>
-              </Reveal>
-            ))}
-          </div>
+          <LifecycleRail stops={approach} />
         </div>
       </section>
 
       {/* WHY ZTPL — PROOF */}
-      <Section id="proof">
+      <Section id="proof" className="bg-dot-faint bg-[length:18px_18px]">
         <SectionHeading
           eyebrow="Why ZTPL"
           title="Engineered, not assembled"
           intro="Every platform we ship comes out of the same team, the same codebase discipline, and the same deployment standard."
         />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
           {proof.map((p, i) => (
             <Reveal key={p.label} delay={i * 0.06}>
               <SpotlightCard className="h-full">
                 <div className="font-mono text-4xl font-bold tabular-nums text-gradient">
-                  <Counter value={p.value} suffix={p.suffix} />
+                  <span aria-hidden>
+                    <Counter value={p.value} suffix={p.suffix} />
+                  </span>
+                  <span className="sr-only">
+                    {p.value}
+                    {p.suffix} — {p.label}
+                  </span>
                 </div>
                 <div className="mt-3 text-sm text-ink-muted">{p.label}</div>
               </SpotlightCard>
             </Reveal>
           ))}
         </div>
+      </Section>
+
+      {/* FAQ */}
+      <Section id="faq">
+        <SectionHeading
+          eyebrow="FAQ"
+          title="Common questions before you talk to us"
+          align="center"
+        />
+        <FAQ />
       </Section>
 
       <CTA />

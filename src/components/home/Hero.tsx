@@ -8,6 +8,7 @@ import { audience } from "@/lib/site";
 import { ensureGsap, gsapMatchMedia } from "@/lib/gsap";
 
 const trust = ["3 platforms shipped", "SEBI CSCRF", "Multi-tenant", "MSSP-ready"];
+const standards = ["SEBI CSCRF", "Annexure-K", "HMAC-SHA256 audit trail"];
 
 export function Hero() {
   const rootRef = useRef<HTMLElement>(null);
@@ -138,6 +139,17 @@ export function Hero() {
             </span>
           ))}
         />
+        <ul className="container-px mt-5 flex flex-wrap justify-center gap-x-6 gap-y-2">
+          {standards.map((s) => (
+            <li
+              key={s}
+              className="flex items-center gap-2 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-yellow/90"
+            >
+              <span className="h-1 w-1 rounded-full bg-yellow/70" />
+              {s}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

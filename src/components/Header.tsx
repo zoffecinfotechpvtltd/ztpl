@@ -34,8 +34,8 @@ export function Header() {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`sticky top-0 z-50 border-b transition-colors duration-500 ${
         scrolled
-          ? "border-line/80 bg-bg/70 backdrop-blur-xl"
-          : "border-transparent bg-transparent"
+          ? "border-line bg-bg/95 backdrop-blur-xl"
+          : "border-transparent bg-bg/0"
       }`}
     >
       <div className="container-px flex h-20 items-center justify-between">

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
-import { SpotlightCard } from "@/components/SpotlightCard";
 import { Timeline } from "@/components/Timeline";
 import { CTA } from "@/components/CTA";
-import { site, milestones, certifications } from "@/lib/site";
+import { site, milestones, certifications, values } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -12,25 +11,6 @@ export const metadata: Metadata = {
     "ZTPL — Zoffec Technologies Private Limited — is a technology company building Zoffec Aegis, Argus, and ExploitSense for India's regulated businesses.",
   alternates: { canonical: "/about" },
 };
-
-const values = [
-  {
-    title: "Regulator-credible",
-    body: "We speak the language of SEBI CSCRF, Annexure-K, and audit. No hype — just precise, defensible engineering.",
-  },
-  {
-    title: "Build, then ship",
-    body: "Every platform we run — Aegis, Argus, ExploitSense — is real, working software, not a slide deck or a roadmap promise.",
-  },
-  {
-    title: "Outcomes, not hours",
-    body: "We measure ourselves by whether the platform actually solves the problem — controls closed, exposure surfaced, uptime held.",
-  },
-  {
-    title: "Security by default",
-    body: "Data residency, least privilege, and hardened deployment are baseline, not premium add-ons.",
-  },
-];
 
 export default function AboutPage() {
   return (
@@ -98,12 +78,14 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section id="timeline" className="border-t border-line">
-        <SectionHeading eyebrow="Timeline" title="How we got here" />
-        <div className="mt-10 max-w-xl">
-          <Timeline items={milestones} />
-        </div>
-      </Section>
+      {milestones.length > 0 && (
+        <Section id="timeline" className="border-t border-line">
+          <SectionHeading eyebrow="Timeline" title="How we got here" />
+          <div className="mt-10 max-w-xl">
+            <Timeline items={milestones} />
+          </div>
+        </Section>
+      )}
 
       <section
         id="values"
@@ -117,15 +99,21 @@ export default function AboutPage() {
               align="center"
             />
           </Reveal>
-          <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-2">
+          <div className="mx-auto mt-12 grid max-w-5xl gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v, i) => (
-              <Reveal key={v.title} delay={(i % 2) * 0.08}>
-                <SpotlightCard className="h-full">
-                  <h3 className="heading text-lg">{v.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+              <Reveal key={v.title} delay={i * 0.06} className="h-full">
+                <div className="h-full bg-bg-card/80 p-6">
+                  <span className="font-display text-xl font-bold text-line">
+                    0{i + 1}
+                  </span>
+                  <h3 className="heading mt-2 text-base">{v.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
                     {v.body}
                   </p>
-                </SpotlightCard>
+                  <p className="mt-3 border-t border-line pt-3 text-xs leading-relaxed text-ink-faint">
+                    {v.proof}
+                  </p>
+                </div>
               </Reveal>
             ))}
           </div>
@@ -133,24 +121,33 @@ export default function AboutPage() {
       </section>
 
       <Section id="trust-strip">
-        <div className="mx-auto max-w-3xl rounded-xl border border-line bg-bg-card/60 p-8 text-center">
-          <span className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-ink-faint">
+        <div className="surface-certificate mx-auto max-w-3xl p-8 text-center">
+          <span className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#6B6248]">
             Registered &amp; recognised
           </span>
-          <p className="mt-3 text-sm text-ink-muted">{site.legalName}</p>
-          <p className="mt-1 text-sm text-ink-muted">CIN: {site.cin}</p>
-          <ul className="mt-5 flex flex-wrap justify-center gap-3">
-            {certifications.map((c) => (
-              <li key={c.name} className="chip">
-                <span className="h-1.5 w-1.5 rounded-full bg-green" />
-                {c.name}
-              </li>
-            ))}
-          </ul>
+          <p className="mt-3 text-sm font-medium">{site.legalName}</p>
+          {site.cin && <p className="mt-1 text-sm">CIN: {site.cin}</p>}
+          {certifications.length > 0 && (
+            <ul className="mt-5 flex flex-wrap justify-center gap-3">
+              {certifications.map((c) => (
+                <li
+                  key={c.name}
+                  className="inline-flex items-center gap-1.5 rounded-md border border-[#1A1F26]/15 bg-white/50 px-3 py-1 font-mono text-xs font-medium"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-deep" />
+                  {c.name}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </Section>
 
-      <CTA />
+      <CTA
+        title="Want to talk to the team, not a slide deck?"
+        body="We're the people who built Aegis, Argus, and ExploitSense — happy to walk you through how, and why, on a call."
+        primaryLabel="Talk to us"
+      />
     </>
   );
 }

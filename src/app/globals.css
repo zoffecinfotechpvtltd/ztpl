@@ -114,6 +114,13 @@ body {
   .pill-live {
     @apply inline-flex items-center gap-1.5 rounded-md border border-green/40 bg-green/10 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-green;
   }
+
+  /* Certificate/registration surface — deliberately lighter than every other
+     card on the site, reserved for legal/registration content only, so it
+     reads as an official-document moment rather than another dark feature card. */
+  .surface-certificate {
+    @apply rounded-xl border border-yellow/20 bg-[#F5EFDE] text-[#1A1F26];
+  }
 }
 
 @layer utilities {

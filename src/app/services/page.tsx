@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Section } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
-import { SpotlightCard } from "@/components/SpotlightCard";
 import { CTA } from "@/components/CTA";
-import { services } from "@/lib/site";
+import { ServiceSelector } from "@/components/ServiceSelector";
 
 export const metadata: Metadata = {
   title: "Services — Hands-On Support Alongside Our Platforms",
@@ -41,37 +39,7 @@ export default function ServicesPage() {
       </section>
 
       <Section>
-        <div className="grid gap-6 md:grid-cols-2">
-          {services.map((s, i) => (
-            <Reveal key={s.slug} delay={(i % 2) * 0.08}>
-              <SpotlightCard className="flex h-full flex-col">
-                <h2 className="heading text-xl">{s.title}</h2>
-                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                  {s.short}
-                </p>
-                <ul className="mt-5 space-y-2">
-                  {s.points.map((pt) => (
-                    <li
-                      key={pt}
-                      className="flex items-start gap-2 text-sm text-ink-muted"
-                    >
-                      <span className="mt-0.5 text-green">✓</span>
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-6 pt-2">
-                  <Link
-                    href="/contact"
-                    className="text-sm font-semibold text-green"
-                  >
-                    Talk to us about {s.title} →
-                  </Link>
-                </div>
-              </SpotlightCard>
-            </Reveal>
-          ))}
-        </div>
+        <ServiceSelector />
       </Section>
 
       <CTA
