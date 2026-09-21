@@ -9,23 +9,23 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const faqs = [
   {
     q: "Which entities does SEBI CSCRF actually apply to?",
-    a: "CSCRF applies to SEBI-Regulated Entities (REs) — categorised by size and complexity into different tiers, each with its own control expectations. Zoffec Aegis maps your RE category to the right control set automatically, and our SEBI CSCRF Advisory service can help you confirm applicability first.",
+    a: "CSCRF applies to SEBI-Regulated Entities (REs) - categorised by size and complexity into different tiers, each with its own control expectations. Zoffec Aegis maps your RE category to the right control set automatically, and our team can help you confirm applicability first.",
   },
   {
-    q: "Cloud or on-premises — which deployment do we need?",
-    a: "Both are supported on the same platform. Cloud gets you running fastest with managed updates and backups; on-premises gives you full data residency inside your own environment. The choice usually comes down to policy or regulatory requirement, not platform capability — either way, you get the same controls.",
+    q: "Cloud or on-premises - which deployment do we need?",
+    a: "Both are supported on the same platform. Cloud gets you running fastest with managed updates and backups; on-premises gives you full data residency inside your own environment. The choice usually comes down to policy or regulatory requirement, not platform capability - either way, you get the same controls.",
   },
   {
     q: "How long does a typical CSCRF implementation take?",
-    a: "It depends on your RE category and how much groundwork is already in place. A gap assessment is the fastest way to get a real timeline — it maps what you already have against Annexure-K and gives you a prioritised, scoped path instead of a guess.",
+    a: "It depends on your RE category and how much groundwork is already in place. A gap assessment is the fastest way to get a real timeline - it maps what you already have against Annexure-K and gives you a prioritised, scoped path instead of a guess.",
   },
   {
     q: "Can an MSSP or consultancy run multiple client entities in one account?",
-    a: "Yes — Zoffec Aegis is built multi-tenant from the ground up. Each client entity is fully isolated (no cross-contamination), while your team gets one workspace to manage assessments, evidence, and reporting across all of them.",
+    a: "Yes - Zoffec Aegis is built multi-tenant from the ground up. Each client entity is fully isolated (no cross-contamination), while your team gets one workspace to manage assessments, evidence, and reporting across all of them.",
   },
   {
-    q: "Do you offer support beyond the software itself?",
-    a: "Yes. Alongside the platforms, our practitioners offer SEBI CSCRF advisory, GRC consulting, VAPT, vCISO, third-party risk assessment, and audit support — for teams that need hands and heads, not just a tool.",
+    q: "Can we talk to someone before committing to a platform?",
+    a: "Yes. Book a short demo and we'll walk through Zoffec Aegis, Argus, or ExploitSense against your own setup, and tell you plainly whether it fits.",
   },
 ];
 

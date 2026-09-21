@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "ZTPL — Zoffec Technologies Private Limited — is a technology company building Zoffec Aegis, Argus, and ExploitSense for India's regulated businesses.",
+    "ZTPL - Zoffec Technologies Private Limited - is a technology company building Zoffec Aegis, Argus, and ExploitSense for India's regulated businesses.",
   alternates: { canonical: "/about" },
 };
 
@@ -19,25 +19,25 @@ const values = [
     n: "01",
     title: "Regulator-credible",
     lead: "We speak the language of SEBI CSCRF, Annexure-K, and audit.",
-    body: "Every Aegis control maps directly to a CSCRF clause — not a generic template.",
+    body: "Every Aegis control maps directly to a CSCRF clause - not a generic template.",
   },
   {
     n: "02",
     title: "Build, then ship",
     lead: "Every platform we run is real, working software.",
-    body: "Aegis is live today; Argus and ExploitSense are in development — no vapourware.",
+    body: "Aegis is live today; Argus and ExploitSense are in development - no vapourware.",
   },
   {
     n: "03",
     title: "Outcomes, not hours",
     lead: "We measure ourselves by whether the platform solves the problem.",
-    body: "Controls closed, exposure surfaced, uptime held — that's the scoreboard.",
+    body: "Controls closed, exposure surfaced, uptime held - that's the scoreboard.",
   },
   {
     n: "04",
     title: "Security by default",
     lead: "Data residency, least privilege, and hardened deployment are baseline.",
-    body: "Cloud or on-prem, the same controls apply either way — no premium tier for security.",
+    body: "Cloud or on-prem, the same controls apply either way - no premium tier for security.",
   },
 ];
 
@@ -47,7 +47,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About"
         title="We make compliance buildable"
-        body="Zoffec Technologies Private Limited (ZTPL) is a technology company. We build Zoffec Aegis, Argus, and ExploitSense — real platforms for compliance, infrastructure, and threat exposure, for India's regulated businesses."
+        body="Zoffec Technologies Private Limited (ZTPL) is a technology company. We build Zoffec Aegis, Argus, and ExploitSense - real platforms for compliance, infrastructure, and threat exposure, for India's regulated businesses."
       />
 
       {/* Our story */}
@@ -90,12 +90,12 @@ export default function AboutPage() {
                 “
               </span>
               <p className="relative text-xl font-semibold leading-snug text-foreground md:text-3xl">
-                To be the platform India&apos;s regulated businesses actually run on — for compliance, for
-                infrastructure, for exposure management — built by people who ship, not just spec.
+                To be the platform India&apos;s regulated businesses actually run on - for compliance, for
+                infrastructure, for exposure management - built by people who ship, not just spec.
               </p>
               <p className="relative mt-6 text-base md:text-lg">
                 Our differentiator is simple: we build. Every product decision is tested against real deployments,
-                real data, and real operating conditions — not a slide in a pitch deck.
+                real data, and real operating conditions - not a slide in a pitch deck.
               </p>
             </blockquote>
           </Reveal>
@@ -154,7 +154,7 @@ export default function AboutPage() {
 
       <CTABanner
         heading="Want to talk to the team, not a slide deck?"
-        body="We're the people who built Aegis, Argus, and ExploitSense — happy to walk you through how, and why, on a call."
+        body="We're the people who built Aegis, Argus, and ExploitSense - happy to walk you through how, and why, on a call."
         primary={{ label: "Talk to us", href: "/contact" }}
         secondary={{ label: "Explore Our Platforms", href: "/solutions" }}
       />

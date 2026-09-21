@@ -26,13 +26,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const platform = platforms.find((p) => p.slug === slug);
   if (!platform) return {};
   return {
-    title: `${platform.name} — ${platform.subtitle}`,
+    title: `${platform.name} - ${platform.subtitle}`,
     description: platform.description,
     alternates: { canonical: `/solutions/${platform.slug}` },
   };
 }
 
-/** Drop unfinished entries — site.ts still carries bracketed "[Add real …]" stubs for some products. */
+/** Drop unfinished entries - site.ts still carries bracketed "[Add real …]" stubs for some products. */
 const isReal = (s: string) => !s.trim().startsWith("[");
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -94,7 +94,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <SectionHeading
               eyebrow="The problem"
               title={<span id="problem">The framework breaks the tools you&apos;re using</span>}
-              description="If your compliance program lives in spreadsheets and shared drives, you're carrying risk you can't see — and work you can't repeat across entities."
+              description="If your compliance program lives in spreadsheets and shared drives, you're carrying risk you can't see - and work you can't repeat across entities."
             />
             <div className="mt-16 grid gap-6 md:grid-cols-3">
               {problems.map((p, i) => (
@@ -118,7 +118,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               eyebrow={slug === "aegis" ? "Platform modules" : "Capabilities"}
               title={
                 <span id="modules">
-                  {slug === "aegis" ? "Everything the framework asks of you — in one workspace" : "What it does"}
+                  {slug === "aegis" ? "Everything the framework asks of you - in one workspace" : "What it does"}
                 </span>
               }
             />
@@ -151,7 +151,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <SectionHeading
               eyebrow="Deployment"
               title={<span id="deployment">Your cloud or ours</span>}
-              description="Runs the way your risk posture and regulator require — no compromise on control or speed."
+              description="Runs the way your risk posture and regulator require - no compromise on control or speed."
             />
             <div className="mt-16 grid gap-6 md:grid-cols-2">
               {deployment.map((d, i) => (

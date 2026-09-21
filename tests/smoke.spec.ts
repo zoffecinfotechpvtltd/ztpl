@@ -7,7 +7,6 @@ const routes = [
   "/solutions/aegis",
   "/solutions/argus",
   "/solutions/exploitsense",
-  "/services",
   "/contact",
   "/privacy",
   "/terms",
@@ -23,7 +22,7 @@ function trackConsoleErrors(page: Page) {
   return errors;
 }
 
-// Skip the one-time entrance preloader for all tests in this file — it's a
+// Skip the one-time entrance preloader for all tests in this file - it's a
 // decorative animation, not something the functional smoke suite should wait through.
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => sessionStorage.setItem("ztpl-preloaded", "1"));
@@ -76,7 +75,7 @@ test("contact form submits and shows success state", async ({ page }) => {
   await page.getByLabel("Work email").fill("test@example.com");
   await page.getByLabel("How can we help?").fill("Playwright smoke test submission.");
   await page.getByRole("button", { name: /Send Message|Sending/ }).click();
-  await expect(page.getByText(/Thanks — we'll be in touch\./)).toBeVisible({ timeout: 5000 });
+  await expect(page.getByText(/Thanks - we'll be in touch\./)).toBeVisible({ timeout: 5000 });
 });
 
 test("no visible 'to be added' placeholder text ships to production copy", async ({ page }) => {

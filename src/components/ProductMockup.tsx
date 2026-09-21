@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 const bars = [38, 62, 46, 78, 54, 90, 68, 82];
 const rows = [72, 58, 84, 46];
 
-/** Illustrative dashboard stand-in — swap for a real screenshot when one exists. */
+/** Illustrative dashboard stand-in - swap for a real screenshot when one exists. */
 export function ProductMockup({ platform, className }: { platform: Platform; className?: string }) {
   const a = platform.accent;
   return (
@@ -65,7 +65,7 @@ export function ProductMockup({ platform, className }: { platform: Platform; cla
         </div>
       </div>
       <figcaption className="mt-3 text-center text-xs text-muted-foreground">
-        Illustrative preview — {platform.name}
+        Illustrative preview - {platform.name}
       </figcaption>
     </figure>
   );

@@ -2,7 +2,7 @@ import { Crosshair } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type PlatformAccent = {
-  /** Tailwind classes — kept as full literals so the compiler sees them. */
+  /** Tailwind classes - kept as full literals so the compiler sees them. */
   text: string;
   gradientText: string;
   gradientBg: string;
@@ -56,7 +56,7 @@ export const platforms: Platform[] = [
     category: "SEBI CSCRF Compliance Platform",
     subtitle: "The GRC Platform for SEBI CSCRF",
     description:
-      "A multi-tenant GRC platform purpose-built for SEBI CSCRF — one workspace where Regulated Entities and MSSPs run assessments, hold evidence, manage third-party risk, and ship audit-ready reports.",
+      "A multi-tenant GRC platform purpose-built for SEBI CSCRF - one workspace where Regulated Entities and MSSPs run assessments, hold evidence, manage third-party risk, and ship audit-ready reports.",
     features: ["SEBI-Native Assessment", "AI-Powered GRC Assistant", "Evidence Vault", "Third-Party Risk (TPRA)"],
     linkLabel: "See the GRC platform",
     href: "/solutions/aegis",
@@ -85,7 +85,7 @@ export const platforms: Platform[] = [
     category: "Network Monitoring (NMS)",
     subtitle: "Network monitoring that never blinks.",
     description:
-      "ZTPL's network monitoring system — built for continuous, always-on visibility into infrastructure health, so anomalies surface before they become incidents.",
+      "ZTPL's network monitoring system - built for continuous, always-on visibility into infrastructure health, so anomalies surface before they become incidents.",
     features: [],
     linkLabel: "See the monitoring platform",
     href: "/solutions/argus",
@@ -112,7 +112,7 @@ export const platforms: Platform[] = [
     category: "Continuous Threat Exposure Management (CTEM)",
     subtitle: "Continuous Threat Exposure Management.",
     description:
-      "ZTPL's CTEM platform — continuous discovery, validation, and prioritisation of exposure across your attack surface.",
+      "ZTPL's CTEM platform - continuous discovery, validation, and prioritisation of exposure across your attack surface.",
     features: [],
     linkLabel: "See the exposure platform",
     href: "/solutions/exploitsense",

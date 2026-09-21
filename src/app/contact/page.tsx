@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact — Book a Demo",
+  title: "Contact - Book a Demo",
   description:
     "Talk to ZTPL about Zoffec Aegis, Argus, or ExploitSense. Book a demo or reach our team at support@ztplsolutions.com.",
   alternates: { canonical: "/contact" },
@@ -42,7 +42,7 @@ export default function ContactPage() {
           </h1>
           <p className="mt-6 max-w-xl text-base md:text-lg">
             Book a demo of Zoffec Aegis, ask about Argus or ExploitSense, or ask us anything about ZTPL. Tell us
-            what you need — we meet you there.
+            what you need - we meet you there.
           </p>
 
           <ul className="mt-12 space-y-5">
@@ -69,21 +69,14 @@ export default function ContactPage() {
             ))}
           </ul>
 
-          {/* Decorative location graphic — not an interactive map */}
-          <div
-            aria-hidden
-            className="glass-card relative mt-6 flex h-36 items-center justify-center overflow-hidden"
-          >
-            <div className="grid-pattern absolute inset-0" />
-            <div className="absolute h-40 w-40 rounded-full border border-brand-green/20" />
-            <div className="absolute h-24 w-24 rounded-full border border-brand-green/30" />
-            <span className="relative flex h-3 w-3">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-green/70" />
-              <span className="relative inline-flex h-3 w-3 rounded-full bg-brand-green" />
-            </span>
-            <span className="absolute bottom-3 right-4 font-mono text-[11px] text-muted-foreground">
-              Mumbai · 19.07°N 72.88°E
-            </span>
+          <div className="glass-card mt-6 overflow-hidden">
+            <iframe
+              title={`Map of ${site.location}`}
+              src="https://maps.google.com/maps?q=Maulana%20Shaukat%20Ali%20Road%2C%20Lamington%20Road%2C%20Mumbai%20400008&z=16&output=embed"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="block h-64 w-full border-0"
+            />
           </div>
         </Reveal>
 

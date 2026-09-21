@@ -10,6 +10,9 @@
 # production
 /build
 
+# contact-form submissions (dev)
+/data
+
 # misc
 .DS_Store
 *.pem

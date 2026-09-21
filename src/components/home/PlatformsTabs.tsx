@@ -26,7 +26,7 @@ export function PlatformsTabs() {
         <SectionHeading
           eyebrow="What we build"
           title={<span id="what-we-build">Three platforms, one operating model</span>}
-          description="Compliance, infrastructure, and threat exposure — engineered by the same team, to the same standard."
+          description="Compliance, infrastructure, and threat exposure - engineered by the same team, to the same standard."
         />
 
         <Tabs value={active} onValueChange={(v) => setActive(v as typeof active)} className="mt-14">

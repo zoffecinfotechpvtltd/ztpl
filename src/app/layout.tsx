@@ -23,8 +23,8 @@ const satoshi = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.tagline}`,
-    template: `%s — ${site.name}`,
+    default: `${site.name} - ${site.tagline}`,
+    template: `%s - ${site.name}`,
   },
   description: site.description,
   alternates: { canonical: "/" },
@@ -36,8 +36,6 @@ export const metadata: Metadata = {
     "network monitoring",
     "continuous threat exposure management",
     "Annexure-K",
-    "VAPT",
-    "vCISO",
     "third-party risk",
     "cyber resilience",
     "Zoffec Aegis",
@@ -52,15 +50,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — ${site.tagline}`,
+    title: `${site.name} - ${site.tagline}`,
     description: site.description,
     images: [
-      { url: "/logo.jpeg", width: 1242, height: 1242, alt: "ZTPL — Compliance Simplified" },
+      { url: "/logo.jpeg", width: 1242, height: 1242, alt: "ZTPL - Compliance Simplified" },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.tagline}`,
+    title: `${site.name} - ${site.tagline}`,
     description: site.description,
     images: ["/logo.jpeg"],
   },

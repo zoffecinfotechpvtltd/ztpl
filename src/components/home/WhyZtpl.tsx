@@ -8,7 +8,7 @@ import { Section } from "@/components/ui/section";
 const stats = [
   { end: 3, pad: 2, label: "Platforms engineered in-house" },
   { end: 7, pad: 2, label: "Regulated sectors served" },
-  { end: 2, pad: 2, label: "Deployment modes — cloud & on-prem" },
+  { end: 2, pad: 2, label: "Deployment modes - cloud & on-prem" },
 ];
 
 /** Circular progress ring that fills 0→100% in view. */

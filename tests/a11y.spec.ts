@@ -8,18 +8,17 @@ const routes = [
   "/solutions/aegis",
   "/solutions/argus",
   "/solutions/exploitsense",
-  "/services",
   "/contact",
 ];
 
 for (const route of routes) {
   test(`${route} has no serious/critical a11y violations`, async ({ page }) => {
-    // Skip the one-time entrance preloader — it's a decorative, mid-transition
+    // Skip the one-time entrance preloader - it's a decorative, mid-transition
     // animation, not settled content; scanning it mid-fade produces transient
     // contrast false-positives unrelated to the page's real accessibility.
     await page.addInitScript(() => sessionStorage.setItem("ztpl-preloaded", "1"));
     await page.goto(route, { waitUntil: "networkidle" });
-    // Let entrance animations (Framer/GSAP) settle before scanning — axe
+    // Let entrance animations (Framer/GSAP) settle before scanning - axe
     // reads live computed styles, so a mid-transition frame can register a
     // transient contrast reading that has nothing to do with settled state.
     await page.waitForTimeout(600);
@@ -33,7 +32,7 @@ for (const route of routes) {
 
     if (serious.length > 0) {
       const summary = serious
-        .map((v) => `${v.id} (${v.impact}): ${v.help} — ${v.nodes.length} node(s)`)
+        .map((v) => `${v.id} (${v.impact}): ${v.help} - ${v.nodes.length} node(s)`)
         .join("\n");
       throw new Error(`a11y violations on ${route}:\n${summary}`);
     }

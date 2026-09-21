@@ -9,13 +9,13 @@ const items = [
     n: "01",
     tag: "Multi-tenant",
     title: "Built for many entities at once",
-    body: "True tenant isolation lets an MSSP run dozens of Regulated Entities side by side — and lets a single RE manage every business unit — with no cross-contamination.",
+    body: "True tenant isolation lets an MSSP run dozens of Regulated Entities side by side - and lets a single RE manage every business unit - with no cross-contamination.",
   },
   {
     n: "02",
     tag: "SEBI-native",
     title: "The framework is the foundation",
-    body: "CSCRF controls, Annexure-K mapping, and RE categorisation are baked into the data model — not bolted on as templates.",
+    body: "CSCRF controls, Annexure-K mapping, and RE categorisation are baked into the data model - not bolted on as templates.",
   },
   {
     n: "03",
@@ -31,7 +31,7 @@ export function HowWeEngineer() {
       <div className="container">
         <SectionHeading
           eyebrow="How we engineer"
-          title={<span id="how-we-engineer">A framework this broad needs a platform — not a checklist</span>}
+          title={<span id="how-we-engineer">A framework this broad needs a platform - not a checklist</span>}
           description="SEBI CSCRF touches governance, controls, evidence, vendors, and reporting. Zoffec Aegis models all of it in one place, so nothing falls through the cracks."
         />
 

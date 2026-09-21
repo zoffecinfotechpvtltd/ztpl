@@ -88,7 +88,7 @@ export default function StyleGuidePage() {
           <p className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">H2 section heading</p>
           <p className="text-2xl font-semibold text-foreground">H3 card heading</p>
           <p className="text-base md:text-lg">Body copy in muted foreground. Compliance, simplified.</p>
-          <p className="font-mono text-sm">Geist Mono — HMAC-SHA256 · Annexure-K</p>
+          <p className="font-mono text-sm">Geist Mono - HMAC-SHA256 · Annexure-K</p>
         </div>
       </Block>
 
@@ -166,7 +166,7 @@ export default function StyleGuidePage() {
           </Dialog>
           <NavigationMenu>
             <NavigationMenuList>
-              {["About", "Platform", "Services"].map((l) => (
+              {["About", "Platform", "Contact"].map((l) => (
                 <NavigationMenuItem key={l}>
                   <NavigationMenuLink href="#" className="rounded-lg px-3 py-2 text-sm hover:text-foreground">
                     {l}

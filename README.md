@@ -5,7 +5,7 @@ platforms: **Zoffec Aegis** (SEBI CSCRF, live), **Argus** (network monitoring) a
 **ExploitSense** (threat exposure management), the last two in development.
 
 **Stack:** Next.js (App Router) · TypeScript · Tailwind CSS v3 · shadcn/ui (Radix) ·
-Framer Motion · Lucide · react-countup · react-hook-form + zod · nodemailer. Font: Satoshi (self-hosted).
+Framer Motion · Lucide · react-countup · react-hook-form + zod. Font: Satoshi (self-hosted).
 
 ## Design rules
 
@@ -31,7 +31,7 @@ Framer Motion · Lucide · react-countup · react-hook-form + zod · nodemailer.
 | shadcn-style primitives | `src/components/ui/` |
 | Homepage sections | `src/components/home/` |
 | Platform data (copy, accents, **live vs coming soon**) | `src/lib/platforms.ts` |
-| Company facts, nav, services, plan/module content | `src/lib/site.ts` |
+| Company facts, nav, plan/module content | `src/lib/site.ts` |
 | Contact form + email API | `src/components/ContactForm.tsx`, `src/app/api/contact/route.ts` |
 
 ### Changing a platform's status
@@ -52,19 +52,26 @@ npm run lint
 PORT=3100 npx playwright test   # smoke + axe accessibility suite; PORT must match the running server
 ```
 
-Without SMTP credentials the contact form logs the submission and reports success **in development only**.
-In production it returns a 503 telling the visitor to email support directly, so a lost enquiry is never silent.
+In development the form needs no config: the submission is saved to `./data/contact-submissions.jsonl` and mail
+delivery is attempted (a failure is logged, not shown to the visitor).
 
-## Contact-form email (Google Workspace)
+## Contact-form email (self-hosted, no third party)
 
-Submissions are emailed to `support@ztplsolutions.com` over SMTP.
-
-1. In the Google account for the sending mailbox, turn on 2-Step Verification, then create an **App password**
-   (Google Account → Security → 2-Step Verification → App passwords).
-2. On the server, create `.env` from `.env.example` and fill in `SMTP_USER` and `SMTP_PASS`. Never commit it.
-3. Start the container with it: `docker run --env-file .env ...`
-
+Each enquiry is (1) appended to `contact-submissions.jsonl` in `DATA_DIR` (`/data` in the image), then (2) emailed
+by the server itself straight to the MX host of `CONTACT_TO` (default `support@ztplsolutions.com`) on port 25.
+If mail fails the enquiry is still on disk and the visitor sees success; the failure is logged.
 The API rate-limits to 5 messages per IP per 10 minutes and includes a honeypot field for bots.
+
+DigitalOcean blocks outbound port 25 on droplets by default, so for email to actually leave the server:
+
+1. Open a DigitalOcean support ticket asking them to unblock outbound port 25 on the droplet. Running your own
+   Postfix (`MAIL_RELAY_HOST`) hits the same block, so the ticket is needed either way.
+2. DNS for your domain: an SPF record that includes the droplet IP (`v=spf1 ip4:<droplet-ip> ~all`, merged with any
+   existing SPF), a DKIM key (`DKIM_PRIVATE_KEY`, public key at `<selector>._domainkey`), and a DMARC record.
+3. Set the droplet's reverse DNS (PTR) to the hostname in `MAIL_HOSTNAME`; DigitalOcean derives it from the droplet name.
+4. Keep `-v ztpl-data:/data` on `docker run` so submissions survive redeploys.
+
+Until then, read enquiries with `docker exec ztpl-landing cat /data/contact-submissions.jsonl`.
 
 ## Deploy (Docker behind nginx)
 
@@ -75,7 +82,7 @@ git pull
 docker build -t ztpl-landing .
 docker rm -f ztpl-landing
 docker run -d --name ztpl-landing --restart unless-stopped \
-  --env-file .env -p 127.0.0.1:58081:3000 ztpl-landing
+  --env-file .env -v ztpl-data:/data -p 127.0.0.1:58081:3000 ztpl-landing
 docker inspect --format='{{.State.Health.Status}}' ztpl-landing   # -> healthy
 ```
 

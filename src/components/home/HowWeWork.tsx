@@ -12,19 +12,19 @@ const steps = [
   {
     label: "Build",
     title: "We ship real software",
-    body: "Zoffec Aegis is a working platform — not a slide deck — running real assessments today, with Argus and ExploitSense being built to the same standard.",
+    body: "Zoffec Aegis is a working platform - not a slide deck - running real assessments today, with Argus and ExploitSense being built to the same standard.",
     Icon: Hammer,
   },
   {
     label: "Ship",
     title: "Cloud or on your own infrastructure",
-    body: "Every platform we build deploys on our managed cloud or entirely inside your environment — your risk posture and regulator decide, not us.",
+    body: "Every platform we build deploys on our managed cloud or entirely inside your environment - your risk posture and regulator decide, not us.",
     Icon: Rocket,
   },
   {
     label: "Support",
     title: "We stay after go-live",
-    body: "Onboarding, updates, and direct support from the team that builds the platform — not a ticket queue routed through three time zones.",
+    body: "Onboarding, updates, and direct support from the team that builds the platform - not a ticket queue routed through three time zones.",
     Icon: LifeBuoy,
   },
 ];
@@ -120,7 +120,7 @@ export function HowWeWork() {
       <div className="container">
         <SectionHeading
           eyebrow="How we work"
-          title={<span id="how-we-work">Build, ship, support — the whole product lifecycle</span>}
+          title={<span id="how-we-work">Build, ship, support - the whole product lifecycle</span>}
           description="A platform is only as good as what happens after launch. We own all three."
         />
 

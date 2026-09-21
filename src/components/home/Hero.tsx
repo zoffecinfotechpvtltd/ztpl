@@ -22,7 +22,7 @@ const word = {
   show: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.25, 0.1, 0.25, 1] as const } },
 };
 
-// Layout of the three floating product cards (desktop only) — colours come from each product's own accent.
+// Layout of the three floating product cards (desktop only) - colours come from each product's own accent.
 const layout: Record<Platform["slug"], { meta: string; bars: number[]; pos: string; depth: number }> = {
   aegis: { meta: "SEBI CSCRF · GRC", bars: [72, 48, 88, 60], pos: "left-0 top-4 w-[62%]", depth: -22 },
   argus: { meta: "Network monitoring", bars: [40, 66, 52, 80], pos: "right-0 top-[38%] w-[58%]", depth: -48 },
@@ -146,7 +146,7 @@ export function Hero() {
           </motion.ul>
         </div>
 
-        {/* Abstract product cards — desktop only, parallax drift on scroll. */}
+        {/* Abstract product cards - desktop only, parallax drift on scroll. */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

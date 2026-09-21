@@ -15,7 +15,7 @@ const schema = z.object({
   name: z.string().trim().min(1, "Please enter your name."),
   company: z.string().trim().min(1, "Please enter your company."),
   email: z.string().trim().min(1, "Please enter your work email.").email("Enter a valid email address."),
-  message: z.string().trim().min(10, "Tell us a little more — at least 10 characters."),
+  message: z.string().trim().min(10, "Tell us a little more - at least 10 characters."),
   website: z.string().optional(), // honeypot
 });
 
@@ -84,7 +84,7 @@ export function ContactForm() {
   const onSubmit = async (values: Values) => {
     setServerError(null);
     try {
-      // /api/contact emails the enquiry to the support inbox over SMTP (see .env.example).
+      // /api/contact emails the enquiry to the support inbox from this server (see .env.example).
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -116,7 +116,7 @@ export function ContactForm() {
                 <CheckCircle2 className="h-8 w-8" aria-hidden />
               </span>
               <h2 className="mt-6 text-2xl font-bold">Message sent</h2>
-              <p className="mt-3 text-base text-foreground/90">Thanks — we&apos;ll be in touch.</p>
+              <p className="mt-3 text-base text-foreground/90">Thanks - we&apos;ll be in touch.</p>
             </motion.div>
           ) : (
             <motion.form

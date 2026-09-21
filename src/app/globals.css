@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Design tokens — space-separated RGB channels so Tailwind alpha modifiers work.
+/* Design tokens - space-separated RGB channels so Tailwind alpha modifiers work.
    Palette comes from the ZTPL logo: Amber yellow + Emerald green on Ink.
    The site ships dark-first; the light palette is kept coherent but unused. */
 @layer base {

@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Platform",
   description:
-    "Zoffec Aegis for SEBI CSCRF, Argus for network monitoring, and ExploitSense for continuous threat exposure management — three platforms from ZTPL.",
+    "Zoffec Aegis for SEBI CSCRF, Argus for network monitoring, and ExploitSense for continuous threat exposure management - three platforms from ZTPL.",
   alternates: { canonical: "/solutions" },
 };
 
@@ -112,7 +112,7 @@ export default function SolutionsPage() {
         );
       })}
 
-      {/* Roadmap teaser — deliberately quieter than the product blocks */}
+      {/* Roadmap teaser - deliberately quieter than the product blocks */}
       <Section tone="slate" seed="sol-roadmap" aria-labelledby="roadmap">
         <Reveal className="container">
           <div className="glass-card mx-auto max-w-4xl border-dashed border-foreground/20 px-8 py-10 text-center md:px-14">

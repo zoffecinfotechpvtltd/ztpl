@@ -20,7 +20,7 @@ export function PlatformMark({ platform, size = 28, className }: { platform: Pla
   return <Icon className={cn(platform.accent.text, className)} style={{ width: size, height: size }} aria-hidden />;
 }
 
-/** Large product header: the real lockup when available (Aegis), else nothing — the gradient name carries it. */
+/** Large product header: the real lockup when available (Aegis), else nothing - the gradient name carries it. */
 export function PlatformWordmark({ platform, className }: { platform: Platform; className?: string }) {
   if (!platform.wordmark) return null;
   const { src, width, height } = platform.wordmark;

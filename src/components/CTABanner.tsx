@@ -22,7 +22,7 @@ const grain =
 /** Closing CTA piece shown above the footer on every main page: a calm deep-green panel with one emerald action. */
 export function CTABanner({
   heading = "See what we build",
-  body = "Book a walkthrough of Zoffec Aegis, or ask about Argus and ExploitSense — we'll show you the platform, not a slide deck.",
+  body = "Book a walkthrough of Zoffec Aegis, or ask about Argus and ExploitSense - we'll show you the platform, not a slide deck.",
   primary = { label: "Book a Demo", href: "/contact" },
   secondary = { label: "Explore Our Platforms", href: "/solutions" },
 }: Props) {

@@ -7,7 +7,6 @@ const explore = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Platform", href: "/solutions" },
-  { label: "Services", href: "/services" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -123,7 +122,7 @@ export function Footer() {
       {/* Oversized wordmark, cropped by the bottom edge of the page. Scales to the container width. */}
       <div aria-hidden className="pointer-events-none select-none">
         <div className="container">
-          <svg viewBox="0 0 1000 150" className="block w-full" role="presentation">
+          <svg viewBox="0 0 1000 150" className="mx-auto block w-[78%]" role="presentation">
             <defs>
               <linearGradient id="zt-fade" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#ffffff" stopOpacity="0.11" />

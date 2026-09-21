@@ -9,7 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/solutions/aegis",
     "/solutions/argus",
     "/solutions/exploitsense",
-    "/services",
     "/contact",
     "/privacy",
     "/terms",
