@@ -2,124 +2,104 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: dark;
-  --marquee-duration: 42s;
-}
-
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  @apply bg-bg text-ink-muted antialiased font-sans;
-  font-feature-settings: "ss01", "cv01";
-  overflow-x: hidden;
-}
-
-::selection {
-  background: rgba(0, 210, 106, 0.32);
-  color: #ffffff;
-}
-
-/* Thin, on-brand scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: #0b0d11;
-}
-::-webkit-scrollbar-thumb {
-  background: #2a2f37;
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #3a404a;
-}
-
+/* Design tokens — space-separated RGB channels so Tailwind alpha modifiers work.
+   Light palette on :root, dark palette on .dark (the site ships dark-first). */
 @layer base {
-  h1,
-  h2,
-  h3,
-  h4 {
-    @apply font-display;
-    text-wrap: balance;
+  :root {
+    --background: 248 250 252; /* #F8FAFC */
+    --foreground: 11 18 32; /* #0B1220 */
+    --surface: 255 255 255;
+    --card: 255 255 255;
+    --card-foreground: 11 18 32;
+    --muted: 241 245 249;
+    --muted-foreground: 71 85 105; /* slate-600 */
+    --border: 203 213 225; /* slate-300 */
+    --primary: 37 99 235; /* blue-600 for AA on light */
+    --primary-foreground: 255 255 255;
+    --secondary: 226 232 240;
+    --secondary-foreground: 11 18 32;
+    --destructive: 220 38 38;
+    --success: 5 150 105;
+    --brand-blue: 59 130 246; /* #3B82F6 */
+    --brand-cyan: 34 211 238; /* #22D3EE */
+    --brand-violet: 124 58 237; /* #7C3AED */
+    --brand-fuchsia: 217 70 239; /* #D946EF */
+    color-scheme: light;
+  }
+
+  .dark {
+    --background: 11 18 32; /* #0B1220 */
+    --foreground: 248 250 252;
+    --surface: 20 27 46; /* #141B2E */
+    --card: 17 24 39; /* #111827 */
+    --card-foreground: 248 250 252;
+    --muted: 30 41 59;
+    --muted-foreground: 148 163 184; /* slate-400 */
+    --border: 30 41 59; /* slate-800 */
+    --primary: 59 130 246;
+    --primary-foreground: 255 255 255;
+    --secondary: 30 41 59;
+    --secondary-foreground: 248 250 252;
+    --destructive: 239 68 68;
+    --success: 16 185 129; /* #10B981 */
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background font-sans text-base text-muted-foreground antialiased;
+    overflow-x: clip;
+  }
+  h1, h2, h3, h4 {
+    @apply text-balance font-bold tracking-tight text-foreground;
+  }
+  ::selection {
+    background: rgb(var(--brand-blue) / 0.35);
   }
 }
 
 @layer components {
-  .container-px {
-    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+  .gradient-mesh-hero {
+    background-color: rgb(var(--background));
+    background-image:
+      radial-gradient(45rem 32rem at 12% 8%, rgb(59 130 246 / 0.28), transparent 65%),
+      radial-gradient(38rem 30rem at 88% 4%, rgb(124 58 237 / 0.24), transparent 65%),
+      radial-gradient(40rem 28rem at 60% 96%, rgb(34 211 238 / 0.18), transparent 65%);
   }
-
-  .heading {
-    @apply font-display font-semibold tracking-tight text-ink;
+  .gradient-mesh-rich {
+    background-color: rgb(var(--background));
+    background-image:
+      radial-gradient(40rem 26rem at 10% 20%, rgb(59 130 246 / 0.42), transparent 65%),
+      radial-gradient(40rem 28rem at 92% 80%, rgb(124 58 237 / 0.42), transparent 65%),
+      radial-gradient(30rem 20rem at 55% 0%, rgb(34 211 238 / 0.22), transparent 65%);
   }
-
-  /* Gradient brand text — green→yellow lockup from the logo */
-  .text-gradient {
-    @apply bg-brand-gradient bg-clip-text text-transparent;
-    background-size: 200% auto;
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent;
   }
-
-  .eyebrow {
-    @apply inline-flex items-center gap-2 rounded-md border border-line bg-bg-soft/80 px-3.5 py-1.5 text-[11px] font-mono font-medium uppercase tracking-[0.14em] text-ink-muted backdrop-blur;
+  .gradient-text-violet {
+    @apply bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent;
   }
-
-  /* Base card */
-  .card {
-    @apply relative rounded-xl border border-line bg-bg-card/60 p-6 transition-all duration-500 ease-smooth;
+  .glass-card {
+    @apply rounded-2xl border border-foreground/10 bg-foreground/[0.03] backdrop-blur-xl;
   }
-  .card-hover {
-    @apply hover:-translate-y-1 hover:border-green/40 hover:bg-bg-card hover:shadow-[0_24px_60px_-24px_rgba(0,210,106,0.35)];
+  .glow-border {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/60 hover:shadow-[0_0_40px_-10px_rgb(59_130_246)];
   }
-
-  /* Gradient hairline border wrapper */
-  .border-grad {
-    @apply relative rounded-xl p-px;
-    background: linear-gradient(
-      130deg,
-      rgba(255, 193, 7, 0.5),
-      rgba(0, 210, 106, 0.35) 45%,
-      rgba(42, 47, 55, 0.6) 75%
-    );
+  .grid-pattern {
+    background-image: radial-gradient(rgb(var(--foreground) / 0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
   }
-
-  /* Buttons */
-  .btn {
-    @apply relative inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300 ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   }
-  .btn-primary {
-    @apply btn bg-brand-gradient text-bg shadow-[0_8px_30px_-10px_rgba(0,210,106,0.6)] hover:shadow-[0_14px_44px_-10px_rgba(61,219,138,0.7)] hover:brightness-105;
-    background-size: 180% auto;
-  }
-  .btn-primary:hover {
-    background-position: right center;
-  }
-  .btn-ghost {
-    @apply btn border border-line bg-bg-soft/40 text-ink backdrop-blur hover:border-green/50 hover:bg-bg-soft;
-  }
-
-  .link-muted {
-    @apply text-ink-muted transition-colors hover:text-ink;
-  }
-
-  /* Tag / chip — mono, tag-like rather than pill-shaped */
-  .chip {
-    @apply inline-flex items-center gap-1.5 rounded-md border border-line bg-bg-soft/60 px-3 py-1 font-mono text-xs font-medium text-ink-muted;
-  }
-
-  /* Soft tinted status tag (live) */
-  .pill-live {
-    @apply inline-flex items-center gap-1.5 rounded-md border border-green/40 bg-green/10 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-green;
-  }
-
-  /* Certificate/registration surface — deliberately lighter than every other
-     card on the site, reserved for legal/registration content only, so it
-     reads as an official-document moment rather than another dark feature card. */
-  .surface-certificate {
-    @apply rounded-xl border border-yellow/20 bg-[#F5EFDE] text-[#1A1F26];
+  .section-y {
+    @apply py-24 lg:py-32;
   }
 }
 
@@ -127,29 +107,10 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-  /* fade overlay for marquees */
-  .mask-fade-x {
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent,
-      black 8%,
-      black 92%,
-      transparent
-    );
-    mask-image: linear-gradient(
-      to right,
-      transparent,
-      black 8%,
-      black 92%,
-      transparent
-    );
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;

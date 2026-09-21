@@ -1,142 +1,162 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { Logo } from "./Logo";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { Logo } from "@/components/Logo";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu";
 import { nav } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
-export function Header() {
+type HeaderProps = {
+  /** Stay fully transparent at the top of the page, turning to glass after ~40px of scroll. */
+  transparentOnLoad?: boolean;
+};
+
+export function Header({ transparentOnLoad = true }: HeaderProps) {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [lastPathname, setLastPathname] = useState(pathname);
+  const [hovered, setHovered] = useState<string | null>(null);
+  const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const { scrollY, scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 30, restDelta: 0.001 });
+  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 40));
 
-  // Close mobile menu on route change — adjusted during render rather than
-  // in an effect, so it doesn't cost an extra post-navigation render.
-  if (pathname !== lastPathname) {
-    setLastPathname(pathname);
-    setOpen(false);
-  }
+  const solid = scrolled || !transparentOnLoad;
+  const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
+  const underlineFor = hovered ?? nav.find((n) => isActive(n.href))?.href ?? null;
 
   return (
-    <motion.header
-      initial={{ y: -28, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`sticky top-0 z-50 border-b transition-colors duration-500 ${
-        scrolled
-          ? "border-line bg-bg/95 backdrop-blur-xl"
-          : "border-transparent bg-bg/0"
-      }`}
-    >
-      <div className="container-px flex h-20 items-center justify-between">
-        <Logo />
+    <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+      >
+        Skip to content
+      </a>
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
-          {nav.map((item) => {
-            const active =
-              pathname === item.href || pathname.startsWith(item.href + "/");
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                  active ? "text-ink" : "text-ink-muted hover:text-ink"
-                }`}
-              >
-                {active && (
-                  <motion.span
-                    layoutId="nav-active"
-                    className="absolute inset-0 -z-10 rounded-full border border-line bg-bg-soft/80"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
+      <motion.div
+        aria-hidden
+        style={{ scaleX: progress }}
+        className="fixed inset-x-0 top-0 z-[60] h-[3px] origin-left bg-gradient-primary"
+      />
 
-        <div className="hidden md:block">
-          <Link href="/contact" className="btn-primary">
-            Book a Demo
-          </Link>
-        </div>
-
-        <button
-          type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-line text-ink md:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          aria-label="Toggle menu"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className="sr-only">Menu</span>
-          <div className="space-y-1.5">
-            <span
-              className={`block h-0.5 w-5 bg-ink transition-transform duration-300 ${
-                open ? "translate-y-2 rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`block h-0.5 w-5 bg-ink transition-opacity duration-300 ${
-                open ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`block h-0.5 w-5 bg-ink transition-transform duration-300 ${
-                open ? "-translate-y-2 -rotate-45" : ""
-              }`}
-            />
-          </div>
-        </button>
-      </div>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            id="mobile-menu"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-line bg-bg/95 backdrop-blur-xl md:hidden"
-          >
-            <nav
-              className="container-px flex flex-col gap-1 py-4"
-              aria-label="Mobile"
-            >
-              {nav.map((item, i) => (
-                <motion.div
-                  key={item.href}
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 + i * 0.05 }}
-                >
-                  <Link
-                    href={item.href}
-                    className="block rounded-xl px-3 py-3 text-base font-medium text-ink-muted hover:bg-bg-soft hover:text-ink"
-                  >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
-              <Link href="/contact" className="btn-primary mt-2">
-                Book a Demo
-              </Link>
-            </nav>
-          </motion.div>
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
+          solid
+            ? "border-foreground/10 bg-background/80 backdrop-blur-xl"
+            : "border-transparent bg-transparent",
         )}
-      </AnimatePresence>
-    </motion.header>
+      >
+        <div className="container flex h-16 items-center justify-between lg:h-[72px]">
+          <Logo />
+
+          <NavigationMenu aria-label="Primary" className="hidden lg:flex">
+            <NavigationMenuList onMouseLeave={() => setHovered(null)}>
+              {nav.map((item) => (
+                <NavigationMenuItem key={item.href}>
+                  <NavigationMenuLink asChild active={isActive(item.href)}>
+                    <Link
+                      href={item.href}
+                      onMouseEnter={() => setHovered(item.href)}
+                      onFocus={() => setHovered(item.href)}
+                      onBlur={() => setHovered(null)}
+                      aria-current={isActive(item.href) ? "page" : undefined}
+                      className={cn(
+                        "relative block px-4 py-2 text-sm font-medium transition-colors",
+                        isActive(item.href) || hovered === item.href
+                          ? "text-foreground"
+                          : "text-muted-foreground",
+                      )}
+                    >
+                      {item.label}
+                      {underlineFor === item.href && (
+                        <motion.span
+                          layoutId="nav-underline"
+                          className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gradient-primary"
+                          transition={{ type: "spring", stiffness: 500, damping: 38 }}
+                        />
+                      )}
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+
+          <div className="flex items-center gap-3">
+            <Button asChild variant="gradient" size="sm" className="hidden sm:inline-flex">
+              <Link href="/contact">Book a Demo</Link>
+            </Button>
+
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
+                <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Toggle menu">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </DialogTrigger>
+              <DialogContent
+                id="mobile-menu"
+                hideClose
+                className="left-0 top-0 h-dvh max-w-none translate-x-0 translate-y-0 content-start gap-0 rounded-none border-0 bg-background/95 p-0 backdrop-blur-xl"
+              >
+                <DialogTitle className="sr-only">Menu</DialogTitle>
+                <DialogDescription className="sr-only">Site navigation</DialogDescription>
+                <div className="container flex h-16 items-center justify-between">
+                  <Logo />
+                  <DialogClose asChild>
+                    <Button variant="ghost" size="icon" aria-label="Close menu">
+                      <X className="h-6 w-6" />
+                    </Button>
+                  </DialogClose>
+                </div>
+                <AnimatePresence>
+                  <nav aria-label="Mobile" className="container mt-8 flex flex-col gap-2">
+                    {nav.map((item, i) => (
+                      <motion.div
+                        key={item.href}
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.06 * i + 0.05, duration: 0.35 }}
+                      >
+                        <DialogClose asChild>
+                          <Link
+                            href={item.href}
+                            className={cn(
+                              "block border-b border-foreground/10 py-4 text-3xl font-bold tracking-tight",
+                              isActive(item.href) ? "gradient-text" : "text-foreground",
+                            )}
+                          >
+                            {item.label}
+                          </Link>
+                        </DialogClose>
+                      </motion.div>
+                    ))}
+                    <motion.div
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.06 * nav.length + 0.1, duration: 0.35 }}
+                      className="mt-8"
+                    >
+                      <DialogClose asChild>
+                        <Button asChild variant="gradient" size="lg" className="w-full">
+                          <Link href="/contact">Book a Demo</Link>
+                        </Button>
+                      </DialogClose>
+                    </motion.div>
+                  </nav>
+                </AnimatePresence>
+              </DialogContent>
+            </Dialog>
+          </div>
+        </div>
+      </header>
+    </>
   );
 }

@@ -1,38 +1,11 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { IBM_Plex_Mono } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Aurora } from "@/components/Aurora";
-import { ScrollProgress } from "@/components/ScrollProgress";
-import { Preloader } from "@/components/Preloader";
 import { site } from "@/lib/site";
 
-/**
- * Satoshi — the brand's actual typeface, per the official brand board: one
- * family across headline/subhead/body/label, self-hosted (files in
- * src/fonts/satoshi, sourced from Fontshare) rather than a display/body
- * pairing, matching the real spec exactly.
- */
-const display = localFont({
-  src: [
-    { path: "../fonts/satoshi/Satoshi-300.woff2", weight: "300", style: "normal" },
-    { path: "../fonts/satoshi/Satoshi-400.woff2", weight: "400", style: "normal" },
-    { path: "../fonts/satoshi/Satoshi-500.woff2", weight: "500", style: "normal" },
-    { path: "../fonts/satoshi/Satoshi-700.woff2", weight: "700", style: "normal" },
-    { path: "../fonts/satoshi/Satoshi-900.woff2", weight: "900", style: "normal" },
-  ],
-  variable: "--font-display",
-  display: "swap",
-});
-/** IBM Plex Mono — a restrained utility accent for data-like content (control IDs, timestamps, the ledger rail), not the brand's primary voice. */
-const mono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-mono",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -110,22 +83,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${mono.variable}`}
+      className={`dark ${GeistSans.variable} ${GeistMono.variable}`}
     >
-      <body className="relative min-h-screen bg-bg">
+      <body className="relative min-h-screen bg-background">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
-        <Preloader />
-        <Aurora />
-        <ScrollProgress />
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[110] focus:rounded-lg focus:bg-green focus:px-4 focus:py-2 focus:text-bg"
-        >
-          Skip to content
-        </a>
         <Header />
         <main id="main" className="relative">
           {children}
