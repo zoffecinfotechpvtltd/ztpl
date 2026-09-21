@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Check } from "lucide-react";
 import { CTABanner } from "@/components/CTABanner";
 import { ProductMockup } from "@/components/ProductMockup";
+import { LaunchButton, StatusBadge, launchCta } from "@/components/PlatformStatus";
 import { DriftBlobs } from "@/components/ui/drift-blobs";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -54,7 +55,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <div className="container relative grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <div className="flex flex-wrap gap-2">
-              <Badge variant="live">Live platform</Badge>
+              <StatusBadge platform={platform} live="Live platform" />
               <Badge variant={a.badge}>{platform.category}</Badge>
             </div>
             <h1 className={cn("mt-5 text-5xl font-bold leading-[1.05] md:text-7xl", a.gradientText)}>
@@ -64,13 +65,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <p className="mt-5 text-base md:text-lg">{platform.description}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild variant="gradient" size="lg">
-                <a href={platform.externalHref} target="_blank" rel="noopener noreferrer">
-                  Launch Platform →
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg">
                 <Link href="/contact">Book a Demo</Link>
               </Button>
+              <LaunchButton platform={platform} />
             </div>
           </Reveal>
           <Reveal delay={0.1}>
@@ -204,7 +201,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           heading={`See ${platform.name} on your own data`}
           body="Book a guided walkthrough against a scenario like yours."
           primary={{ label: "Book a Demo", href: "/contact" }}
-          secondary={{ label: "Launch Platform", href: platform.externalHref }}
+          secondary={launchCta(platform)}
         />
       </div>
     </div>

@@ -25,7 +25,11 @@ export type Platform = {
   features: string[];
   linkLabel: string;
   href: string;
-  externalHref: string;
+  status: "live" | "coming-soon";
+  /** Only set for platforms that are actually deployed. */
+  externalHref?: string;
+  /** Shown in the mockup's address bar. */
+  displayUrl: string;
   accent: PlatformAccent;
 };
 
@@ -41,7 +45,9 @@ export const platforms: Platform[] = [
     features: ["SEBI-Native Assessment", "AI-Powered GRC Assistant", "Evidence Vault", "Third-Party Risk (TPRA)"],
     linkLabel: "See the GRC platform",
     href: "/solutions/aegis",
+    status: "live",
     externalHref: "https://aegis.ztplsolutions.com",
+    displayUrl: "aegis.ztplsolutions.com",
     accent: {
       text: "text-blue-400",
       gradientText: "gradient-text",
@@ -65,7 +71,8 @@ export const platforms: Platform[] = [
     features: [],
     linkLabel: "See the monitoring platform",
     href: "/solutions/argus",
-    externalHref: "https://argus.ztplsolutions.com",
+    status: "coming-soon",
+    displayUrl: "argus · preview",
     accent: {
       text: "text-cyan-300",
       gradientText: "bg-gradient-to-r from-cyan-300 to-teal-300 bg-clip-text text-transparent",
@@ -89,7 +96,8 @@ export const platforms: Platform[] = [
     features: [],
     linkLabel: "See the exposure platform",
     href: "/solutions/exploitsense",
-    externalHref: "https://exploitsense.ztplsolutions.com",
+    status: "coming-soon",
+    displayUrl: "exploitsense · preview",
     accent: {
       text: "text-violet-400",
       gradientText: "gradient-text-violet",

@@ -4,6 +4,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { CTABanner } from "@/components/CTABanner";
 import { ProductMockup } from "@/components/ProductMockup";
+import { LaunchButton, StatusBadge } from "@/components/PlatformStatus";
 import { DriftBlobs } from "@/components/ui/drift-blobs";
 import { Reveal } from "@/components/ui/reveal";
 import { Badge } from "@/components/ui/badge";
@@ -14,7 +15,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Platform",
   description:
-    "Zoffec Aegis for SEBI CSCRF, Argus for network monitoring, and ExploitSense for continuous threat exposure management — three live platforms from ZTPL.",
+    "Zoffec Aegis for SEBI CSCRF, Argus for network monitoring, and ExploitSense for continuous threat exposure management — three platforms from ZTPL.",
   alternates: { canonical: "/solutions" },
 };
 
@@ -37,7 +38,7 @@ export default function SolutionsPage() {
             <div className="container grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
               <Reveal className={cn(flip && "lg:order-2")}>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="live">Live</Badge>
+                  <StatusBadge platform={p} />
                   <Badge variant={p.accent.badge}>{p.category}</Badge>
                 </div>
                 <h2 id={`${p.slug}-title`} className={cn("mt-5 text-4xl font-bold md:text-6xl", p.accent.gradientText)}>
@@ -78,11 +79,7 @@ export default function SolutionsPage() {
                       {p.linkLabel} <ArrowRight className="h-4 w-4" />
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" size="lg">
-                    <a href={p.externalHref} target="_blank" rel="noopener noreferrer">
-                      Launch Platform <ArrowRight className="h-4 w-4" />
-                    </a>
-                  </Button>
+                  <LaunchButton platform={p} />
                 </div>
               </Reveal>
 

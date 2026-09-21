@@ -10,7 +10,7 @@ const steps = [
   {
     label: "Build",
     title: "We ship real software",
-    body: "Zoffec Aegis, Argus, and ExploitSense are working platforms — not slide decks. They run assessments, watch infrastructure, and surface exposure for real, every day.",
+    body: "Zoffec Aegis is a working platform — not a slide deck — running real assessments today, with Argus and ExploitSense being built to the same standard.",
     Icon: Hammer,
   },
   {

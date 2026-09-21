@@ -24,7 +24,7 @@ const values = [
     n: "02",
     title: "Build, then ship",
     lead: "Every platform we run is real, working software.",
-    body: "Aegis, Argus, and ExploitSense are live today — not a roadmap slide.",
+    body: "Aegis is live today; Argus and ExploitSense are in development — no vapourware.",
   },
   {
     n: "03",

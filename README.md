@@ -1,114 +1,74 @@
 # ZTPL Website — Zoffec Technologies Private Limited
 
-The official company website for **ZTPL** — _Compliance Simplified._
-A dark, premium, enterprise-trustworthy marketing site for the technology
-company behind three platforms: **Zoffec Aegis** (SEBI CSCRF), **Argus**
-(network monitoring), and **ExploitSense** (continuous threat exposure
-management).
+Marketing site for **ZTPL** — _Compliance Simplified._ It presents the company's
+platforms: **Zoffec Aegis** (SEBI CSCRF, live), **Argus** (network monitoring) and
+**ExploitSense** (threat exposure management), the last two in development.
 
-Built with **Next.js (App Router) + TypeScript + Tailwind CSS + Framer Motion + GSAP**.
+**Stack:** Next.js (App Router) · TypeScript · Tailwind CSS v3 · shadcn/ui (Radix) ·
+Framer Motion · Lucide · react-countup · react-hook-form + zod · nodemailer.
 
----
+## Where things live
 
-## Locked decisions
-
-| Decision | Value |
+| What | Where |
 |---|---|
-| Legal name | Zoffec Technologies Private Limited |
-| Brand | Variant A — yellow + green (red = alert accent only) |
-| Palette | BG `#0B0F17` · Green `#21C063` · Yellow `#FFD60A` · Alert `#E5484D` |
-| Type | Space Grotesk (headings) + Inter (body) |
-| Stack | Next.js + TS + Tailwind + Framer Motion → Vercel |
-| Sitemap | Home · Solutions (hub) · Solutions/[product] · Services · About · Contact · Privacy · Terms |
-| Services | SEBI CSCRF Advisory · GRC Consulting · VAPT · vCISO · TPRA · Audit Support |
-| Products | Data-driven via `products[]` in `src/lib/site.ts` — add an object, get a full page |
-| Aegis app | https://aegis.ztplsolutions.com (external "Launch Platform") |
-| Contact | support@ztplsolutions.com · Mumbai, India (phone is a placeholder) |
+| Design tokens, gradient utilities | `src/app/globals.css`, `tailwind.config.ts` |
+| Every token / variant on one page | `/style-guide` (not indexed) |
+| shadcn-style primitives | `src/components/ui/` |
+| Homepage sections | `src/components/home/` |
+| Platform data (copy, accents, **live vs coming soon**) | `src/lib/platforms.ts` |
+| Company facts, nav, services, plan/module content | `src/lib/site.ts` |
+| Contact form + email API | `src/components/ContactForm.tsx`, `src/app/api/contact/route.ts` |
 
----
-
-## Project structure
-
-```
-ztpl/
-├─ public/                 # image slots (see public/README.md)
-│  └─ logo-placeholder.svg
-├─ src/
-│  ├─ app/
-│  │  ├─ layout.tsx        # root layout, fonts, SEO metadata, JSON-LD
-│  │  ├─ page.tsx          # Home
-│  │  ├─ globals.css       # Tailwind + design tokens (btn/card/eyebrow…)
-│  │  ├─ icon.svg          # favicon
-│  │  ├─ sitemap.ts        # /sitemap.xml
-│  │  ├─ robots.ts         # /robots.txt
-│  │  ├─ not-found.tsx     # 404
-│  │  ├─ solutions/        # Aegis product page (the money page)
-│  │  ├─ services/         # 6 services
-│  │  ├─ about/            # story, mission, values
-│  │  ├─ contact/          # contact + demo form
-│  │  ├─ privacy/          # placeholder legal
-│  │  └─ terms/            # placeholder legal
-│  ├─ components/
-│  │  ├─ Header.tsx        # sticky nav + Book a Demo + mobile menu
-│  │  ├─ Footer.tsx        # sitemap, contact, reg line
-│  │  ├─ Logo.tsx          # CSS chevron mark (swap for real asset)
-│  │  ├─ Hero / Section / CTA / Reveal / ContactForm / Prose
-│  └─ lib/
-│     └─ site.ts           # single source of truth for all content
-└─ tailwind.config.ts      # brand tokens
-```
-
-All marketing copy and content live in **`src/lib/site.ts`** — edit there to
-update services, modules, plans, and company facts site-wide.
-
----
+### Changing a platform's status
+In `src/lib/platforms.ts` set `status: "live"` and add `externalHref` when a platform
+goes live. The badge, launch button and CTAs switch automatically. While it is
+`"coming-soon"`, every "Launch Platform" link becomes a "Get early access" link to
+`/contact?interest=<slug>`, which pre-fills the message.
 
 ## Run locally
 
-Requires **Node.js 18.17+**.
+Node 20+.
 
 ```bash
 npm install
-npm run dev
+npm run dev            # http://localhost:3000  (use `npx next dev -p 3100` if 3000 is taken)
+npm run build && npm start
+npm run lint
+PORT=3100 npx playwright test   # smoke + axe accessibility suite; PORT must match the running server
 ```
 
-Open <http://localhost:3000>.
+Without SMTP credentials the contact form logs the submission and reports success **in development only**.
+In production it returns a 503 telling the visitor to email support directly, so a lost enquiry is never silent.
 
-Other scripts:
+## Contact-form email (Google Workspace)
+
+Submissions are emailed to `support@ztplsolutions.com` over SMTP.
+
+1. In the Google account for the sending mailbox, turn on 2-Step Verification, then create an **App password**
+   (Google Account → Security → 2-Step Verification → App passwords).
+2. On the server, create `.env` from `.env.example` and fill in `SMTP_USER` and `SMTP_PASS`. Never commit it.
+3. Start the container with it: `docker run --env-file .env ...`
+
+The API rate-limits to 5 messages per IP per 10 minutes and includes a honeypot field for bots.
+
+## Deploy (Docker behind nginx)
+
+The `Dockerfile` builds a lean standalone image (Node 22, non-root, healthcheck on `/`, listens on 3000).
 
 ```bash
-npm run build   # production build
-npm run start   # serve the production build
-npm run lint    # eslint
+git pull
+docker build -t ztpl-landing .
+docker rm -f ztpl-landing
+docker run -d --name ztpl-landing --restart unless-stopped \
+  --env-file .env -p 127.0.0.1:58081:3000 ztpl-landing
+docker inspect --format='{{.State.Health.Status}}' ztpl-landing   # -> healthy
 ```
 
----
+nginx proxies `ztplsolutions.com` / `www` to `127.0.0.1:58081` (certbot manages TLS).
 
-## Deploy to Vercel
+## Still to supply
 
-1. Push this repo to GitHub/GitLab/Bitbucket.
-2. Go to <https://vercel.com/new> and **import the repository**.
-3. Vercel auto-detects Next.js — no config needed. Click **Deploy**.
-4. (Optional) Add your domain under **Project → Settings → Domains** and update
-   `site.url` in `src/lib/site.ts` to the production URL so SEO/canonical/OG and
-   `sitemap.xml` resolve correctly.
-
-CLI alternative:
-
-```bash
-npm i -g vercel
-vercel          # preview deploy
-vercel --prod   # production deploy
-```
-
----
-
-## Before launch — checklist
-
-- [ ] Confirm legal name on incorporation docs and set CIN in `src/lib/site.ts`.
-- [ ] Replace placeholders in `site.ts`: `phone`, `address`, `cin`, `socials`, `url`.
-- [ ] Add real logo + OG image + Aegis screenshots (see `public/README.md`).
-- [ ] Wire the contact form to a backend (API route, Resend, or Formspree) —
-      see the TODO in `src/components/ContactForm.tsx`.
-- [ ] Replace placeholder Privacy & Terms with reviewed legal copy.
-- [ ] Add founders/team content on the About page.
+- [ ] Real LinkedIn URL (`site.socials.linkedin` is a guess).
+- [ ] Real product screenshots to replace the illustrative mockups (`src/components/ProductMockup.tsx`).
+- [ ] Company registration details (`cin`, `founded` in `site.ts`) if you want them in the page schema.
+- [ ] Legal review of `/privacy` and `/terms` before relying on them.

@@ -84,3 +84,18 @@ test("no visible 'to be added' placeholder text ships to production copy", async
   const body = await page.locator("body").innerText();
   expect(body).not.toMatch(/to be added/i);
 });
+
+test("Argus and ExploitSense show 'Coming soon' with early-access links, never a dead launch link", async ({ page }) => {
+  await page.goto("/solutions");
+  await expect(page.getByText("Coming soon").first()).toBeVisible();
+  const body = await page.locator("body").innerHTML();
+  expect(body).not.toContain("argus.ztplsolutions.com");
+  expect(body).not.toContain("exploitsense.ztplsolutions.com");
+  await expect(page.getByRole("link", { name: /Get early access/ })).toHaveCount(2);
+  await expect(page.getByRole("link", { name: /Launch Platform/ })).toHaveCount(1); // Aegis only
+});
+
+test("early-access link pre-fills the contact message", async ({ page }) => {
+  await page.goto("/contact?interest=argus");
+  await expect(page.getByLabel("How can we help?")).toHaveValue(/early access to Argus/);
+});

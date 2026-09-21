@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { DriftBlobs } from "@/components/ui/drift-blobs";
@@ -40,8 +41,8 @@ export default function ContactPage() {
             Let&apos;s talk <span className="gradient-text">platforms</span>
           </h1>
           <p className="mt-6 max-w-xl text-base md:text-lg">
-            Book a demo of Zoffec Aegis, Argus, or ExploitSense, or ask us anything about ZTPL. Tell us what you
-            need — we meet you there.
+            Book a demo of Zoffec Aegis, ask about Argus or ExploitSense, or ask us anything about ZTPL. Tell us
+            what you need — we meet you there.
           </p>
 
           <ul className="mt-10 space-y-4">
@@ -87,7 +88,9 @@ export default function ContactPage() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <ContactForm />
+          <Suspense fallback={<div className="glass-card h-[32rem] rounded-3xl" aria-hidden />}>
+            <ContactForm />
+          </Suspense>
         </Reveal>
       </div>
     </div>

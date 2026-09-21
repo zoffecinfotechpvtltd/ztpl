@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProductMockup } from "@/components/ProductMockup";
+import { LaunchButton, StatusBadge } from "@/components/PlatformStatus";
 import { platforms } from "@/lib/platforms";
 import { cn } from "@/lib/utils";
 
@@ -67,7 +68,7 @@ export function PlatformsTabs() {
               <div>
                 <div className="flex flex-wrap gap-2">
                   <Badge variant={a.badge}>{current.category}</Badge>
-                  <Badge variant="live">Live</Badge>
+                  <StatusBadge platform={current} />
                 </div>
                 <h3 className={cn("mt-5 text-4xl font-bold md:text-5xl", a.gradientText)}>{current.name}</h3>
                 <p className="mt-3 text-lg font-medium text-foreground">{current.subtitle}</p>
@@ -97,11 +98,7 @@ export function PlatformsTabs() {
                       {current.linkLabel} <ArrowRight className="h-4 w-4" />
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" size="lg">
-                    <a href={current.externalHref} target="_blank" rel="noopener noreferrer">
-                      Launch Platform <ArrowRight className="h-4 w-4" />
-                    </a>
-                  </Button>
+                  <LaunchButton platform={current} />
                 </div>
               </div>
 

@@ -26,7 +26,6 @@ export const site = {
   founded: undefined as string | undefined,
   socials: {
     linkedin: "https://www.linkedin.com/company/ztpl",
-    x: "https://x.com/ztpl",
   },
 } as const;
 
@@ -365,7 +364,7 @@ export const values = [
   {
     title: "Build, then ship",
     body: "Every platform we run is real, working software.",
-    proof: "Aegis, Argus, and ExploitSense are live today — not a roadmap slide.",
+    proof: "Aegis is live today; Argus and ExploitSense are in development — no vapourware.",
   },
   {
     title: "Outcomes, not hours",

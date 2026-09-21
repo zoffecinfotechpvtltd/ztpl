@@ -77,7 +77,7 @@ export default function RootLayout({
       addressLocality: "Mumbai",
       addressCountry: "IN",
     },
-    sameAs: [site.socials.linkedin, site.socials.x],
+    sameAs: [site.socials.linkedin],
   };
 
   return (

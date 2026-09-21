@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -15,6 +16,7 @@ const schema = z.object({
   company: z.string().trim().min(1, "Please enter your company."),
   email: z.string().trim().min(1, "Please enter your work email.").email("Enter a valid email address."),
   message: z.string().trim().min(10, "Tell us a little more — at least 10 characters."),
+  website: z.string().optional(), // honeypot
 });
 
 type Values = z.infer<typeof schema>;
@@ -60,20 +62,29 @@ function Field({
   );
 }
 
+const interests: Record<string, string> = {
+  argus: "I'd like early access to Argus (network monitoring).",
+  exploitsense: "I'd like early access to ExploitSense (threat exposure management).",
+};
+
 export function ContactForm() {
+  const interest = useSearchParams().get("interest");
   const [status, setStatus] = useState<"idle" | "sent">("idle");
   const [serverError, setServerError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<Values>({ resolver: zodResolver(schema), mode: "onTouched" });
+  } = useForm<Values>({
+    resolver: zodResolver(schema),
+    mode: "onTouched",
+    defaultValues: { message: (interest && interests[interest]) || "" },
+  });
 
   const onSubmit = async (values: Values) => {
     setServerError(null);
     try {
-      // Posts to /api/contact. TODO: that route currently only logs server-side;
-      // wire it to an email provider / CRM (see the TODO in src/app/api/contact/route.ts).
+      // /api/contact emails the enquiry to the support inbox over SMTP (see .env.example).
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -136,6 +147,11 @@ export function ContactForm() {
                     {...register("company")}
                   />
                 </Field>
+              </div>
+              {/* Honeypot: hidden from people and assistive tech, bots fill it in. */}
+              <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                <label htmlFor="website">Website</label>
+                <input id="website" type="text" tabIndex={-1} autoComplete="off" {...register("website")} />
               </div>
               <Field id="email" label="Work email" error={errors.email?.message}>
                 <Input

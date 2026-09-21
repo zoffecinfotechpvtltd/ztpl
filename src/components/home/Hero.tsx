@@ -6,7 +6,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { Activity, ArrowRight, CheckCircle2, ChevronDown, Crosshair, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const trust = ["3 platforms shipped", "SEBI CSCRF", "Multi-tenant", "MSSP-ready"];
+const trust = ["1 live, 2 in development", "SEBI CSCRF", "Multi-tenant", "MSSP-ready"];
 
 const words = [
   { text: "Compliance,", gradient: false },

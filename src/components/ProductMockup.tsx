@@ -15,7 +15,7 @@ export function ProductMockup({ platform, className }: { platform: Platform; cla
           <span className="h-2.5 w-2.5 rounded-full bg-foreground/20" />
           <span className="h-2.5 w-2.5 rounded-full bg-foreground/20" />
           <span className="ml-3 truncate rounded-md bg-foreground/[0.05] px-3 py-1 font-mono text-[11px] text-muted-foreground">
-            {platform.externalHref.replace("https://", "")}
+            {platform.displayUrl}
           </span>
         </div>
 
