@@ -105,7 +105,7 @@ export function Footer() {
           <div className="space-y-1.5">
             <p className="text-sm font-medium text-foreground/75">© 2026 {site.legalName}. All rights reserved.</p>
             <p className="font-mono text-xs text-foreground/60">
-              CIN {site.cin} · GSTIN {site.gstin}
+              CIN {site.cin}
             </p>
           </div>
           <div className="flex gap-7 text-sm">

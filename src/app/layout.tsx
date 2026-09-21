@@ -78,7 +78,6 @@ export default function RootLayout({
     url: site.url,
     email: site.email,
     foundingDate: site.founded,
-    taxID: site.gstin,
     identifier: { "@type": "PropertyValue", propertyID: "CIN", value: site.cin },
     description: site.description,
     logo: `${site.url}/logo.jpeg`,

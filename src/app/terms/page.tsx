@@ -105,7 +105,7 @@ export default function TermsPage() {
         <br />
         Email: <a href={`mailto:${site.email}`} className="text-brand-amber hover:underline">{site.email}</a>
         <br />
-        CIN: {site.cin} · GSTIN: {site.gstin}
+        CIN: {site.cin}
       </p>
     </LegalPage>
   );

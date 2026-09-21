@@ -105,7 +105,7 @@ export default function PrivacyPage() {
         <br />
         Phone: {site.phone}
         <br />
-        CIN: {site.cin} · GSTIN: {site.gstin}
+        CIN: {site.cin}
       </p>
     </LegalPage>
   );

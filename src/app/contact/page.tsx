@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Building2, Mail, MapPin, Phone } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { DriftBlobs } from "@/components/ui/drift-blobs";
 import { Reveal } from "@/components/ui/reveal";
@@ -28,6 +28,7 @@ const info = [
     ],
   },
   { label: "Location", Icon: MapPin, lines: [{ text: site.location }] },
+  { label: "Company", Icon: Building2, lines: [{ text: site.legalName }, { text: `CIN ${site.cin}` }] },
 ] as const;
 
 export default function ContactPage() {

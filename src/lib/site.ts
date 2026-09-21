@@ -20,9 +20,8 @@ export const site = {
   phone: "+91 87790 21628",
   phoneAlt: "+91 98194 78648",
   location: "Mumbai, India",
-  // Registered particulars (Ministry of Corporate Affairs / GST portal).
+  // Registered particulars (Ministry of Corporate Affairs).
   cin: "U62091MH2026PTC473298",
-  gstin: "27AADCZ0916E1ZH",
   founded: "2026",
   socials: {
     linkedin: "https://www.linkedin.com/company/ztpl",

@@ -138,14 +138,10 @@ export default function AboutPage() {
             <Image src="/logo-mark.png" alt="" width={381} height={382} className="mx-auto h-14 w-auto" />
             <p className="mt-4 text-xs uppercase tracking-[0.18em] text-muted-foreground">Registered &amp; recognised</p>
             <p className="mt-1 text-lg font-semibold text-foreground">{site.legalName}</p>
-            <dl className="mt-5 grid gap-3 text-sm sm:grid-cols-2">
+            <dl className="mx-auto mt-5 max-w-xs text-sm">
               <div className="rounded-xl border border-foreground/10 bg-background/40 px-4 py-3">
                 <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">CIN</dt>
                 <dd className="mt-1 break-all font-mono text-foreground">{site.cin}</dd>
-              </div>
-              <div className="rounded-xl border border-foreground/10 bg-background/40 px-4 py-3">
-                <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">GSTIN</dt>
-                <dd className="mt-1 font-mono text-foreground">{site.gstin}</dd>
               </div>
             </dl>
           </div>
