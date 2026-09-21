@@ -64,7 +64,7 @@ export function ProductMockup({ platform, className }: { platform: Platform; cla
           </div>
         </div>
       </div>
-      <figcaption className="mt-3 text-center text-xs text-muted-foreground/70">
+      <figcaption className="mt-3 text-center text-xs text-muted-foreground">
         Illustrative preview — {platform.name}
       </figcaption>
     </figure>

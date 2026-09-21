@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProductMockup } from "@/components/ProductMockup";
 import { platforms } from "@/lib/platforms";
 import { cn } from "@/lib/utils";
@@ -56,16 +56,13 @@ export function PlatformsTabs() {
             })}
           </TabsList>
 
-          <AnimatePresence mode="wait">
+          <TabsContent value={active} className="mt-10">
             <motion.div
               key={active}
-              role="tabpanel"
-              aria-label={current.name}
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -40 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="mt-10 grid items-center gap-12 lg:grid-cols-2"
+              className="grid items-center gap-12 lg:grid-cols-2"
             >
               <div>
                 <div className="flex flex-wrap gap-2">
@@ -110,7 +107,7 @@ export function PlatformsTabs() {
 
               <ProductMockup platform={current} />
             </motion.div>
-          </AnimatePresence>
+          </TabsContent>
         </Tabs>
       </div>
     </section>

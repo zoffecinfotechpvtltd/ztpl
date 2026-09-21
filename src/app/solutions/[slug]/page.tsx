@@ -1,168 +1,100 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Section, SectionHeading } from "@/components/Section";
-import { Reveal } from "@/components/Reveal";
-import { SpotlightCard } from "@/components/SpotlightCard";
-import { ReadinessPanel } from "@/components/ReadinessPanel";
-import { ProductGlyph } from "@/components/ProductGlyph";
-import { CTA } from "@/components/CTA";
-import { accentClasses } from "@/lib/accent";
-import { products, getProduct } from "@/lib/site";
+import { Check } from "lucide-react";
+import { CTABanner } from "@/components/CTABanner";
+import { ProductMockup } from "@/components/ProductMockup";
+import { DriftBlobs } from "@/components/ui/drift-blobs";
+import { Reveal } from "@/components/ui/reveal";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { platforms } from "@/lib/platforms";
+import { getProduct } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 export function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }));
+  return platforms.map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProduct(slug);
-  if (!product) return {};
+  const platform = platforms.find((p) => p.slug === slug);
+  if (!platform) return {};
   return {
-    title: `${product.name} — ${product.tagline}`,
-    description: product.description,
-    alternates: { canonical: `/solutions/${product.slug}` },
+    title: `${platform.name} — ${platform.subtitle}`,
+    description: platform.description,
+    alternates: { canonical: `/solutions/${platform.slug}` },
   };
 }
 
-export default async function ProductPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+/** Drop unfinished entries — site.ts still carries bracketed "[Add real …]" stubs for some products. */
+const isReal = (s: string) => !s.trim().startsWith("[");
+
+export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = getProduct(slug);
-  if (!product) notFound();
-  const a = accentClasses[product.accent];
+  const platform = platforms.find((p) => p.slug === slug);
+  if (!platform) notFound();
+
+  const extra = getProduct(slug);
+  const a = platform.accent;
+  const problems = extra?.problems ?? [];
+  const modules = (extra?.modules ?? []).filter((m) => isReal(m.title));
+  const deployment = extra?.deployment ?? [];
+  const plans = extra?.plans ?? [];
 
   return (
-    <>
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-line">
-        <div className="pointer-events-none absolute inset-0 bg-green-glow" aria-hidden />
-        <div className="container-px relative py-16 sm:py-24">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <Reveal direction="right">
-              {product.icon ? (
-                <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl bg-white p-2">
-                  <Image src={product.icon} alt="" width={56} height={56} className="h-full w-full object-contain" />
-                </div>
-              ) : (
-                <ProductGlyph slug={product.slug} accent={product.accent} className="h-12 w-12" />
-              )}
-              <span className={`mt-4 ${product.status === "live" ? "pill-live" : "chip text-yellow"} inline-flex`}>
-                <span className={`h-1.5 w-1.5 rounded-full ${a.dot} animate-pulse-glow`} />
-                {product.status === "live" ? "Live platform" : "In development"}
-              </span>
-              <h1 className="heading mt-5 text-4xl sm:text-5xl lg:text-6xl">
-                {product.name}
-              </h1>
-              <p className="mt-3 text-base font-medium text-yellow">
-                {product.tagline}
-              </p>
-              <p className="mt-5 text-lg leading-relaxed text-ink-muted">
-                {product.description}
-              </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                {product.externalUrl && (
-                  <a
-                    href={product.externalUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary"
-                  >
-                    Launch Platform →
-                  </a>
-                )}
-                <Link href="/contact" className="btn-ghost">
-                  {product.status === "live" ? "Book a Demo" : "Get early access"}
-                </Link>
-              </div>
-            </Reveal>
+    <div className="relative">
+      <DriftBlobs />
 
-            <Reveal direction="left" delay={0.1}>
-              <div className="relative">
-                <div className="pointer-events-none absolute -inset-6 bg-green-glow" aria-hidden />
-                {product.slug === "aegis" ? (
-                  <ReadinessPanel
-                    url={
-                      product.externalUrl?.replace(/^https?:\/\//, "") ??
-                      "ztplsolutions.com"
-                    }
-                  />
-                ) : (
-                  <div className="border-grad shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]">
-                    <div className="flex h-64 flex-col items-center justify-center gap-2 rounded-[15px] bg-bg/95 text-center">
-                      <span className="chip">{product.category}</span>
-                      <p className="mt-2 max-w-[220px] text-sm text-ink-faint">
-                        Product preview coming soon
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </Reveal>
-          </div>
+      {/* Hero */}
+      <section className="gradient-mesh-hero relative overflow-hidden pb-20 pt-32 lg:pt-40">
+        <div className="grid-pattern pointer-events-none absolute inset-0" aria-hidden />
+        <div className="container relative grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+          <Reveal>
+            <div className="flex flex-wrap gap-2">
+              <Badge variant="live">Live platform</Badge>
+              <Badge variant={a.badge}>{platform.category}</Badge>
+            </div>
+            <h1 className={cn("mt-5 text-5xl font-bold leading-[1.05] md:text-7xl", a.gradientText)}>
+              {platform.name}
+            </h1>
+            <p className="mt-4 text-xl font-medium text-foreground">{platform.subtitle}</p>
+            <p className="mt-5 text-base md:text-lg">{platform.description}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild variant="gradient" size="lg">
+                <a href={platform.externalHref} target="_blank" rel="noopener noreferrer">
+                  Launch Platform →
+                </a>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/contact">Book a Demo</Link>
+              </Button>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <ProductMockup platform={platform} />
+          </Reveal>
         </div>
       </section>
 
-      {/* Problem */}
-      {product.problems && product.problems.length > 0 && (
-        <Section>
-          <SectionHeading
-            eyebrow="The problem"
-            title="The framework breaks the tools you're using"
-            intro="If your compliance program lives in spreadsheets and shared drives, you're carrying risk you can't see — and work you can't repeat across entities."
-          />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {product.problems.map((p, i) => (
-              <Reveal key={p.title} delay={i * 0.08}>
-                <SpotlightCard className="h-full">
-                  <span className="font-display text-2xl font-bold text-line">
-                    0{i + 1}
-                  </span>
-                  <h3 className="heading mt-3 text-lg text-ink">{p.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                    {p.body}
-                  </p>
-                </SpotlightCard>
-              </Reveal>
-            ))}
-          </div>
-        </Section>
-      )}
-
-      {/* Modules */}
-      {product.modules && product.modules.length > 0 && (
-        <section className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28">
-          <div className="container-px">
-            <Reveal>
-              <SectionHeading
-                eyebrow={product.slug === "aegis" ? "Platform modules" : "Capabilities"}
-                title={
-                  product.slug === "aegis"
-                    ? "Everything the framework asks of you — in one workspace"
-                    : "What it does"
-                }
-              />
-            </Reveal>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {product.modules.map((m, i) => (
-                <Reveal key={m.title} delay={(i % 4) * 0.06}>
-                  <SpotlightCard className="h-full">
-                    <div className={`flex h-11 w-11 items-center justify-center rounded-xl border ${a.chipBorder} ${a.chipBg} font-display text-sm font-bold ${a.text}`}>
-                      {String(i + 1).padStart(2, "0")}
-                    </div>
-                    <h3 className="heading mt-4 text-base">{m.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                      {m.body}
-                    </p>
-                  </SpotlightCard>
+      {problems.length > 0 && (
+        <section className="section-y" aria-labelledby="problem">
+          <div className="container">
+            <SectionHeading
+              eyebrow="The problem"
+              title={<span id="problem">The framework breaks the tools you&apos;re using</span>}
+              description="If your compliance program lives in spreadsheets and shared drives, you're carrying risk you can't see — and work you can't repeat across entities."
+            />
+            <div className="mt-14 grid gap-6 md:grid-cols-3">
+              {problems.map((p, i) => (
+                <Reveal key={p.title} delay={0.08 * i}>
+                  <Card className="glass-card glow-border h-full border-foreground/10 bg-foreground/[0.03] p-8">
+                    <span className="text-3xl font-bold text-brand-blue/50">0{i + 1}</span>
+                    <h3 className="mt-3 text-lg font-semibold">{p.title}</h3>
+                    <p className="mt-3 text-sm">{p.body}</p>
+                  </Card>
                 </Reveal>
               ))}
             </div>
@@ -170,75 +102,96 @@ export default async function ProductPage({
         </section>
       )}
 
-      {/* Deployment */}
-      {product.deployment && product.deployment.length > 0 && (
-        <Section>
-          <SectionHeading
-            eyebrow="Deployment"
-            title="Your cloud or ours"
-            intro="Runs the way your risk posture and regulator require — no compromise on control or speed."
-          />
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {product.deployment.map((d, i) => (
-              <Reveal key={d.name} delay={i * 0.08}>
-                <SpotlightCard className="h-full">
-                  <h3 className="heading text-xl">{d.name}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                    {d.body}
-                  </p>
-                  <ul className="mt-5 space-y-2">
-                    {d.points.map((pt) => (
-                      <li
-                        key={pt}
-                        className="flex items-center gap-2 text-sm text-ink-muted"
-                      >
-                        <span className="text-green">✓</span>
-                        {pt}
-                      </li>
-                    ))}
-                  </ul>
-                </SpotlightCard>
-              </Reveal>
-            ))}
+      {modules.length > 0 && (
+        <section className="section-y bg-surface/40" aria-labelledby="modules">
+          <div className="container">
+            <SectionHeading
+              eyebrow={slug === "aegis" ? "Platform modules" : "Capabilities"}
+              title={
+                <span id="modules">
+                  {slug === "aegis" ? "Everything the framework asks of you — in one workspace" : "What it does"}
+                </span>
+              }
+            />
+            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {modules.map((m, i) => (
+                <Reveal key={m.title} delay={0.06 * (i % 4)}>
+                  <Card className="glass-card glow-border h-full border-foreground/10 bg-foreground/[0.03] p-6">
+                    <span
+                      className={cn(
+                        "flex h-11 w-11 items-center justify-center rounded-xl text-sm font-bold",
+                        a.soft,
+                        a.text,
+                      )}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="mt-4 text-base font-semibold">{m.title}</h3>
+                    <p className="mt-2 text-sm">{m.body}</p>
+                  </Card>
+                </Reveal>
+              ))}
+            </div>
           </div>
-        </Section>
+        </section>
       )}
 
-      {/* Plans */}
-      {product.plans && product.plans.length > 0 && (
-        <section id="plans" className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28">
-          <div className="container-px">
-            <Reveal>
-              <SectionHeading
-                eyebrow="Plans"
-                title="Scales with your practice"
-                intro="From a solo practitioner to an MSSP running dozens of clients. Talk to us for pricing tailored to your entity count and deployment."
-              />
-            </Reveal>
-            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-              {product.plans.map((plan, i) => (
-                <Reveal key={plan.name} delay={i * 0.05}>
-                  <div
-                    className={`card card-hover h-full ${
-                      plan.highlight
-                        ? "border-green/60 bg-bg-card ring-1 ring-green/30"
-                        : ""
-                    }`}
+      {deployment.length > 0 && (
+        <section className="section-y" aria-labelledby="deployment">
+          <div className="container">
+            <SectionHeading
+              eyebrow="Deployment"
+              title={<span id="deployment">Your cloud or ours</span>}
+              description="Runs the way your risk posture and regulator require — no compromise on control or speed."
+            />
+            <div className="mt-14 grid gap-6 md:grid-cols-2">
+              {deployment.map((d, i) => (
+                <Reveal key={d.name} delay={0.08 * i}>
+                  <Card className="glass-card h-full border-foreground/10 bg-foreground/[0.03] p-8">
+                    <h3 className="text-xl font-semibold">{d.name}</h3>
+                    <p className="mt-3 text-sm">{d.body}</p>
+                    <ul className="mt-5 space-y-2">
+                      {d.points.map((pt) => (
+                        <li key={pt} className="flex items-center gap-2 text-sm">
+                          <Check className="h-4 w-4 text-success" aria-hidden />
+                          {pt}
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {plans.length > 0 && (
+        <section id="plans" className="section-y bg-surface/40" aria-labelledby="plans-title">
+          <div className="container">
+            <SectionHeading
+              eyebrow="Plans"
+              title={<span id="plans-title">Scales with your practice</span>}
+              description="From a solo practitioner to an MSSP running dozens of clients. Talk to us for pricing tailored to your entity count and deployment."
+            />
+            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+              {plans.map((plan, i) => (
+                <Reveal key={plan.name} delay={0.05 * i}>
+                  <Card
+                    className={cn(
+                      "glass-card h-full border-foreground/10 bg-foreground/[0.03] p-6",
+                      plan.highlight && "border-brand-blue/60 ring-1 ring-brand-blue/30",
+                    )}
                   >
                     {plan.highlight && (
-                      <span className="mb-3 inline-block rounded-full bg-green/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-green">
-                        Most popular
-                      </span>
+                      <Badge className="mb-3 text-[10px] uppercase tracking-wide">Most popular</Badge>
                     )}
-                    <h3 className="heading text-lg">{plan.name}</h3>
-                    <p className="mt-2 text-sm text-ink-muted">{plan.blurb}</p>
-                    <Link
-                      href="/contact"
-                      className="mt-5 inline-block text-sm font-semibold text-green"
-                    >
+                    <h3 className="text-lg font-semibold">{plan.name}</h3>
+                    <p className="mt-2 text-sm">{plan.blurb}</p>
+                    <Link href="/contact" className="mt-5 inline-block text-sm font-semibold text-brand-cyan">
                       Get a quote →
                     </Link>
-                  </div>
+                  </Card>
                 </Reveal>
               ))}
             </div>
@@ -246,21 +199,14 @@ export default async function ProductPage({
         </section>
       )}
 
-      <CTA
-        title={
-          product.status === "live"
-            ? `See ${product.name} on your own data`
-            : `Want early access to ${product.name}?`
-        }
-        body={
-          product.status === "live"
-            ? "Book a guided walkthrough against a scenario like yours."
-            : "Tell us your use case and we'll bring you in as it's ready."
-        }
-        primaryLabel={product.status === "live" ? "Book a Demo" : "Get in touch"}
-        secondaryLabel={product.externalUrl ? "Launch Platform" : ""}
-        secondaryHref={product.externalUrl ?? "/contact"}
-      />
-    </>
+      <div className="pt-24">
+        <CTABanner
+          heading={`See ${platform.name} on your own data`}
+          body="Book a guided walkthrough against a scenario like yours."
+          primary={{ label: "Book a Demo", href: "/contact" }}
+          secondary={{ label: "Launch Platform", href: platform.externalHref }}
+        />
+      </div>
+    </div>
   );
 }

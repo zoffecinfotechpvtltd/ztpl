@@ -11,6 +11,7 @@ const routes = [
   "/contact",
   "/privacy",
   "/terms",
+  "/style-guide",
 ];
 
 function trackConsoleErrors(page: Page) {
@@ -55,13 +56,16 @@ test("primary nav links resolve to their pages", async ({ page }) => {
   }
 });
 
-test("mobile menu opens and closes", async ({ page }) => {
+test("mobile menu opens, navigates, and closes", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
-  const toggle = page.getByRole("button", { name: "Toggle menu" });
-  await toggle.click();
+  await page.getByRole("button", { name: "Toggle menu" }).click();
   await expect(page.locator("#mobile-menu")).toBeVisible();
-  await toggle.click();
+  await page.getByRole("button", { name: "Close menu" }).click();
+  await expect(page.locator("#mobile-menu")).toBeHidden();
+  await page.getByRole("button", { name: "Toggle menu" }).click();
+  await page.locator("#mobile-menu").getByRole("link", { name: "About" }).click();
+  await expect(page).toHaveURL(/\/about$/);
   await expect(page.locator("#mobile-menu")).toBeHidden();
 });
 

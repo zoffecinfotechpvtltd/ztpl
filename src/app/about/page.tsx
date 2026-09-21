@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Section, SectionHeading } from "@/components/Section";
-import { Reveal } from "@/components/Reveal";
-import { Timeline } from "@/components/Timeline";
-import { CTA } from "@/components/CTA";
-import { site, milestones, certifications, values } from "@/lib/site";
+import { BadgeCheck } from "lucide-react";
+import { PageHero } from "@/components/PageHero";
+import { CTABanner } from "@/components/CTABanner";
+import { Reveal } from "@/components/ui/reveal";
+import { Card } from "@/components/ui/card";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -12,141 +13,143 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
 };
 
+const values = [
+  {
+    n: "01",
+    title: "Regulator-credible",
+    lead: "We speak the language of SEBI CSCRF, Annexure-K, and audit.",
+    body: "Every Aegis control maps directly to a CSCRF clause — not a generic template.",
+  },
+  {
+    n: "02",
+    title: "Build, then ship",
+    lead: "Every platform we run is real, working software.",
+    body: "Aegis, Argus, and ExploitSense are live today — not a roadmap slide.",
+  },
+  {
+    n: "03",
+    title: "Outcomes, not hours",
+    lead: "We measure ourselves by whether the platform solves the problem.",
+    body: "Controls closed, exposure surfaced, uptime held — that's the scoreboard.",
+  },
+  {
+    n: "04",
+    title: "Security by default",
+    lead: "Data residency, least privilege, and hardened deployment are baseline.",
+    body: "Cloud or on-prem, the same controls apply either way — no premium tier for security.",
+  },
+];
+
 export default function AboutPage() {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-line">
-        <div
-          className="pointer-events-none absolute inset-0 bg-green-glow"
-          aria-hidden
-        />
-        <div className="container-px relative py-20 sm:py-28">
+      <PageHero
+        eyebrow="About"
+        title="We make compliance buildable"
+        body="Zoffec Technologies Private Limited (ZTPL) is a technology company. We build Zoffec Aegis, Argus, and ExploitSense — real platforms for compliance, infrastructure, and threat exposure, for India's regulated businesses."
+      />
+
+      {/* Our story */}
+      <section className="section-y" aria-labelledby="our-story">
+        <div className="container grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <Reveal>
-            <div className="max-w-3xl">
-              <span className="eyebrow">About</span>
-              <h1 className="heading mt-5 text-4xl sm:text-5xl lg:text-6xl">
-                We make compliance{" "}
-                <span className="text-gradient">buildable</span>
-              </h1>
-              <p className="mt-5 text-xl leading-relaxed text-ink-muted">
-                {site.legalName} ({site.name}) is a technology company. We
-                build Zoffec Aegis, Argus, and ExploitSense — real platforms
-                for compliance, infrastructure, and threat exposure, for
-                India&apos;s regulated businesses.
-              </p>
-            </div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-cyan">Our story</p>
+            <h2 id="our-story" className="mt-4 text-3xl font-bold leading-[1.1] md:text-5xl">
+              Why we exist
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1} className="space-y-6 border-l border-transparent text-base md:text-lg lg:border-l-blue-500/40 lg:pl-10">
+            <p>
+              Regulated businesses in India run on tools that weren&apos;t built for the frameworks they actually
+              answer to. Spreadsheets break. Generic GRC suites don&apos;t speak CSCRF. Point tools don&apos;t talk
+              to each other.
+            </p>
+            <p>
+              We built ZTPL to close that gap with software: Zoffec Aegis operationalises SEBI CSCRF end-to-end for
+              many entities at once; Argus watches infrastructure continuously; ExploitSense keeps attack surface
+              honest. One engineering team, one operating standard, three problems solved properly.
+            </p>
           </Reveal>
         </div>
       </section>
 
-      <Section id="story">
-        <div className="grid gap-12 lg:grid-cols-2">
-          <Reveal>
-            <SectionHeading eyebrow="Our story" title="Why we exist" />
-            <div className="mt-6 space-y-4 leading-relaxed text-ink-muted">
-              <p>
-                Regulated businesses in India run on tools that weren&apos;t
-                built for the frameworks they actually answer to.
-                Spreadsheets break. Generic GRC suites don&apos;t speak
-                CSCRF. Point tools don&apos;t talk to each other.
+      {/* Mission */}
+      <section className="section-y bg-surface/40" aria-labelledby="mission">
+        <div className="container">
+          <Reveal className="mx-auto max-w-4xl">
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-brand-cyan">Mission</p>
+            <h2 id="mission" className="mt-4 text-center text-3xl font-bold md:text-4xl">
+              What we&apos;re here to do
+            </h2>
+            <blockquote className="glass-card relative mt-10 px-8 py-12 text-center md:px-14 md:py-16">
+              <span
+                aria-hidden
+                className="gradient-text absolute left-6 top-2 select-none text-8xl font-bold leading-none md:left-10"
+              >
+                “
+              </span>
+              <p className="relative text-xl font-semibold leading-snug text-foreground md:text-3xl">
+                To be the platform India&apos;s regulated businesses actually run on — for compliance, for
+                infrastructure, for exposure management — built by people who ship, not just spec.
               </p>
-              <p>
-                We built ZTPL to close that gap with software: Zoffec Aegis
-                operationalises SEBI CSCRF end-to-end for many entities at
-                once; Argus watches infrastructure continuously; ExploitSense
-                keeps attack surface honest. One engineering team, one
-                operating standard, three problems solved properly.
+              <p className="relative mt-6 text-base md:text-lg">
+                Our differentiator is simple: we build. Every product decision is tested against real deployments,
+                real data, and real operating conditions — not a slide in a pitch deck.
               </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <SectionHeading eyebrow="Mission" title="What we're here to do" />
-            <div className="mt-6 space-y-4 leading-relaxed text-ink-muted">
-              <p>
-                To be the platform India&apos;s regulated businesses actually
-                run on — for compliance, for infrastructure, for exposure
-                management — built by people who ship, not just spec.
-              </p>
-              <p>
-                Our differentiator is simple: we build. Every product decision
-                is tested against real deployments, real data, and real
-                operating conditions — not a slide in a pitch deck.
-              </p>
-            </div>
+            </blockquote>
           </Reveal>
         </div>
-      </Section>
+      </section>
 
-      {milestones.length > 0 && (
-        <Section id="timeline" className="border-t border-line">
-          <SectionHeading eyebrow="Timeline" title="How we got here" />
-          <div className="mt-10 max-w-xl">
-            <Timeline items={milestones} />
-          </div>
-        </Section>
-      )}
-
-      <section
-        id="values"
-        className="relative border-y border-line bg-bg-soft/40 py-20 sm:py-28"
-      >
-        <div className="container-px">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Values"
-              title="How we work"
-              align="center"
-            />
+      {/* Values */}
+      <section className="section-y" aria-labelledby="values">
+        <div className="container">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-cyan">How we work</p>
+            <h2 id="values" className="mt-4 text-3xl font-bold md:text-5xl">
+              Four principles we hold ourselves to
+            </h2>
           </Reveal>
-          <div className="mx-auto mt-12 grid max-w-5xl gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
             {values.map((v, i) => (
-              <Reveal key={v.title} delay={i * 0.06} className="h-full">
-                <div className="h-full bg-bg-card/80 p-6">
-                  <span className="font-display text-xl font-bold text-line">
-                    0{i + 1}
+              <Reveal key={v.n} delay={0.08 * i}>
+                <Card className="glass-card glow-border relative h-full overflow-hidden border-foreground/10 bg-foreground/[0.03] p-8">
+                  <span
+                    aria-hidden
+                    className="absolute -right-2 -top-4 select-none text-8xl font-bold leading-none text-transparent [-webkit-text-stroke:1.5px_rgb(59_130_246/0.35)]"
+                  >
+                    {v.n}
                   </span>
-                  <h3 className="heading mt-2 text-base">{v.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                    {v.body}
-                  </p>
-                  <p className="mt-3 border-t border-line pt-3 text-xs leading-relaxed text-ink-faint">
-                    {v.proof}
-                  </p>
-                </div>
+                  <h3 className="relative text-2xl font-bold">{v.title}</h3>
+                  <p className="relative mt-4 text-base font-medium text-foreground/90">{v.lead}</p>
+                  <p className="relative mt-2 text-base">{v.body}</p>
+                </Card>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <Section id="trust-strip">
-        <div className="surface-certificate mx-auto max-w-3xl p-8 text-center">
-          <span className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#6B6248]">
-            Registered &amp; recognised
-          </span>
-          <p className="mt-3 text-sm font-medium">{site.legalName}</p>
-          {site.cin && <p className="mt-1 text-sm">CIN: {site.cin}</p>}
-          {certifications.length > 0 && (
-            <ul className="mt-5 flex flex-wrap justify-center gap-3">
-              {certifications.map((c) => (
-                <li
-                  key={c.name}
-                  className="inline-flex items-center gap-1.5 rounded-md border border-[#1A1F26]/15 bg-white/50 px-3 py-1 font-mono text-xs font-medium"
-                >
-                  <span className="h-1.5 w-1.5 rounded-full bg-green-deep" />
-                  {c.name}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </Section>
+      {/* Registered & recognised */}
+      <section className="pb-24" aria-label="Registered and recognised">
+        <Reveal className="container flex justify-center">
+          <div className="glass-card flex items-center gap-4 rounded-full px-6 py-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-primary text-white">
+              <BadgeCheck className="h-5 w-5" aria-hidden />
+            </span>
+            <div className="text-left">
+              <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Registered &amp; recognised</p>
+              <p className="text-sm font-semibold text-foreground">{site.legalName}</p>
+            </div>
+          </div>
+        </Reveal>
+      </section>
 
-      <CTA
-        title="Want to talk to the team, not a slide deck?"
+      <CTABanner
+        heading="Want to talk to the team, not a slide deck?"
         body="We're the people who built Aegis, Argus, and ExploitSense — happy to walk you through how, and why, on a call."
-        primaryLabel="Talk to us"
+        primary={{ label: "Talk to us", href: "/contact" }}
+        secondary={{ label: "Explore Our Platforms", href: "/solutions" }}
       />
     </>
   );
