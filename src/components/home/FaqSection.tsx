@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Section } from "@/components/ui/section";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const faqs = [
@@ -30,16 +31,16 @@ const faqs = [
 
 export function FaqSection() {
   return (
-    <section className="section-y" aria-labelledby="faq">
-      <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+    <Section tone="slate" seed="faq" aria-labelledby="faq">
+      <div className="container grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.9 }}
           className="lg:sticky lg:top-28 lg:self-start"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-cyan">FAQ</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-amber">FAQ</p>
           <h2 id="faq" className="mt-4 text-3xl font-bold leading-[1.1] md:text-5xl">
             Common questions before you talk to us
           </h2>
@@ -51,18 +52,18 @@ export function FaqSection() {
           </Button>
         </motion.div>
 
-        <Accordion type="single" collapsible defaultValue="item-0" className="space-y-3">
+        <Accordion type="single" collapsible defaultValue="item-0" className="space-y-4">
           {faqs.map((f, i) => (
             <motion.div
               key={f.q}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ delay: 0.05 * i, duration: 0.5 }}
+              transition={{ delay: 0.08 * i, duration: 0.8 }}
             >
               <AccordionItem
                 value={`item-${i}`}
-                className="glass-card rounded-xl border border-foreground/10 border-l-2 border-l-transparent px-5 transition-colors data-[state=open]:border-l-blue-500 data-[state=open]:bg-foreground/[0.05]"
+                className="glass-card rounded-xl border border-foreground/10 border-l-2 border-l-transparent px-5 transition-colors data-[state=open]:border-l-brand-green data-[state=open]:bg-foreground/[0.05]"
               >
                 <AccordionTrigger className="text-base font-semibold md:text-lg">{f.q}</AccordionTrigger>
                 <AccordionContent className="text-base text-slate-400">{f.a}</AccordionContent>
@@ -71,6 +72,6 @@ export function FaqSection() {
           ))}
         </Accordion>
       </div>
-    </section>
+    </Section>
   );
 }

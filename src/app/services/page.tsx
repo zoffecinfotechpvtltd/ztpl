@@ -5,6 +5,7 @@ import { ServicesTabs } from "@/components/ServicesTabs";
 import { CTABanner } from "@/components/CTABanner";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
+import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -22,17 +23,17 @@ export default function ServicesPage() {
         body="Software alone doesn't close every gap. Our practitioners offer these services alongside Zoffec Aegis, Argus, and ExploitSense for teams that need hands and heads, not just a tool."
       />
 
-      <section className="section-y" aria-label="Our services">
+      <Section tone="ink" seed="services-tabs" aria-label="Our services">
         <div className="container">
           <ServicesTabs />
         </div>
-      </section>
+      </Section>
 
       {/* Mid-page strip — violet tint to break the rhythm before the closing CTA */}
-      <section className="pb-24 lg:pb-32" aria-labelledby="gaps">
+      <Section tone="slate" seed="services-gaps" aria-labelledby="gaps">
         <Reveal className="container">
-          <div className="relative overflow-hidden rounded-3xl border border-violet-400/25 bg-gradient-to-br from-violet-600/20 via-fuchsia-500/10 to-transparent px-8 py-14 text-center backdrop-blur-xl md:px-16">
-            <div aria-hidden className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-fuchsia-500/20 blur-3xl" />
+          <div className="relative overflow-hidden rounded-3xl border border-brand-green/25 bg-gradient-to-br from-brand-green/15 via-brand-green/5 to-transparent px-8 py-16 text-center backdrop-blur-xl md:px-16">
+            <div aria-hidden className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-brand-green/20 blur-3xl" />
             <h2 id="gaps" className="relative text-3xl font-bold md:text-4xl">
               Not sure where your gaps are?
             </h2>
@@ -40,12 +41,12 @@ export default function ServicesPage() {
               Start with a CSCRF gap assessment. We&apos;ll map your obligations, score your readiness, and give you a
               prioritised path to compliant.
             </p>
-            <Button asChild variant="gradient" size="lg" className="relative mt-8 bg-gradient-secondary">
+            <Button asChild variant="gradient" size="lg" className="relative mt-8">
               <Link href="/contact">Talk to us</Link>
             </Button>
           </div>
         </Reveal>
-      </section>
+      </Section>
 
       <CTABanner />
     </>

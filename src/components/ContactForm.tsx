@@ -36,8 +36,8 @@ function Field({
   const [focused, setFocused] = useState(false);
   return (
     <motion.div
-      animate={{ scale: focused ? 1.012 : 1 }}
-      transition={{ type: "spring", stiffness: 400, damping: 28 }}
+      animate={{ scale: focused ? 1.004 : 1 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
       onFocusCapture={() => setFocused(true)}
       onBlurCapture={() => setFocused(false)}
       className="space-y-2"
@@ -101,7 +101,7 @@ export function ContactForm() {
   };
 
   return (
-    <div className="relative rounded-3xl bg-gradient-to-br from-blue-500/40 via-transparent to-violet-500/40 p-px shadow-[0_0_80px_-30px_rgb(59_130_246/0.7)]">
+    <div className="relative rounded-3xl bg-gradient-to-br from-brand-green/40 via-transparent to-brand-green/10 p-px shadow-[0_0_80px_-30px_rgb(0_210_106/0.5)]">
       <div className="glass-card rounded-3xl bg-card/80 p-8 md:p-10">
         <AnimatePresence mode="wait" initial={false}>
           {status === "sent" ? (

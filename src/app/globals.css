@@ -3,45 +3,45 @@
 @tailwind utilities;
 
 /* Design tokens — space-separated RGB channels so Tailwind alpha modifiers work.
-   Light palette on :root, dark palette on .dark (the site ships dark-first). */
+   Palette comes from the ZTPL logo: Amber yellow + Emerald green on Ink.
+   The site ships dark-first; the light palette is kept coherent but unused. */
 @layer base {
   :root {
-    --background: 248 250 252; /* #F8FAFC */
-    --foreground: 11 18 32; /* #0B1220 */
-    --surface: 255 255 255;
+    --background: 250 250 247;
+    --foreground: 11 13 17;
+    --surface: 244 244 240;
     --card: 255 255 255;
-    --card-foreground: 11 18 32;
-    --muted: 241 245 249;
-    --muted-foreground: 71 85 105; /* slate-600 */
-    --border: 203 213 225; /* slate-300 */
-    --primary: 37 99 235; /* blue-600 for AA on light */
+    --card-foreground: 11 13 17;
+    --muted: 236 238 240;
+    --muted-foreground: 71 80 95;
+    --border: 214 218 224;
+    --primary: 0 150 74; /* deep emerald, AA against white */
     --primary-foreground: 255 255 255;
-    --secondary: 226 232 240;
-    --secondary-foreground: 11 18 32;
+    --secondary: 236 238 240;
+    --secondary-foreground: 11 13 17;
     --destructive: 220 38 38;
-    --success: 5 150 105;
-    --brand-blue: 59 130 246; /* #3B82F6 */
-    --brand-cyan: 34 211 238; /* #22D3EE */
-    --brand-violet: 124 58 237; /* #7C3AED */
-    --brand-fuchsia: 217 70 239; /* #D946EF */
+    --success: 0 150 74;
+    --brand-green: 0 210 106; /* Emerald  #00D26A */
+    --brand-deep: 0 166 81; /* Emerald flow end #00A651 */
+    --brand-amber: 255 193 7; /* Amber    #FFC107 */
     color-scheme: light;
   }
 
   .dark {
-    --background: 11 18 32; /* #0B1220 */
-    --foreground: 248 250 252;
-    --surface: 20 27 46; /* #141B2E */
-    --card: 17 24 39; /* #111827 */
-    --card-foreground: 248 250 252;
-    --muted: 30 41 59;
-    --muted-foreground: 148 163 184; /* slate-400 */
-    --border: 30 41 59; /* slate-800 */
-    --primary: 59 130 246;
-    --primary-foreground: 255 255 255;
-    --secondary: 30 41 59;
-    --secondary-foreground: 248 250 252;
-    --destructive: 239 68 68;
-    --success: 16 185 129; /* #10B981 */
+    --background: 11 13 17; /* Ink    #0B0D11 */
+    --foreground: 255 255 255;
+    --surface: 18 22 28; /* Slate  #12161C */
+    --card: 26 31 38; /* Steel  #1A1F26 */
+    --card-foreground: 255 255 255;
+    --muted: 26 31 38;
+    --muted-foreground: 155 167 184; /* #9BA7B8, ~8:1 on Ink */
+    --border: 42 47 55; /* Stone  #2A2F37 */
+    --primary: 0 210 106;
+    --primary-foreground: 11 13 17; /* dark text on emerald: white fails contrast */
+    --secondary: 26 31 38;
+    --secondary-foreground: 255 255 255;
+    --destructive: 229 72 77;
+    --success: 0 210 106;
     color-scheme: dark;
   }
 
@@ -57,7 +57,8 @@
     @apply text-balance font-bold tracking-tight text-foreground;
   }
   ::selection {
-    background: rgb(var(--brand-blue) / 0.35);
+    background: rgb(var(--brand-green) / 0.32);
+    color: #fff;
   }
 }
 
@@ -65,28 +66,26 @@
   .gradient-mesh-hero {
     background-color: rgb(var(--background));
     background-image:
-      radial-gradient(45rem 32rem at 12% 8%, rgb(59 130 246 / 0.28), transparent 65%),
-      radial-gradient(38rem 30rem at 88% 4%, rgb(124 58 237 / 0.24), transparent 65%),
-      radial-gradient(40rem 28rem at 60% 96%, rgb(34 211 238 / 0.18), transparent 65%);
+      radial-gradient(44rem 30rem at 10% 6%, rgb(0 210 106 / 0.17), transparent 65%),
+      radial-gradient(38rem 28rem at 92% 4%, rgb(255 193 7 / 0.05), transparent 65%),
+      radial-gradient(40rem 26rem at 58% 100%, rgb(0 210 106 / 0.1), transparent 65%);
   }
   .gradient-mesh-rich {
     background-color: rgb(var(--background));
     background-image:
-      radial-gradient(40rem 26rem at 10% 20%, rgb(59 130 246 / 0.42), transparent 65%),
-      radial-gradient(40rem 28rem at 92% 80%, rgb(124 58 237 / 0.42), transparent 65%),
-      radial-gradient(30rem 20rem at 55% 0%, rgb(34 211 238 / 0.22), transparent 65%);
+      radial-gradient(38rem 26rem at 8% 18%, rgb(0 210 106 / 0.26), transparent 65%),
+      radial-gradient(38rem 26rem at 94% 82%, rgb(0 166 81 / 0.2), transparent 65%),
+      radial-gradient(28rem 18rem at 55% 0%, rgb(0 210 106 / 0.12), transparent 65%);
   }
+  /* Pale mint → emerald: one hue, no muddy yellow-green mix */
   .gradient-text {
-    @apply bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent;
-  }
-  .gradient-text-violet {
-    @apply bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[#A5F7CC] to-brand-green bg-clip-text text-transparent;
   }
   .glass-card {
     @apply rounded-2xl border border-foreground/10 bg-foreground/[0.03] backdrop-blur-xl;
   }
   .glow-border {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/60 hover:shadow-[0_0_40px_-10px_rgb(59_130_246)];
+    @apply transition-all duration-500 hover:-translate-y-0.5 hover:border-brand-green/50 hover:shadow-[0_0_40px_-12px_rgb(0_210_106/0.7)];
   }
   .grid-pattern {
     background-image: radial-gradient(rgb(var(--foreground) / 0.12) 1px, transparent 1px);
@@ -97,9 +96,6 @@
   .mask-fade-x {
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  }
-  .section-y {
-    @apply py-24 lg:py-32;
   }
 }
 

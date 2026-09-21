@@ -34,9 +34,9 @@ export default function ContactPage() {
   return (
     <div className="relative overflow-hidden">
       <DriftBlobs />
-      <div className="container grid gap-16 pb-24 pt-32 lg:grid-cols-2 lg:pb-32 lg:pt-40">
+      <div className="container grid gap-20 pb-28 pt-40 lg:grid-cols-2 lg:pb-40 lg:pt-48">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-cyan">Contact</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-amber">Contact</p>
           <h1 className="mt-4 text-4xl font-bold leading-[1.05] md:text-6xl">
             Let&apos;s talk <span className="gradient-text">platforms</span>
           </h1>
@@ -45,10 +45,10 @@ export default function ContactPage() {
             what you need — we meet you there.
           </p>
 
-          <ul className="mt-10 space-y-4">
+          <ul className="mt-12 space-y-5">
             {info.map(({ label, Icon, lines }) => (
               <li key={label} className="glass-card flex items-start gap-4 p-5">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-primary text-white">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-primary text-primary-foreground">
                   <Icon className="h-5 w-5" aria-hidden />
                 </span>
                 <div className="min-w-0">
@@ -56,7 +56,7 @@ export default function ContactPage() {
                   {lines.map((l) => (
                     <p key={l.text} className="mt-1 break-words text-base font-medium text-foreground">
                       {"href" in l ? (
-                        <a href={l.href} className="transition-colors hover:text-brand-cyan">
+                        <a href={l.href} className="transition-colors hover:text-brand-amber">
                           {l.text}
                         </a>
                       ) : (
@@ -75,11 +75,11 @@ export default function ContactPage() {
             className="glass-card relative mt-6 flex h-36 items-center justify-center overflow-hidden"
           >
             <div className="grid-pattern absolute inset-0" />
-            <div className="absolute h-40 w-40 rounded-full border border-brand-cyan/20" />
-            <div className="absolute h-24 w-24 rounded-full border border-brand-cyan/30" />
+            <div className="absolute h-40 w-40 rounded-full border border-brand-green/20" />
+            <div className="absolute h-24 w-24 rounded-full border border-brand-green/30" />
             <span className="relative flex h-3 w-3">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-cyan/70" />
-              <span className="relative inline-flex h-3 w-3 rounded-full bg-brand-cyan" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-green/70" />
+              <span className="relative inline-flex h-3 w-3 rounded-full bg-brand-green" />
             </span>
             <span className="absolute bottom-3 right-4 font-mono text-[11px] text-muted-foreground">
               Mumbai · 19.07°N 72.88°E

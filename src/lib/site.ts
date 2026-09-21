@@ -20,10 +20,10 @@ export const site = {
   phone: "+91 87790 21628",
   phoneAlt: "+91 98194 78648",
   location: "Mumbai, India",
-  // Real CIN / founding year not yet supplied — omit rather than ship a
-  // bracketed placeholder. Set these once the incorporation docs are in hand.
-  cin: undefined as string | undefined,
-  founded: undefined as string | undefined,
+  // Registered particulars (Ministry of Corporate Affairs / GST portal).
+  cin: "U62091MH2026PTC473298",
+  gstin: "27AADCZ0916E1ZH",
+  founded: "2026",
   socials: {
     linkedin: "https://www.linkedin.com/company/ztpl",
   },

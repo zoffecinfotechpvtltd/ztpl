@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { Section } from "@/components/ui/section";
 
 const items = [
   {
@@ -26,7 +27,7 @@ const items = [
 
 export function HowWeEngineer() {
   return (
-    <section className="section-y" aria-labelledby="how-we-engineer">
+    <Section tone="slate" seed="engineer" aria-labelledby="how-we-engineer">
       <div className="container">
         <SectionHeading
           eyebrow="How we engineer"
@@ -38,22 +39,22 @@ export function HowWeEngineer() {
           {/* Timeline spine */}
           <div
             aria-hidden
-            className="absolute bottom-4 left-4 top-4 w-px bg-gradient-to-b from-blue-500 via-cyan-400 to-violet-500 md:left-[5.5rem]"
+            className="absolute bottom-4 left-4 top-4 w-px bg-gradient-to-b from-brand-green via-brand-green/50 to-transparent md:left-[5.5rem]"
           />
 
-          <ol className="space-y-16 md:space-y-20">
+          <ol className="space-y-20 md:space-y-28">
             {items.map((it) => (
               <motion.li
                 key={it.n}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
                 className="relative grid gap-4 pl-12 md:grid-cols-[11rem_1fr] md:gap-10 md:pl-0"
               >
                 <span
                   aria-hidden
-                  className="z-10 -ml-1 select-none self-start bg-background py-1 pr-2 text-6xl font-bold leading-none text-transparent [-webkit-text-stroke:1.5px_rgb(59_130_246/0.55)] md:text-8xl md:pr-4"
+                  className="z-10 -ml-1 select-none self-start bg-surface py-1 pr-2 text-6xl font-bold leading-none text-transparent [-webkit-text-stroke:1.5px_rgb(0_210_106/0.5)] md:text-8xl md:pr-4"
                 >
                   {it.n}
                 </span>
@@ -67,6 +68,6 @@ export function HowWeEngineer() {
           </ol>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

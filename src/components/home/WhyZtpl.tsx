@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { CountUp } from "@/components/ui/count-up";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { Section } from "@/components/ui/section";
 
 const stats = [
   { end: 3, pad: 2, label: "Platforms engineered in-house" },
@@ -17,8 +18,8 @@ function ProgressRing({ delay }: { delay: number }) {
       <svg viewBox="0 0 120 120" className="h-full w-full -rotate-90" aria-hidden>
         <defs>
           <linearGradient id="ring-grad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#3B82F6" />
-            <stop offset="100%" stopColor="#22D3EE" />
+            <stop offset="0%" stopColor="#00A651" />
+            <stop offset="100%" stopColor="#5CF0A5" />
           </linearGradient>
         </defs>
         <circle cx="60" cy="60" r="52" fill="none" stroke="rgb(255 255 255 / 0.1)" strokeWidth="8" />
@@ -33,7 +34,7 @@ function ProgressRing({ delay }: { delay: number }) {
           initial={{ pathLength: 0 }}
           whileInView={{ pathLength: 1 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ delay, duration: 2, ease: "easeOut" }}
+          transition={{ delay, duration: 2.6, ease: "easeOut" }}
         />
       </svg>
       <CountUp
@@ -48,7 +49,7 @@ function ProgressRing({ delay }: { delay: number }) {
 
 export function WhyZtpl() {
   return (
-    <section className="gradient-mesh-rich relative overflow-hidden py-24 lg:py-32" aria-labelledby="why-ztpl">
+    <Section tone="none" pad="md" seed="why" className="gradient-mesh-rich overflow-hidden" aria-labelledby="why-ztpl">
       <div className="grid-pattern pointer-events-none absolute inset-0 opacity-60" aria-hidden />
       <div className="container relative">
         <SectionHeading
@@ -57,14 +58,14 @@ export function WhyZtpl() {
           description="Every platform we ship comes out of the same team, the same codebase discipline, and the same deployment standard."
         />
 
-        <div className="mt-16 grid grid-cols-2 gap-y-12 lg:grid-cols-4 lg:gap-y-0">
+        <div className="mt-20 grid grid-cols-2 gap-y-14 lg:grid-cols-4 lg:gap-y-0">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ delay: 0.1 * i, duration: 0.6 }}
+              transition={{ delay: 0.15 * i, duration: 0.9 }}
               className="flex flex-col items-center justify-start px-4 text-center lg:border-r lg:border-white/10"
             >
               <CountUp
@@ -80,10 +81,10 @@ export function WhyZtpl() {
           ))}
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0.45, duration: 0.9 }}
             className="flex flex-col items-center px-4 text-center"
           >
             <ProgressRing delay={0.3} />
@@ -93,6 +94,6 @@ export function WhyZtpl() {
           </motion.div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

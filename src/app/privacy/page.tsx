@@ -83,7 +83,7 @@ export default function PrivacyPage() {
         Subject to applicable law, including the Digital Personal Data Protection Act, 2023, you may ask us to give
         you a summary of the personal information we hold about you, correct or update it, erase it, or stop
         processing it, and you may nominate someone to exercise these rights on your behalf. To do so, or to raise a
-        concern or complaint, email <a href={`mailto:${site.email}`} className="text-brand-cyan hover:underline">{site.email}</a>.
+        concern or complaint, email <a href={`mailto:${site.email}`} className="text-brand-amber hover:underline">{site.email}</a>.
         We aim to respond within 30 days. If you are not satisfied with our response, you may approach the Data
         Protection Board of India.
       </p>
@@ -101,9 +101,11 @@ export default function PrivacyPage() {
       <p>
         {site.legalName}, {site.location}
         <br />
-        Email: <a href={`mailto:${site.email}`} className="text-brand-cyan hover:underline">{site.email}</a>
+        Email: <a href={`mailto:${site.email}`} className="text-brand-amber hover:underline">{site.email}</a>
         <br />
         Phone: {site.phone}
+        <br />
+        CIN: {site.cin} · GSTIN: {site.gstin}
       </p>
     </LegalPage>
   );

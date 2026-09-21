@@ -3,7 +3,7 @@ import Link from "next/link";
 
 /**
  * Brand assets — uses the real artwork in /public.
- *  - logo-transparent.png : horizontallogo.png with its black backdrop keyed out, for header/footer on dark UI
+ *  - logo-header.png : mark + ZTPL wordmark, black backdrop keyed out, tagline removed (it is unreadable at header size)
  *  - horizontallogo.png : original opaque full lockup (mark + ZTPL + tagline)
  *  - logo.jpeg          : square lockup for hero feature / social cards
  */
@@ -16,13 +16,13 @@ export function Logo({ className = "" }: { className?: string }) {
       className={`group inline-flex items-center ${className}`}
     >
       <Image
-        src="/logo-transparent.png"
+        src="/logo-header.png"
         alt="ZTPL — Compliance Simplified"
-        width={360}
-        height={121}
+        width={900}
+        height={288}
         priority
-        sizes="140px"
-        className="h-10 w-auto transition-transform duration-500 ease-smooth group-hover:scale-[1.03] sm:h-11"
+        sizes="180px"
+        className="h-9 w-auto transition-opacity duration-500 group-hover:opacity-85 sm:h-10"
       />
     </Link>
   );
@@ -34,8 +34,8 @@ export function LogoSquare({ className = "h-40 w-40" }: { className?: string }) 
     <Image
       src="/logo.jpeg"
       alt="ZTPL"
-      width={1242}
-      height={1242}
+      width={900}
+        height={288}
       sizes="200px"
       className={`rounded-3xl ${className}`}
     />

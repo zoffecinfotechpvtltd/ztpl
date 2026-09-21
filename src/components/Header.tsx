@@ -80,7 +80,7 @@ export function Header({ transparentOnLoad = true }: HeaderProps) {
                         <motion.span
                           layoutId="nav-underline"
                           className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gradient-primary"
-                          transition={{ type: "spring", stiffness: 500, damping: 38 }}
+                          transition={{ type: "spring", stiffness: 220, damping: 32 }}
                         />
                       )}
                     </Link>
@@ -123,7 +123,7 @@ export function Header({ transparentOnLoad = true }: HeaderProps) {
                         key={item.href}
                         initial={{ opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.06 * i + 0.05, duration: 0.35 }}
+                        transition={{ delay: 0.08 * i + 0.05, duration: 0.6 }}
                       >
                         <DialogClose asChild>
                           <Link
@@ -141,7 +141,7 @@ export function Header({ transparentOnLoad = true }: HeaderProps) {
                     <motion.div
                       initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.06 * nav.length + 0.1, duration: 0.35 }}
+                      transition={{ delay: 0.08 * nav.length + 0.1, duration: 0.6 }}
                       className="mt-8"
                     >
                       <DialogClose asChild>

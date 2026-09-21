@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProductMockup } from "@/components/ProductMockup";
+import { PlatformMark, PlatformWordmark } from "@/components/PlatformLogo";
+import { Section } from "@/components/ui/section";
 import { LaunchButton, StatusBadge } from "@/components/PlatformStatus";
 import { platforms } from "@/lib/platforms";
 import { cn } from "@/lib/utils";
@@ -19,7 +21,7 @@ export function PlatformsTabs() {
   const a = current.accent;
 
   return (
-    <section className="section-y" aria-labelledby="what-we-build">
+    <Section tone="slate" seed="platforms" aria-labelledby="what-we-build">
       <div className="container">
         <SectionHeading
           eyebrow="What we build"
@@ -40,10 +42,8 @@ export function PlatformsTabs() {
                     on ? "border-foreground/15 bg-foreground/[0.06]" : "border-foreground/10 bg-foreground/[0.02]",
                   )}
                 >
-                  <span
-                    className={cn("flex h-9 w-9 items-center justify-center rounded-lg bg-foreground/[0.06]", p.accent.text)}
-                  >
-                    <p.Icon className="h-5 w-5" />
+                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-foreground/[0.07]">
+                    <PlatformMark platform={p} size={22} />
                   </span>
                   <span className="font-semibold">{p.name}</span>
                   {on && (
@@ -60,9 +60,9 @@ export function PlatformsTabs() {
           <TabsContent value={active} className="mt-10">
             <motion.div
               key={active}
-              initial={{ opacity: 0, x: 40 }}
+              initial={{ opacity: 0, x: 14 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="grid items-center gap-12 lg:grid-cols-2"
             >
               <div>
@@ -70,7 +70,14 @@ export function PlatformsTabs() {
                   <Badge variant={a.badge}>{current.category}</Badge>
                   <StatusBadge platform={current} />
                 </div>
-                <h3 className={cn("mt-5 text-4xl font-bold md:text-5xl", a.gradientText)}>{current.name}</h3>
+                {current.wordmark ? (
+                  <>
+                    <PlatformWordmark platform={current} className="mt-5" />
+                    <h3 className="sr-only">{current.name}</h3>
+                  </>
+                ) : (
+                  <h3 className={cn("mt-5 text-4xl font-bold md:text-5xl", a.gradientText)}>{current.name}</h3>
+                )}
                 <p className="mt-3 text-lg font-medium text-foreground">{current.subtitle}</p>
                 <p className="mt-4 text-base">{current.description}</p>
 
@@ -80,8 +87,9 @@ export function PlatformsTabs() {
                       <li key={f} className="flex items-center gap-3 text-foreground/90">
                         <span
                           className={cn(
-                            "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br text-white",
+                            "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br",
                             a.gradientBg,
+                            a.onAccent,
                           )}
                         >
                           <Check className="h-3 w-3" strokeWidth={3} />
@@ -107,6 +115,6 @@ export function PlatformsTabs() {
           </TabsContent>
         </Tabs>
       </div>
-    </section>
+    </Section>
   );
 }

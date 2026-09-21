@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { DotNetwork } from "@/components/ui/dot-network";
 
 export default function NotFound() {
   return (
     <section className="gradient-mesh-hero relative overflow-hidden">
-      <div className="grid-pattern pointer-events-none absolute inset-0" aria-hidden />
+      <DotNetwork />
       <div className="container relative flex min-h-[80vh] flex-col items-center justify-center pb-24 pt-32 text-center">
         <p className="gradient-text text-7xl font-bold md:text-9xl">404</p>
         <h1 className="mt-4 text-3xl font-bold md:text-5xl">This page isn&apos;t in scope</h1>

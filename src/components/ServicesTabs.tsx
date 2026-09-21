@@ -38,7 +38,7 @@ export function ServicesTabs() {
       value={active}
       onValueChange={setActive}
       orientation={desktop ? "vertical" : "horizontal"}
-      className="grid gap-8 lg:grid-cols-[18rem_1fr] lg:gap-14"
+      className="grid gap-10 lg:grid-cols-[18rem_1fr] lg:gap-16"
     >
       <TabsList
         aria-label="Services"
@@ -54,11 +54,11 @@ export function ServicesTabs() {
               className={cn(
                 "shrink-0 snap-start gap-3 rounded-full border px-4 py-2.5 lg:rounded-xl lg:border-0 lg:border-l-2 lg:px-4 lg:py-4 lg:text-base",
                 on
-                  ? "border-brand-blue/50 bg-foreground/[0.06] lg:border-l-blue-500"
+                  ? "border-brand-green/50 bg-foreground/[0.06] lg:border-l-brand-green"
                   : "border-foreground/10 lg:border-l-transparent",
               )}
             >
-              <Icon className={cn("h-5 w-5", on ? "text-brand-cyan" : "text-muted-foreground")} aria-hidden />
+              <Icon className={cn("h-5 w-5", on ? "text-brand-green" : "text-muted-foreground")} aria-hidden />
               {s.title}
             </TabsTrigger>
           );
@@ -68,9 +68,9 @@ export function ServicesTabs() {
       <TabsContent value={active}>
         <motion.div
           key={active}
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.25 }}
+          transition={{ duration: 0.5 }}
           className="glass-card p-8 md:p-10"
         >
           <h2 className="text-3xl font-bold md:text-4xl">{current.title}</h2>
@@ -78,7 +78,7 @@ export function ServicesTabs() {
           <ul className="mt-8 space-y-4">
             {current.points.map((pt) => (
               <li key={pt} className="flex items-center gap-3 text-foreground/90">
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-primary text-white">
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-primary text-primary-foreground">
                   <Check className="h-3 w-3" strokeWidth={3} />
                 </span>
                 {pt}

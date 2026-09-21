@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { BadgeCheck } from "lucide-react";
+import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
 import { CTABanner } from "@/components/CTABanner";
 import { Reveal } from "@/components/ui/reveal";
 import { Card } from "@/components/ui/card";
+import { Section } from "@/components/ui/section";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -50,15 +51,15 @@ export default function AboutPage() {
       />
 
       {/* Our story */}
-      <section className="section-y" aria-labelledby="our-story">
+      <Section tone="ink" seed="about-story" aria-labelledby="our-story">
         <div className="container grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-cyan">Our story</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-amber">Our story</p>
             <h2 id="our-story" className="mt-4 text-3xl font-bold leading-[1.1] md:text-5xl">
               Why we exist
             </h2>
           </Reveal>
-          <Reveal delay={0.1} className="space-y-6 border-l border-transparent text-base md:text-lg lg:border-l-blue-500/40 lg:pl-10">
+          <Reveal delay={0.1} className="space-y-6 border-l border-transparent text-base md:text-lg lg:border-l-brand-green/40 lg:pl-10">
             <p>
               Regulated businesses in India run on tools that weren&apos;t built for the frameworks they actually
               answer to. Spreadsheets break. Generic GRC suites don&apos;t speak CSCRF. Point tools don&apos;t talk
@@ -71,13 +72,13 @@ export default function AboutPage() {
             </p>
           </Reveal>
         </div>
-      </section>
+      </Section>
 
       {/* Mission */}
-      <section className="section-y bg-surface/40" aria-labelledby="mission">
+      <Section tone="slate" seed="about-mission" aria-labelledby="mission">
         <div className="container">
           <Reveal className="mx-auto max-w-4xl">
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-brand-cyan">Mission</p>
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-brand-amber">Mission</p>
             <h2 id="mission" className="mt-4 text-center text-3xl font-bold md:text-4xl">
               What we&apos;re here to do
             </h2>
@@ -99,24 +100,24 @@ export default function AboutPage() {
             </blockquote>
           </Reveal>
         </div>
-      </section>
+      </Section>
 
       {/* Values */}
-      <section className="section-y" aria-labelledby="values">
+      <Section tone="ink" seed="about-values" aria-labelledby="values">
         <div className="container">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-cyan">How we work</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-amber">How we work</p>
             <h2 id="values" className="mt-4 text-3xl font-bold md:text-5xl">
               Four principles we hold ourselves to
             </h2>
           </Reveal>
-          <div className="mt-14 grid gap-6 md:grid-cols-2">
+          <div className="mt-16 grid gap-8 md:grid-cols-2">
             {values.map((v, i) => (
               <Reveal key={v.n} delay={0.08 * i}>
                 <Card className="glass-card glow-border relative h-full overflow-hidden border-foreground/10 bg-foreground/[0.03] p-8">
                   <span
                     aria-hidden
-                    className="absolute -right-2 -top-4 select-none text-8xl font-bold leading-none text-transparent [-webkit-text-stroke:1.5px_rgb(59_130_246/0.35)]"
+                    className="absolute -right-2 -top-4 select-none text-8xl font-bold leading-none text-transparent [-webkit-text-stroke:1.5px_rgb(0_210_106/0.3)]"
                   >
                     {v.n}
                   </span>
@@ -128,22 +129,28 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* Registered & recognised */}
-      <section className="pb-24" aria-label="Registered and recognised">
+      <Section tone="slate" pad="sm" seed="about-registered" aria-label="Registered and recognised">
         <Reveal className="container flex justify-center">
-          <div className="glass-card flex items-center gap-4 rounded-full px-6 py-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-primary text-white">
-              <BadgeCheck className="h-5 w-5" aria-hidden />
-            </span>
-            <div className="text-left">
-              <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Registered &amp; recognised</p>
-              <p className="text-sm font-semibold text-foreground">{site.legalName}</p>
-            </div>
+          <div className="glass-card w-full max-w-2xl px-8 py-8 text-center">
+            <Image src="/logo-mark.png" alt="" width={381} height={382} className="mx-auto h-14 w-auto" />
+            <p className="mt-4 text-xs uppercase tracking-[0.18em] text-muted-foreground">Registered &amp; recognised</p>
+            <p className="mt-1 text-lg font-semibold text-foreground">{site.legalName}</p>
+            <dl className="mt-5 grid gap-3 text-sm sm:grid-cols-2">
+              <div className="rounded-xl border border-foreground/10 bg-background/40 px-4 py-3">
+                <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">CIN</dt>
+                <dd className="mt-1 break-all font-mono text-foreground">{site.cin}</dd>
+              </div>
+              <div className="rounded-xl border border-foreground/10 bg-background/40 px-4 py-3">
+                <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">GSTIN</dt>
+                <dd className="mt-1 font-mono text-foreground">{site.gstin}</dd>
+              </div>
+            </dl>
           </div>
         </Reveal>
-      </section>
+      </Section>
 
       <CTABanner
         heading="Want to talk to the team, not a slide deck?"

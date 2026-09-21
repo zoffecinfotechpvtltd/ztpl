@@ -81,7 +81,7 @@ export default function TermsPage() {
       <H2>9. Privacy</H2>
       <p>
         How we handle personal information is described in our{" "}
-        <Link href="/privacy" className="text-brand-cyan hover:underline">
+        <Link href="/privacy" className="text-brand-amber hover:underline">
           Privacy Policy
         </Link>
         .
@@ -103,7 +103,9 @@ export default function TermsPage() {
       <p>
         {site.legalName}, {site.location}
         <br />
-        Email: <a href={`mailto:${site.email}`} className="text-brand-cyan hover:underline">{site.email}</a>
+        Email: <a href={`mailto:${site.email}`} className="text-brand-amber hover:underline">{site.email}</a>
+        <br />
+        CIN: {site.cin} · GSTIN: {site.gstin}
       </p>
     </LegalPage>
   );

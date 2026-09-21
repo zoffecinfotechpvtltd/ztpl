@@ -13,7 +13,7 @@ type Props = {
 };
 
 /** Counts from 0 once scrolled into view (react-countup scroll spy). */
-export function CountUp({ end, pad = 0, suffix = "", duration = 2, delay = 0, className }: Props) {
+export function CountUp({ end, pad = 0, suffix = "", duration = 2.6, delay = 0, className }: Props) {
   return (
     <span className={className}>
       <ReactCountUp

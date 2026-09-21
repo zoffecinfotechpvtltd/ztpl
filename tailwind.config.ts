@@ -31,21 +31,19 @@ const config: Config = {
         destructive: c("destructive"),
         success: c("success"),
         brand: {
-          blue: c("brand-blue"),
-          cyan: c("brand-cyan"),
-          violet: c("brand-violet"),
-          fuchsia: c("brand-fuchsia"),
+          green: c("brand-green"),
+          deep: c("brand-deep"),
+          amber: c("brand-amber"),
         },
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "Inter", "system-ui", "sans-serif"],
+        sans: ["var(--font-satoshi)", "system-ui", "sans-serif"],
         mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
       },
       borderRadius: { lg: "0.75rem", xl: "1rem", "2xl": "1.25rem", "3xl": "1.75rem" },
       backgroundImage: {
-        "gradient-primary": "linear-gradient(135deg, #3B82F6 0%, #22D3EE 100%)",
-        "gradient-secondary": "linear-gradient(135deg, #7C3AED 0%, #D946EF 100%)",
-        "gradient-cta": "linear-gradient(120deg, #1D4ED8 0%, #0E7490 50%, #6D28D9 100%)",
+        // Emerald only. Amber is a separate accent and is never blended into it (that reads as lime).
+        "gradient-primary": "linear-gradient(135deg, #2BE58A 0%, #00D26A 50%, #00B85C 100%)",
       },
       keyframes: {
         marquee: { from: { transform: "translateX(0)" }, to: { transform: "translateX(-50%)" } },
@@ -71,12 +69,12 @@ const config: Config = {
         },
       },
       animation: {
-        marquee: "marquee var(--marquee-duration, 40s) linear infinite",
+        marquee: "marquee var(--marquee-duration, 70s) linear infinite",
         "accordion-down": "accordion-down 0.25s ease-out",
         "accordion-up": "accordion-up 0.25s ease-out",
         "pulse-dot": "pulse-dot 1.8s ease-in-out infinite",
-        drift: "drift 24s ease-in-out infinite",
-        "gradient-shift": "gradient-shift 12s ease infinite",
+        drift: "drift 48s ease-in-out infinite",
+        "gradient-shift": "gradient-shift 24s ease infinite",
       },
     },
   },

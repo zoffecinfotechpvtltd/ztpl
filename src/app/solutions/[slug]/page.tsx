@@ -5,7 +5,9 @@ import { Check } from "lucide-react";
 import { CTABanner } from "@/components/CTABanner";
 import { ProductMockup } from "@/components/ProductMockup";
 import { LaunchButton, StatusBadge, launchCta } from "@/components/PlatformStatus";
-import { DriftBlobs } from "@/components/ui/drift-blobs";
+import { PlatformWordmark } from "@/components/PlatformLogo";
+import { Section } from "@/components/ui/section";
+import { DotNetwork } from "@/components/ui/dot-network";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Badge } from "@/components/ui/badge";
@@ -46,21 +48,31 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const plans = extra?.plans ?? [];
 
   return (
-    <div className="relative">
-      <DriftBlobs />
-
+    <>
       {/* Hero */}
-      <section className="gradient-mesh-hero relative overflow-hidden pb-20 pt-32 lg:pt-40">
-        <div className="grid-pattern pointer-events-none absolute inset-0" aria-hidden />
+      <section className="gradient-mesh-hero relative isolate overflow-hidden pb-28 pt-44">
+        <DotNetwork />
         <div className="container relative grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <div className="flex flex-wrap gap-2">
               <StatusBadge platform={platform} live="Live platform" />
               <Badge variant={a.badge}>{platform.category}</Badge>
             </div>
-            <h1 className={cn("mt-5 text-5xl font-bold leading-[1.05] md:text-7xl", a.gradientText)}>
-              {platform.name}
-            </h1>
+            {platform.wordmark ? (
+
+              <>
+
+                <PlatformWordmark platform={platform} className="mt-6 md:h-24" />
+
+                <h1 className="sr-only">{platform.name}</h1>
+
+              </>
+
+            ) : (
+
+              <h1 className={cn("mt-5 text-5xl font-bold leading-[1.05] md:text-7xl", a.gradientText)}>{platform.name}</h1>
+
+            )}
             <p className="mt-4 text-xl font-medium text-foreground">{platform.subtitle}</p>
             <p className="mt-5 text-base md:text-lg">{platform.description}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -77,18 +89,18 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       </section>
 
       {problems.length > 0 && (
-        <section className="section-y" aria-labelledby="problem">
+        <Section tone="ink" seed="prod-problem" aria-labelledby="problem">
           <div className="container">
             <SectionHeading
               eyebrow="The problem"
               title={<span id="problem">The framework breaks the tools you&apos;re using</span>}
               description="If your compliance program lives in spreadsheets and shared drives, you're carrying risk you can't see — and work you can't repeat across entities."
             />
-            <div className="mt-14 grid gap-6 md:grid-cols-3">
+            <div className="mt-16 grid gap-6 md:grid-cols-3">
               {problems.map((p, i) => (
                 <Reveal key={p.title} delay={0.08 * i}>
                   <Card className="glass-card glow-border h-full border-foreground/10 bg-foreground/[0.03] p-8">
-                    <span className="text-3xl font-bold text-brand-blue/50">0{i + 1}</span>
+                    <span className="text-3xl font-bold text-brand-green/50">0{i + 1}</span>
                     <h3 className="mt-3 text-lg font-semibold">{p.title}</h3>
                     <p className="mt-3 text-sm">{p.body}</p>
                   </Card>
@@ -96,11 +108,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               ))}
             </div>
           </div>
-        </section>
+        </Section>
       )}
 
       {modules.length > 0 && (
-        <section className="section-y bg-surface/40" aria-labelledby="modules">
+        <Section tone="slate" seed="prod-modules" aria-labelledby="modules">
           <div className="container">
             <SectionHeading
               eyebrow={slug === "aegis" ? "Platform modules" : "Capabilities"}
@@ -110,7 +122,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 </span>
               }
             />
-            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {modules.map((m, i) => (
                 <Reveal key={m.title} delay={0.06 * (i % 4)}>
                   <Card className="glass-card glow-border h-full border-foreground/10 bg-foreground/[0.03] p-6">
@@ -130,18 +142,18 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               ))}
             </div>
           </div>
-        </section>
+        </Section>
       )}
 
       {deployment.length > 0 && (
-        <section className="section-y" aria-labelledby="deployment">
+        <Section tone="ink" seed="prod-deploy" aria-labelledby="deployment">
           <div className="container">
             <SectionHeading
               eyebrow="Deployment"
               title={<span id="deployment">Your cloud or ours</span>}
               description="Runs the way your risk posture and regulator require — no compromise on control or speed."
             />
-            <div className="mt-14 grid gap-6 md:grid-cols-2">
+            <div className="mt-16 grid gap-6 md:grid-cols-2">
               {deployment.map((d, i) => (
                 <Reveal key={d.name} delay={0.08 * i}>
                   <Card className="glass-card h-full border-foreground/10 bg-foreground/[0.03] p-8">
@@ -160,24 +172,24 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               ))}
             </div>
           </div>
-        </section>
+        </Section>
       )}
 
       {plans.length > 0 && (
-        <section id="plans" className="section-y bg-surface/40" aria-labelledby="plans-title">
+        <Section id="plans" tone="slate" seed="prod-plans" aria-labelledby="plans-title">
           <div className="container">
             <SectionHeading
               eyebrow="Plans"
               title={<span id="plans-title">Scales with your practice</span>}
               description="From a solo practitioner to an MSSP running dozens of clients. Talk to us for pricing tailored to your entity count and deployment."
             />
-            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
               {plans.map((plan, i) => (
                 <Reveal key={plan.name} delay={0.05 * i}>
                   <Card
                     className={cn(
                       "glass-card h-full border-foreground/10 bg-foreground/[0.03] p-6",
-                      plan.highlight && "border-brand-blue/60 ring-1 ring-brand-blue/30",
+                      plan.highlight && "border-brand-green/60 ring-1 ring-brand-green/30",
                     )}
                   >
                     {plan.highlight && (
@@ -185,7 +197,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                     )}
                     <h3 className="text-lg font-semibold">{plan.name}</h3>
                     <p className="mt-2 text-sm">{plan.blurb}</p>
-                    <Link href="/contact" className="mt-5 inline-block text-sm font-semibold text-brand-cyan">
+                    <Link href="/contact" className="mt-5 inline-block text-sm font-semibold text-brand-amber">
                       Get a quote →
                     </Link>
                   </Card>
@@ -193,17 +205,15 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               ))}
             </div>
           </div>
-        </section>
+        </Section>
       )}
 
-      <div className="pt-24">
-        <CTABanner
+      <CTABanner
           heading={`See ${platform.name} on your own data`}
           body="Book a guided walkthrough against a scenario like yours."
           primary={{ label: "Book a Demo", href: "/contact" }}
           secondary={launchCta(platform)}
         />
-      </div>
-    </div>
+    </>
   );
 }

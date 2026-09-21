@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ArrowRight, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DotNetwork } from "@/components/ui/dot-network";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -22,10 +23,9 @@ const swatches = [
   { name: "muted", cls: "bg-muted" },
   { name: "border", cls: "bg-border" },
   { name: "primary", cls: "bg-primary" },
-  { name: "brand-blue", cls: "bg-brand-blue" },
-  { name: "brand-cyan", cls: "bg-brand-cyan" },
-  { name: "brand-violet", cls: "bg-brand-violet" },
-  { name: "brand-fuchsia", cls: "bg-brand-fuchsia" },
+  { name: "brand-green", cls: "bg-brand-green" },
+  { name: "brand-deep", cls: "bg-brand-deep" },
+  { name: "brand-amber", cls: "bg-brand-amber" },
   { name: "success", cls: "bg-success" },
   { name: "destructive", cls: "bg-destructive" },
 ];
@@ -63,24 +63,21 @@ export default function StyleGuidePage() {
       <Block title="Gradients & utilities">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <div className="gradient-mesh-hero relative flex h-40 items-end overflow-hidden rounded-2xl border border-border p-4">
-            <div className="grid-pattern absolute inset-0" />
+            <DotNetwork />
             <span className="relative font-mono text-xs">.gradient-mesh-hero + .grid-pattern</span>
           </div>
           <div className="gradient-mesh-rich flex h-40 items-end rounded-2xl border border-border p-4">
             <span className="font-mono text-xs">.gradient-mesh-rich</span>
           </div>
           <div className="flex h-40 items-end rounded-2xl bg-gradient-primary p-4">
-            <span className="font-mono text-xs text-white">bg-gradient-primary</span>
-          </div>
-          <div className="flex h-40 items-end rounded-2xl bg-gradient-secondary p-4">
-            <span className="font-mono text-xs text-white">bg-gradient-secondary</span>
+            <span className="font-mono text-xs text-primary-foreground">bg-gradient-primary</span>
           </div>
           <div className="glass-card glow-border flex h-40 items-end p-4">
             <span className="font-mono text-xs">.glass-card .glow-border (hover)</span>
           </div>
           <div className="flex h-40 flex-col justify-end gap-1 rounded-2xl border border-border p-4">
             <span className="gradient-text text-2xl font-bold">.gradient-text</span>
-            <span className="gradient-text-violet text-2xl font-bold">.gradient-text-violet</span>
+            
           </div>
         </div>
       </Block>
@@ -103,12 +100,6 @@ export default function StyleGuidePage() {
           <Button variant="ghost">Ghost</Button>
           <Button variant="secondary">Secondary</Button>
           <Button variant="link">Link</Button>
-          <div className="rounded-2xl bg-gradient-cta p-4">
-            <div className="flex gap-3">
-              <Button variant="light" size="lg">Light</Button>
-              <Button variant="outline-light" size="lg">Outline light</Button>
-            </div>
-          </div>
         </div>
       </Block>
 
@@ -117,8 +108,10 @@ export default function StyleGuidePage() {
           <Badge>Default</Badge>
           <Badge variant="secondary">Secondary</Badge>
           <Badge variant="outline">Outline</Badge>
-          <Badge variant="cyan">Cyan</Badge>
-          <Badge variant="violet">Violet</Badge>
+          <Badge variant="amber">Amber</Badge>
+          <Badge variant="blue">Aegis blue</Badge>
+          <Badge variant="sky">ExploitSense sky</Badge>
+          <Badge variant="violet">Argus violet</Badge>
           <Badge variant="live">Live</Badge>
           <Badge variant="secondary"><Lock className="h-3 w-3" /> With icon</Badge>
         </div>

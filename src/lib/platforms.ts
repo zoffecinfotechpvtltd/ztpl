@@ -1,4 +1,4 @@
-import { Activity, Crosshair, ShieldCheck } from "lucide-react";
+import { Crosshair } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type PlatformAccent = {
@@ -6,18 +6,27 @@ export type PlatformAccent = {
   text: string;
   gradientText: string;
   gradientBg: string;
+  /** Text colour that stays readable on `gradientBg`. */
+  onAccent: string;
   border: string;
   glow: string;
   dot: string;
   soft: string;
   softer: string;
-  badge: "default" | "cyan" | "violet";
+  /** Tints for the hero card behind the product. */
+  tint: string;
+  badge: "blue" | "violet" | "sky";
 };
 
 export type Platform = {
   slug: "aegis" | "argus" | "exploitsense";
   name: string;
+  /** Fallback glyph when the product has no real logo asset. */
   Icon: LucideIcon;
+  /** Real square-ish mark, used in tabs and cards. */
+  mark?: string;
+  /** Real horizontal lockup, used in large product headers. */
+  wordmark?: { src: string; width: number; height: number };
   category: string;
   subtitle: string;
   description: string;
@@ -33,11 +42,17 @@ export type Platform = {
   accent: PlatformAccent;
 };
 
+/**
+ * The company theme is ZTPL's yellow + green; each *product* keeps its own brand colour so
+ * they stay recognisable: Aegis = blue, Argus = purple, ExploitSense = sky blue.
+ */
 export const platforms: Platform[] = [
   {
     slug: "aegis",
     name: "Zoffec Aegis",
-    Icon: ShieldCheck,
+    Icon: Crosshair,
+    mark: "/products/aegis-mark.png",
+    wordmark: { src: "/products/aegis-logo.png", width: 707, height: 252 },
     category: "SEBI CSCRF Compliance Platform",
     subtitle: "The GRC Platform for SEBI CSCRF",
     description:
@@ -50,20 +65,23 @@ export const platforms: Platform[] = [
     displayUrl: "aegis.ztplsolutions.com",
     accent: {
       text: "text-blue-400",
-      gradientText: "gradient-text",
-      gradientBg: "from-blue-500 to-cyan-400",
+      gradientText: "bg-gradient-to-r from-blue-500 to-blue-300 bg-clip-text text-transparent",
+      gradientBg: "from-blue-600 to-blue-400",
+      onAccent: "text-white",
       border: "border-blue-400/30",
       glow: "shadow-[0_0_80px_-20px_rgb(59_130_246/0.8)]",
       dot: "bg-blue-400",
       soft: "bg-blue-500/25",
       softer: "bg-blue-500/10",
-      badge: "default",
+      tint: "from-blue-500/30 to-blue-500/0",
+      badge: "blue",
     },
   },
   {
     slug: "argus",
     name: "Argus",
-    Icon: Activity,
+    Icon: Crosshair,
+    mark: "/products/argus-icon.png",
     category: "Network Monitoring (NMS)",
     subtitle: "Network monitoring that never blinks.",
     description:
@@ -74,15 +92,17 @@ export const platforms: Platform[] = [
     status: "coming-soon",
     displayUrl: "argus · preview",
     accent: {
-      text: "text-cyan-300",
-      gradientText: "bg-gradient-to-r from-cyan-300 to-teal-300 bg-clip-text text-transparent",
-      gradientBg: "from-cyan-400 to-teal-400",
-      border: "border-cyan-300/30",
-      glow: "shadow-[0_0_80px_-20px_rgb(34_211_238/0.7)]",
-      dot: "bg-cyan-300",
-      soft: "bg-cyan-400/25",
-      softer: "bg-cyan-400/10",
-      badge: "cyan",
+      text: "text-violet-400",
+      gradientText: "bg-gradient-to-r from-violet-400 to-fuchsia-300 bg-clip-text text-transparent",
+      gradientBg: "from-violet-600 to-fuchsia-500",
+      onAccent: "text-white",
+      border: "border-violet-400/30",
+      glow: "shadow-[0_0_80px_-20px_rgb(139_92_246/0.8)]",
+      dot: "bg-violet-400",
+      soft: "bg-violet-500/25",
+      softer: "bg-violet-500/10",
+      tint: "from-violet-500/30 to-fuchsia-500/0",
+      badge: "violet",
     },
   },
   {
@@ -99,15 +119,17 @@ export const platforms: Platform[] = [
     status: "coming-soon",
     displayUrl: "exploitsense · preview",
     accent: {
-      text: "text-violet-400",
-      gradientText: "gradient-text-violet",
-      gradientBg: "from-violet-500 to-fuchsia-500",
-      border: "border-violet-400/30",
-      glow: "shadow-[0_0_80px_-20px_rgb(124_58_237/0.8)]",
-      dot: "bg-violet-400",
-      soft: "bg-violet-500/25",
-      softer: "bg-violet-500/10",
-      badge: "violet",
+      text: "text-sky-400",
+      gradientText: "bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent",
+      gradientBg: "from-sky-500 to-sky-300",
+      onAccent: "text-slate-950",
+      border: "border-sky-400/30",
+      glow: "shadow-[0_0_80px_-20px_rgb(14_165_233/0.75)]",
+      dot: "bg-sky-400",
+      soft: "bg-sky-500/25",
+      softer: "bg-sky-500/10",
+      tint: "from-sky-400/30 to-sky-400/0",
+      badge: "sky",
     },
   },
 ];

@@ -5,6 +5,7 @@ import { Database, KeyRound, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { cn } from "@/lib/utils";
+import { Section } from "@/components/ui/section";
 
 const pillars = [
   {
@@ -26,7 +27,7 @@ const pillars = [
 
 export function WhoWeAre() {
   return (
-    <section className="section-y" aria-labelledby="who-we-are">
+    <Section tone="ink" seed="who" aria-labelledby="who-we-are">
       <div className="container">
         <SectionHeading
           eyebrow="Who we are"
@@ -34,18 +35,18 @@ export function WhoWeAre() {
           description="Zoffec Technologies Private Limited builds security and compliance software for India's regulated businesses — three platforms, one engineering team, one operating standard."
         />
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        <div className="mt-16 grid gap-8 lg:grid-cols-3">
           {pillars.map(({ title, body, Icon }, i) => (
             <motion.div
               key={title}
-              initial={{ opacity: 0, y: 32 }}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ delay: 0.1 * i, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 0.12 * i, duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
             >
               <Card className={cn("glass-card glow-border h-full border-foreground/10 bg-foreground/[0.03] p-8")}>
                 <span className="inline-flex rounded-full bg-gradient-primary p-px">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-background text-brand-cyan">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-background text-brand-green">
                     <Icon className="h-5 w-5" aria-hidden />
                   </span>
                 </span>
@@ -56,6 +57,6 @@ export function WhoWeAre() {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

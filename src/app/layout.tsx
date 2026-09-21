@@ -1,11 +1,24 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
+import localFont from "next/font/local";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { site } from "@/lib/site";
 
+
+/** Satoshi is the ZTPL brand typeface (self-hosted from src/fonts/satoshi). */
+const satoshi = localFont({
+  src: [
+    { path: "../fonts/satoshi/Satoshi-300.woff2", weight: "300", style: "normal" },
+    { path: "../fonts/satoshi/Satoshi-400.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/satoshi/Satoshi-500.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/satoshi/Satoshi-700.woff2", weight: "700", style: "normal" },
+    { path: "../fonts/satoshi/Satoshi-900.woff2", weight: "900", style: "normal" },
+  ],
+  variable: "--font-satoshi",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -66,10 +79,9 @@ export default function RootLayout({
     alternateName: site.name,
     url: site.url,
     email: site.email,
-    // PLACEHOLDER — foundingDate/taxID resolve automatically once the
-    // bracketed values in site.ts are replaced with real facts.
     foundingDate: site.founded,
-    taxID: site.cin,
+    taxID: site.gstin,
+    identifier: { "@type": "PropertyValue", propertyID: "CIN", value: site.cin },
     description: site.description,
     logo: `${site.url}/logo.jpeg`,
     address: {
@@ -83,7 +95,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${GeistSans.variable} ${GeistMono.variable}`}
+      className={`dark ${satoshi.variable} ${GeistMono.variable}`}
     >
       <body className="relative min-h-screen bg-background">
         <script
