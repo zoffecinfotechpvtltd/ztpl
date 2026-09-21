@@ -106,8 +106,8 @@ export function Hero() {
             transition={{ delay: 0.5, duration: 1 }}
             className="mx-auto mt-7 max-w-2xl text-base md:text-lg lg:mx-0"
           >
-            Zoffec Technologies Private Limited builds security and compliance platforms for India&apos;s regulated
-            businesses: Zoffec Aegis for SEBI CSCRF, Argus for infrastructure monitoring, and ExploitSense for threat
+            ZTPL builds security and compliance platforms for India&apos;s regulated
+            businesses: Aegis for SEBI CSCRF, Argus for infrastructure monitoring, and ExploitSense for threat
             exposure. Real software, not a slide deck.
           </motion.p>
 

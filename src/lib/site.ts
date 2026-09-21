@@ -1,20 +1,20 @@
 /**
  * Single source of truth for company facts, navigation, and content data.
  * Confirmed decisions:
- *  - Legal name: Zoffec Technologies Private Limited
+ *  - Legal name: ZTPL
  *  - Brand: yellow + green on deep charcoal (extracted from the logo)
  *  - Contact: support@ztplsolutions.com
- *  - Zoffec Aegis is positioned as a PLATFORM (multi-tenant GRC) - not a
+ *  - Aegis is positioned as a PLATFORM (multi-tenant GRC) - not a
  *    one-off solution. Built for Regulated Entities (REs) and the MSSPs /
  *    GRC consultancies that serve them.
  */
 
 export const site = {
   name: "ZTPL",
-  legalName: "Zoffec Technologies Private Limited",
+  legalName: "ZTPL",
   tagline: "Compliance Simplified.",
   description:
-    "ZTPL - Zoffec Technologies Private Limited - is a technology company for India's regulated businesses. We build Zoffec Aegis, Argus, and ExploitSense: real platforms for compliance, infrastructure monitoring, and threat exposure.",
+    "ZTPL is a technology company for India's regulated businesses. We build Aegis, Argus, and ExploitSense: real platforms for compliance, infrastructure monitoring, and threat exposure.",
   url: "https://ztplsolutions.com",
   email: "support@ztplsolutions.com",
   phone: "+91 87790 21628",
@@ -68,7 +68,7 @@ export type Product = {
 export const products: Product[] = [
   {
     slug: "aegis",
-    name: "Zoffec Aegis",
+    name: "Aegis",
     tagline: "The GRC Platform for SEBI CSCRF",
     status: "live",
     category: "SEBI CSCRF Compliance Platform",
@@ -79,7 +79,7 @@ export const products: Product[] = [
     short:
       "A multi-tenant GRC platform purpose-built for SEBI CSCRF - one workspace where Regulated Entities and MSSPs run assessments, hold evidence, manage third-party risk, and ship audit-ready reports.",
     description:
-      "Zoffec Aegis is a multi-tenant GRC platform engineered around the SEBI Cyber Security & Cyber Resilience Framework. Regulated Entities run their entire compliance program in one place; MSSPs and GRC consultancies run dozens of clients side by side - assessments, evidence, third-party risk, and Annexure-K-ready reporting. Deploy on our hardened cloud or inside your own environment.",
+      "Aegis is a multi-tenant GRC platform engineered around the SEBI Cyber Security & Cyber Resilience Framework. Regulated Entities run their entire compliance program in one place; MSSPs and GRC consultancies run dozens of clients side by side - assessments, evidence, third-party risk, and Annexure-K-ready reporting. Deploy on our hardened cloud or inside your own environment.",
     problems: [
       {
         title: "Point tools don't scale to a framework",
@@ -312,7 +312,7 @@ export const faqs = [
   {
     question: "Which entities does SEBI CSCRF actually apply to?",
     answer:
-      "CSCRF applies to SEBI-Regulated Entities (REs) - categorised by size and complexity into different tiers, each with its own control expectations. Zoffec Aegis maps your RE category to the right control set automatically, and our team can help you confirm applicability first.",
+      "CSCRF applies to SEBI-Regulated Entities (REs) - categorised by size and complexity into different tiers, each with its own control expectations. Aegis maps your RE category to the right control set automatically, and our team can help you confirm applicability first.",
   },
   {
     question: "Cloud or on-premises - which deployment do we need?",
@@ -327,11 +327,11 @@ export const faqs = [
   {
     question: "Can an MSSP or consultancy run multiple client entities in one account?",
     answer:
-      "Yes - Zoffec Aegis is built multi-tenant from the ground up. Each client entity is fully isolated (no cross-contamination), while your team gets one workspace to manage assessments, evidence, and reporting across all of them.",
+      "Yes - Aegis is built multi-tenant from the ground up. Each client entity is fully isolated (no cross-contamination), while your team gets one workspace to manage assessments, evidence, and reporting across all of them.",
   },
   {
     question: "Can we talk to someone before committing to a platform?",
     answer:
-      "Yes. Book a short demo and we'll walk through Zoffec Aegis, Argus, or ExploitSense against your own setup, and tell you plainly whether it fits.",
+      "Yes. Book a short demo and we'll walk through Aegis, Argus, or ExploitSense against your own setup, and tell you plainly whether it fits.",
   },
 ] as const;

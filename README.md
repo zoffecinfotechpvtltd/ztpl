@@ -1,7 +1,7 @@
-# ZTPL Website — Zoffec Technologies Private Limited
+# ZTPL Website
 
 Marketing site for **ZTPL** — _Compliance Simplified._ It presents the company's
-platforms: **Zoffec Aegis** (SEBI CSCRF, live), **Argus** (network monitoring) and
+platforms: **Aegis** (SEBI CSCRF, live), **Argus** (network monitoring) and
 **ExploitSense** (threat exposure management), the last two in development.
 
 **Stack:** Next.js (App Router) · TypeScript · Tailwind CSS v3 · shadcn/ui (Radix) ·

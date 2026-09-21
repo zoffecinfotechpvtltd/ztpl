@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: `Privacy Policy for ${site.legalName} (${site.name}).`,
+  description: `Privacy Policy for ${site.legalName}.`,
   alternates: { canonical: "/privacy" },
 };
 
@@ -12,9 +12,9 @@ export default function PrivacyPage() {
   return (
     <LegalPage title="Privacy Policy" updated="21 September 2026">
       <p>
-        This Privacy Policy explains how {site.legalName} (&ldquo;{site.name}&rdquo;, &ldquo;we&rdquo;,
+        This Privacy Policy explains how {site.legalName} (&ldquo;we&rdquo;,
         &ldquo;us&rdquo;) handles personal information collected through this website, {site.url.replace("https://", "")}.
-        It does not cover data processed inside our platforms (such as Zoffec Aegis), which is governed by the
+        It does not cover data processed inside our platforms (such as Aegis), which is governed by the
         agreement we sign with each customer.
       </p>
 

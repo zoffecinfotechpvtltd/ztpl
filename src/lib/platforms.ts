@@ -49,7 +49,7 @@ export type Platform = {
 export const platforms: Platform[] = [
   {
     slug: "aegis",
-    name: "Zoffec Aegis",
+    name: "Aegis",
     Icon: Crosshair,
     mark: "/products/aegis-mark.png",
     wordmark: { src: "/products/aegis-logo.png", width: 707, height: 252 },

@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Platform",
   description:
-    "Zoffec Aegis for SEBI CSCRF, Argus for network monitoring, and ExploitSense for continuous threat exposure management - three platforms from ZTPL.",
+    "Aegis for SEBI CSCRF, Argus for network monitoring, and ExploitSense for continuous threat exposure management - three platforms from ZTPL.",
   alternates: { canonical: "/solutions" },
 };
 
@@ -26,7 +26,7 @@ export default function SolutionsPage() {
       <PageHero
         eyebrow="Platform"
         title="Compliance, productised"
-        body="Zoffec Aegis leads the lineup for SEBI CSCRF; Argus watches your infrastructure; ExploitSense keeps your attack surface honest."
+        body="Aegis leads the lineup for SEBI CSCRF; Argus watches your infrastructure; ExploitSense keeps your attack surface honest."
       />
 
       {platforms.map((p, i) => {

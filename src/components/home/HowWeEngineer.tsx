@@ -32,7 +32,7 @@ export function HowWeEngineer() {
         <SectionHeading
           eyebrow="How we engineer"
           title={<span id="how-we-engineer">A framework this broad needs a platform - not a checklist</span>}
-          description="SEBI CSCRF touches governance, controls, evidence, vendors, and reporting. Zoffec Aegis models all of it in one place, so nothing falls through the cracks."
+          description="SEBI CSCRF touches governance, controls, evidence, vendors, and reporting. Aegis models all of it in one place, so nothing falls through the cracks."
         />
 
         <div className="relative mx-auto mt-16 max-w-5xl">

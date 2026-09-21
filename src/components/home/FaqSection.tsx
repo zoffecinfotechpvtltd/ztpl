@@ -9,7 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const faqs = [
   {
     q: "Which entities does SEBI CSCRF actually apply to?",
-    a: "CSCRF applies to SEBI-Regulated Entities (REs) - categorised by size and complexity into different tiers, each with its own control expectations. Zoffec Aegis maps your RE category to the right control set automatically, and our team can help you confirm applicability first.",
+    a: "CSCRF applies to SEBI-Regulated Entities (REs) - categorised by size and complexity into different tiers, each with its own control expectations. Aegis maps your RE category to the right control set automatically, and our team can help you confirm applicability first.",
   },
   {
     q: "Cloud or on-premises - which deployment do we need?",
@@ -21,11 +21,11 @@ const faqs = [
   },
   {
     q: "Can an MSSP or consultancy run multiple client entities in one account?",
-    a: "Yes - Zoffec Aegis is built multi-tenant from the ground up. Each client entity is fully isolated (no cross-contamination), while your team gets one workspace to manage assessments, evidence, and reporting across all of them.",
+    a: "Yes - Aegis is built multi-tenant from the ground up. Each client entity is fully isolated (no cross-contamination), while your team gets one workspace to manage assessments, evidence, and reporting across all of them.",
   },
   {
     q: "Can we talk to someone before committing to a platform?",
-    a: "Yes. Book a short demo and we'll walk through Zoffec Aegis, Argus, or ExploitSense against your own setup, and tell you plainly whether it fits.",
+    a: "Yes. Book a short demo and we'll walk through Aegis, Argus, or ExploitSense against your own setup, and tell you plainly whether it fits.",
   },
 ];
 

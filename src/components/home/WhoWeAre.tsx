@@ -32,7 +32,7 @@ export function WhoWeAre() {
         <SectionHeading
           eyebrow="Who we are"
           title={<span id="who-we-are">A technology company, not a single product</span>}
-          description="Zoffec Technologies Private Limited builds security and compliance software for India's regulated businesses - three platforms, one engineering team, one operating standard."
+          description="ZTPL builds security and compliance software for India's regulated businesses - three platforms, one engineering team, one operating standard."
         />
 
         <div className="mt-16 grid gap-8 lg:grid-cols-3">

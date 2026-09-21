@@ -2,7 +2,7 @@
   "name": "ztpl-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Official company website for ZTPL — Zoffec Technologies Private Limited. Compliance Simplified.",
+  "description": "Official company website for ZTPL. Compliance Simplified.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

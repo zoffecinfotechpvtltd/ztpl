@@ -14,14 +14,14 @@ export default function TermsPage() {
     <LegalPage title="Terms of Use" updated="21 September 2026">
       <p>
         These terms govern your use of this website, {site.url.replace("https://", "")}, operated by{" "}
-        {site.legalName} (&ldquo;{site.name}&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;). By using the website you
+        {site.legalName} (&ldquo;we&rdquo;, &ldquo;us&rdquo;). By using the website you
         agree to them. If you do not agree, please do not use the website.
       </p>
 
       <H2>1. What this website is</H2>
       <p>
         This is an information website about {site.name} and its platforms. Access to and use of our platforms,
-        such as Zoffec Aegis, is governed by a separate written agreement between us and each customer, and not by
+        such as Aegis, is governed by a separate written agreement between us and each customer, and not by
         these terms.
       </p>
 
@@ -44,7 +44,7 @@ export default function TermsPage() {
 
       <H2>4. Intellectual property</H2>
       <p>
-        The website and its content, including text, design, graphics, logos, and the names {site.name}, Zoffec
+        The website and its content, including text, design, graphics, logos, and the names {site.name},
         Aegis, Argus, and ExploitSense, belong to {site.legalName} or its licensors and are protected by applicable
         intellectual property laws. You may view the website and share links to it. You may not copy, modify,
         distribute, or reuse its content for commercial purposes without our written permission.

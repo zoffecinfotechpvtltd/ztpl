@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     "Annexure-K",
     "third-party risk",
     "cyber resilience",
-    "Zoffec Aegis",
+    "Aegis",
     "Argus",
     "ExploitSense",
     "MSSP GRC platform",

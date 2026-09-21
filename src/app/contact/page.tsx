@@ -9,7 +9,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact - Book a Demo",
   description:
-    "Talk to ZTPL about Zoffec Aegis, Argus, or ExploitSense. Book a demo or reach our team at support@ztplsolutions.com.",
+    "Talk to ZTPL about Aegis, Argus, or ExploitSense. Book a demo or reach our team at support@ztplsolutions.com.",
   alternates: { canonical: "/contact" },
 };
 
@@ -41,7 +41,7 @@ export default function ContactPage() {
             Let&apos;s talk <span className="gradient-text">platforms</span>
           </h1>
           <p className="mt-6 max-w-xl text-base md:text-lg">
-            Book a demo of Zoffec Aegis, ask about Argus or ExploitSense, or ask us anything about ZTPL. Tell us
+            Book a demo of Aegis, ask about Argus or ExploitSense, or ask us anything about ZTPL. Tell us
             what you need - we meet you there.
           </p>
 
@@ -68,16 +68,6 @@ export default function ContactPage() {
               </li>
             ))}
           </ul>
-
-          <div className="glass-card mt-6 overflow-hidden">
-            <iframe
-              title={`Map of ${site.location}`}
-              src="https://maps.google.com/maps?q=Maulana%20Shaukat%20Ali%20Road%2C%20Lamington%20Road%2C%20Mumbai%20400008&z=16&output=embed"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="block h-64 w-full border-0"
-            />
-          </div>
         </Reveal>
 
         <Reveal delay={0.1}>

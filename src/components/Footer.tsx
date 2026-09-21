@@ -37,7 +37,7 @@ export function Footer() {
               <span className="text-brand-amber">Compliance</span> <span className="text-brand-green">Simplified</span>
             </p>
             <p className="mt-7 max-w-sm text-base font-medium leading-relaxed text-foreground/80">
-              A technology company for India&apos;s regulated businesses. We build Zoffec Aegis, Argus, and
+              A technology company for India&apos;s regulated businesses. We build Aegis, Argus, and
               ExploitSense.
             </p>
             <Link

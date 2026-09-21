@@ -39,7 +39,6 @@ export function StatsBand() {
               <span className="gradient-text text-3xl font-black tracking-tight">ZTPL</span>
               <span className="text-sm text-foreground/90">Compliance Simplified.</span>
             </p>
-            <p className="mt-1 text-xs">Zoffec Technologies Private Limited</p>
           </div>
 
           {counters.map((c, i) => (

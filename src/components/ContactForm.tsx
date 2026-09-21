@@ -131,7 +131,7 @@ export function ContactForm() {
                   <Input
                     id="name"
                     autoComplete="name"
-                    placeholder="Priya Sharma"
+                    placeholder="Saqib Ansari"
                     aria-invalid={!!errors.name}
                     aria-describedby={errors.name ? "name-error" : undefined}
                     {...register("name")}
@@ -141,7 +141,7 @@ export function ContactForm() {
                   <Input
                     id="company"
                     autoComplete="organization"
-                    placeholder="Acme Securities"
+                    placeholder="ZTPL"
                     aria-invalid={!!errors.company}
                     aria-describedby={errors.company ? "company-error" : undefined}
                     {...register("company")}

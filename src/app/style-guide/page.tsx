@@ -129,7 +129,7 @@ export default function StyleGuidePage() {
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="sg-name">Name</Label>
-              <Input id="sg-name" placeholder="Priya Sharma" />
+              <Input id="sg-name" placeholder="Saqib Ansari" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="sg-msg">Message</Label>

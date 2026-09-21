@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "ZTPL - Zoffec Technologies Private Limited - is a technology company building Zoffec Aegis, Argus, and ExploitSense for India's regulated businesses.",
+    "ZTPL is a technology company building Aegis, Argus, and ExploitSense for India's regulated businesses.",
   alternates: { canonical: "/about" },
 };
 
@@ -47,7 +47,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About"
         title="We make compliance buildable"
-        body="Zoffec Technologies Private Limited (ZTPL) is a technology company. We build Zoffec Aegis, Argus, and ExploitSense - real platforms for compliance, infrastructure, and threat exposure, for India's regulated businesses."
+        body="ZTPL is a technology company. We build Aegis, Argus, and ExploitSense - real platforms for compliance, infrastructure, and threat exposure, for India's regulated businesses."
       />
 
       {/* Our story */}
@@ -66,7 +66,7 @@ export default function AboutPage() {
               to each other.
             </p>
             <p>
-              We built ZTPL to close that gap with software: Zoffec Aegis operationalises SEBI CSCRF end-to-end for
+              We built ZTPL to close that gap with software: Aegis operationalises SEBI CSCRF end-to-end for
               many entities at once; Argus watches infrastructure continuously; ExploitSense keeps attack surface
               honest. One engineering team, one operating standard, three problems solved properly.
             </p>
